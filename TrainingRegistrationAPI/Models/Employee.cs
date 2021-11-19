@@ -27,7 +27,7 @@ namespace TrainingRegistrationAPI.Models
         public DateTime BirthDate { get; set; }
         public DateTime HireDate { get; set; }
 
-        /*[JsonIgnore]
-        public virtual Account Account { get; set; }*/
+/*        [JsonIgnore]*/
+        public virtual Account Account { get; set; }
     }
 }
