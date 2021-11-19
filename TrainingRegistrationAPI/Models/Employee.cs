@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace TrainingRegistrationAPI.Models
 {
-    [Table("Tb_M_User")]
-    public class User
+    [Table("Tb_M_Employee")]
+    public class Employee
     {
-
         [Key]
-        public int UserId { get; set; }
+        public string EmployeeId { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -26,17 +25,9 @@ namespace TrainingRegistrationAPI.Models
         [JsonConverter(typeof(StringEnumConverter))]
         public Gender Gender { get; set; }
         public DateTime BirthDate { get; set; }
-        public string Address { get; set; }
-        public DateTime RegistDate { get; set; }
+        public DateTime HireDate { get; set; }
 
         /*[JsonIgnore]
-       public virtual Account Account { get; set; }*/
-    }
-
-    public enum Gender
-    {
-        Male,
-        Female
+        public virtual Account Account { get; set; }*/
     }
 }
-
