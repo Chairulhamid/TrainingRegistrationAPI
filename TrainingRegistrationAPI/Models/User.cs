@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 namespace TrainingRegistrationAPI.Models
 {
     public class User
-    {dfdfdsfds
+    {dfdfdsfdsd
     }
 }
