@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace TrainingRegistrationAPI.Models
 {
     [Table("Tb_M_Moduls")]
-    public class Moduls
+    public class Modul
     {
         [Key]
         public int ModulId { get; set; }
