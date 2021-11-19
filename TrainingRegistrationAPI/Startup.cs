@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TrainingRegistrationAPI.Context;
+using TrainingRegistrationAPI.Repository.Data;
 
 namespace TrainingRegistrationAPI
 {
@@ -28,6 +29,16 @@ namespace TrainingRegistrationAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<AccountRepository>();
+            services.AddScoped<AccountRoleRepository>();
+            services.AddScoped<CourseRepository>();
+            services.AddScoped<EmployeeRepository>();
+            services.AddScoped<ModulRepository>();
+            services.AddScoped<PaymentRepository>();
+            services.AddScoped<RegisteredCourseRepository>();
+            services.AddScoped<RoleRepository>();
+            services.AddScoped<TopicRepository>();
+            services.AddScoped<UserRepository>();
             services.AddDbContext<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("APIContext")));
         }
 
