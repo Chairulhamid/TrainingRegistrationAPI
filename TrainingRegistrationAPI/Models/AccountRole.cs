@@ -14,10 +14,10 @@ namespace TrainingRegistrationAPI.Models
         public int AccountRoleId { get; set; }
         public int RoleId { get; set; }
         public string AccountId { get; set; }
-     /*   [JsonIgnore]
+      /*  [JsonIgnore]*/
         public virtual Account Account { get; set; }
-        [JsonIgnore]
+ /*       [JsonIgnore]*/
         public virtual Role Role { get; set; }
-*/
+
     }
 }

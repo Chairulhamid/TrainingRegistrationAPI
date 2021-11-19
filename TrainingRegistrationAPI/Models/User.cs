@@ -29,8 +29,8 @@ namespace TrainingRegistrationAPI.Models
         public string Address { get; set; }
         public DateTime RegistDate { get; set; }
 
-        /*[JsonIgnore]
-       public virtual Account Account { get; set; }*/
+      /*  [JsonIgnore]*/
+        public virtual Account Account { get; set; }
     }
 
     public enum Gender
