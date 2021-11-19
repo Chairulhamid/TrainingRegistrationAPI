@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace TrainingRegistrationAPI.Models
 {
     [Table("Tb_M_Payment")]
-    public class Payments
+    public class Payment
     {
         [Key]
         public int PaymentId { get; set; }
