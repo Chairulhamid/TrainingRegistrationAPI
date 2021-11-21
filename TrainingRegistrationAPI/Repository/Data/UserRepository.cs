@@ -70,7 +70,6 @@ namespace TrainingRegistrationAPI.Repository.Data
 
             return getProfile;
         }
-
         public int RegisterUser(RegisterUserVM registerUserVM)
         {
             User user = new User();
@@ -86,7 +85,13 @@ namespace TrainingRegistrationAPI.Repository.Data
             {
                 return 3;
             }
-            
+            Account account = new Account();
+            /*  account.AccountId = registerUserVM.AccountId;*/
+            account.Password = BCrypt.Net.BCrypt.HashPassword(registerUserVM.Password, GetRandomSalt());
+            myContext.Accounts.Add(account);
+            myContext.SaveChanges();
+
+            user.AccountId = account.AccountId;
             user.FirstName = registerUserVM.FirstName;
             user.LastName = registerUserVM.LastName;
             user.Email = registerUserVM.Email;
@@ -95,16 +100,14 @@ namespace TrainingRegistrationAPI.Repository.Data
             user.BirthDate = registerUserVM.BirthDate;
             user.Address = registerUserVM.Address;
             user.RegistDate = registerUserVM.RegistDate;
+        
+
+          
             myContext.Users.Add(user);
             myContext.SaveChanges();
 
-            Account account = new Account();
-            account.AccountId = registerUserVM.AccountId;
-            account.Password = BCrypt.Net.BCrypt.HashPassword(registerUserVM.Password, GetRandomSalt());
-            myContext.Accounts.Add(account);
-            myContext.SaveChanges();
-
             AccountRole accountRole = new AccountRole();
+            /*    accountRole.AccountId = account.AccountId;*/
             accountRole.AccountId = account.AccountId;
             accountRole.RoleId = 2;
             /*accountRole.RoleId = registerUserVM.Role_Id;*/

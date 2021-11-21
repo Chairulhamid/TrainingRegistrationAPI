@@ -58,7 +58,7 @@ namespace TrainingRegistrationAPI.Controller
 
         }
 
-        [Route("Register")]
+        [Route("RegisterUser")]
         [HttpPost]
         public ActionResult RegisterUser(RegisterUserVM registerUserVM)
         {
