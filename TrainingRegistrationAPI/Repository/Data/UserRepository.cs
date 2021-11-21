@@ -14,13 +14,11 @@ namespace TrainingRegistrationAPI.Repository.Data
         {
             return BCrypt.Net.BCrypt.GenerateSalt(12);
         }
-
         private readonly MyContext myContext;
         public UserRepository(MyContext myContext) : base(myContext)
         {
             this.myContext = myContext;
         }
-
         public IEnumerable<RegisterUserVM> GetProfile()
         {
             var getProfile = (from u in myContext.Users
@@ -114,30 +112,25 @@ namespace TrainingRegistrationAPI.Repository.Data
             var result = myContext.SaveChanges();
             return result;
         }
-
-        public string LoginUser(LoginUserVM loginUserVM)
+        public int Login(LoginUserVM loginUserVM)
         {
-            var checkEmail = myContext.Users.Where(e => e.Email == loginUserVM.Email).FirstOrDefault();
-            if (checkEmail != null)
+            User user= new User();
+            Account account = new Account();
+            var checkEmail = myContext.Users.Where(x => x.Email == loginUserVM.Email).FirstOrDefault();
+            if (checkEmail == null)
             {
-                var getID = checkEmail.AccountId;
-                var getPassword = myContext.Accounts.Find(getID);
-                string pass = getPassword.Password;
-                bool validPass = BCrypt.Net.BCrypt.Verify(loginUserVM.Password, getPassword.Password);
-                if (validPass == true)
-                {
-                    return getID;
-                }
-                else
-                {
-                    var result = "password";
-                    return result;
-                }
+                return 2;
+            }
+            var checkNik = checkEmail.AccountId;
+            var checkPass = myContext.Accounts.Find(checkEmail.AccountId);
+            bool validPass = BCrypt.Net.BCrypt.Verify(loginUserVM.Password, checkPass.Password);
+            if (validPass)
+            {
+                return 3;
             }
             else
             {
-                var result = "email";
-                return result;
+                return 4;
             }
         }
 
