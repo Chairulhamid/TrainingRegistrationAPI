@@ -28,8 +28,8 @@ namespace TrainingRegistrationAPI.Models
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
         public DateTime RegistDate { get; set; }
-
-      /*  [JsonIgnore]*/
+        public int AccountId { get; set; }
+        [JsonIgnore]
         public virtual Account Account { get; set; }
     }
 

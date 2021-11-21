@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,10 +12,9 @@ namespace TrainingRegistrationAPI.Models
     public class Role
     {
         [Key]
-        public int Account_Role_Id { get; set; }
         public int Role_Id { get; set; }
         public string Role_Name { get; set; }
-       /* [JsonIgnore]*/
+        [JsonIgnore]
         public virtual ICollection<AccountRole> AccountRoles { get; set; }
     }
 }

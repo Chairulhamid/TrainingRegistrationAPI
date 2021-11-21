@@ -30,20 +30,20 @@ namespace TrainingRegistrationAPI.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //One to one => Account to User
-            modelBuilder.Entity<User>()
-                .HasOne(a => a.Account)
-                .WithOne(b => b.User)
-                .HasForeignKey<Account>(b => b.AccountId);
+            modelBuilder.Entity<Account>()
+                 .HasOne(a => a.User)
+                 .WithOne(b => b.Account)
+                 .HasForeignKey<User>(b => b.AccountId);
 
             //One to one => Account to Employee
-            modelBuilder.Entity<Employee>()
-                .HasOne(a => a.Account)
-                .WithOne(b => b.Employee)
-                .HasForeignKey<Account>(b => b.AccountId);
-
-            //Many to Many => Role
+            modelBuilder.Entity<Account>()
+                 .HasOne(a => a.Employee)
+                 .WithOne(b => b.Account)
+                 .HasForeignKey<Employee>(b => b.AccountId);
+            
+            //Many to many Role
             modelBuilder.Entity<AccountRole>()
-                 .HasKey(bc => new { bc.AccountId, bc.RoleId });
+              .HasKey(bc => new { bc.AccountId, bc.RoleId });
             modelBuilder.Entity<AccountRole>()
                 .HasOne(bc => bc.Account)
                 .WithMany(b => b.AccountRoles)
@@ -51,30 +51,50 @@ namespace TrainingRegistrationAPI.Context
             modelBuilder.Entity<AccountRole>()
                 .HasOne(bc => bc.Role)
                 .WithMany(c => c.AccountRoles)
-                .HasForeignKey(bc => bc.RoleId); 
+                .HasForeignKey(bc => bc.RoleId);
 
-            /* //One to one => Account to Profilling
-             modelBuilder.Entity<Account>()
-                 .HasOne(a => a.Profilling)
-                 .WithOne(b => b.Account)
-                 .HasForeignKey<Profilling>(b => b.NIK);
 
-             //Many  to Many => Univetsity to Education
-             modelBuilder.Entity<University>()
-                 .HasMany(c => c.Educations)
-                 .WithOne(e => e.University);
+            /*   //One to one => Account to Employee
+          *//*     modelBuilder.Entity<Employee>()
+                    .HasOne(a => a.Account)
+                    .WithOne(b => b.Employee)
+                    .HasForeignKey<Account>(b => b.EmployrrId);*//*
 
-             //One to Many => Education to Profilling
-             modelBuilder.Entity<Education>()
-               .HasMany(c => c.Profillings)
-               .WithOne(e => e.Education);
+            //Many to Many => Role
+            modelBuilder.Entity<AccountRole>()
+                   .HasKey(bc => new { bc.AccountId, bc.RoleId });
 
-             //One to Many => Education to Profilling
-             modelBuilder.Entity<Education>()
-               .HasMany(c => c.Profillings)
-               .WithOne(e => e.Education); */
+            modelBuilder.Entity<AccountRole>()
+                .HasOne(bc => bc.Account)
+                .WithMany(b => b.AccountRoles)
+                .HasForeignKey(bc => bc.AccountId);
 
-            
+            modelBuilder.Entity<AccountRole>()
+                .HasOne(bc => bc.Role)
+                .WithMany(c => c.AccountRoles)
+                .HasForeignKey(bc => bc.RoleId);
+            //One to one => Account to Profilling
+            modelBuilder.Entity<Account>()
+                .HasOne(a => a.Profilling)
+                .WithOne(b => b.Account)
+                .HasForeignKey<Profilling>(b => b.NIK);
+
+            //Many  to Many => Univetsity to Education
+            modelBuilder.Entity<University>()
+                .HasMany(c => c.Educations)
+                .WithOne(e => e.University);
+
+            //One to Many => Education to Profilling
+            modelBuilder.Entity<Education>()
+              .HasMany(c => c.Profillings)
+              .WithOne(e => e.Education);
+
+            //One to Many => Education to Profilling
+            modelBuilder.Entity<Education>()
+              .HasMany(c => c.Profillings)
+              .WithOne(e => e.Education);*/
+
+
         }
     }
 }

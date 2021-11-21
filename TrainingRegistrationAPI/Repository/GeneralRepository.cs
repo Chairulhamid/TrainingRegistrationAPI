@@ -29,7 +29,7 @@ namespace TrainingRegistrationAPI.Repository
 
         public IEnumerable<Entity> Get()
         {
-            throw new NotImplementedException();
+            return entities.ToList();
         }
 
         public Entity Get(Key key)
