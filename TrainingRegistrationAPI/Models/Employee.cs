@@ -13,7 +13,7 @@ namespace TrainingRegistrationAPI.Models
     public class Employee
     {
         [Key]
-        public string EmployeeId { get; set; }
+        public int EmployeeId { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -26,8 +26,8 @@ namespace TrainingRegistrationAPI.Models
         public Gender Gender { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime HireDate { get; set; }
-
-/*        [JsonIgnore]*/
+        public int AccountId { get; set; }
+        [JsonIgnore]
         public virtual Account Account { get; set; }
     }
 }

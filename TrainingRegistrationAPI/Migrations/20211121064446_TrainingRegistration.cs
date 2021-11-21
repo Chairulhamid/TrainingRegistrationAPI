@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TrainingRegistrationAPI.Migrations
 {
-    public partial class init : Migration
+    public partial class TrainingRegistration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,20 +22,6 @@ namespace TrainingRegistrationAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tb_M_AccountRole",
-                columns: table => new
-                {
-                    AccountRoleId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
-                    AccountId = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tb_M_AccountRole", x => x.AccountRoleId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tb_M_Course",
                 columns: table => new
                 {
@@ -48,24 +34,6 @@ namespace TrainingRegistrationAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tb_M_Course", x => x.CourseId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tb_M_Employee",
-                columns: table => new
-                {
-                    EmployeeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tb_M_Employee", x => x.EmployeeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,14 +83,13 @@ namespace TrainingRegistrationAPI.Migrations
                 name: "Tb_M_Role",
                 columns: table => new
                 {
-                    Account_Role_Id = table.Column<int>(type: "int", nullable: false)
+                    Role_Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Role_Id = table.Column<int>(type: "int", nullable: false),
                     Role_Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tb_M_Role", x => x.Account_Role_Id);
+                    table.PrimaryKey("PK_Tb_M_Role", x => x.Role_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,6 +107,32 @@ namespace TrainingRegistrationAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tb_M_Employee",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AccountId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tb_M_Employee", x => x.EmployeeId);
+                    table.ForeignKey(
+                        name: "FK_Tb_M_Employee_Tb_M_Account_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Tb_M_Account",
+                        principalColumn: "AccountId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tb_M_User",
                 columns: table => new
                 {
@@ -152,19 +145,64 @@ namespace TrainingRegistrationAPI.Migrations
                     Gender = table.Column<int>(type: "int", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RegistDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    RegistDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AccountId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tb_M_User", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Tb_M_User_Tb_M_Account_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Tb_M_Account",
+                        principalColumn: "AccountId",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Tb_M_AccountRole",
+                columns: table => new
+                {
+                    AccountId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tb_M_AccountRole", x => new { x.AccountId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_Tb_M_AccountRole_Tb_M_Account_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Tb_M_Account",
+                        principalColumn: "AccountId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tb_M_AccountRole_Tb_M_Role_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Tb_M_Role",
+                        principalColumn: "Role_Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tb_M_AccountRole_RoleId",
+                table: "Tb_M_AccountRole",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tb_M_Employee_AccountId",
+                table: "Tb_M_Employee",
+                column: "AccountId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tb_M_User_AccountId",
+                table: "Tb_M_User",
+                column: "AccountId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Tb_M_Account");
-
             migrationBuilder.DropTable(
                 name: "Tb_M_AccountRole");
 
@@ -184,13 +222,16 @@ namespace TrainingRegistrationAPI.Migrations
                 name: "Tb_M_RegisteredCourse");
 
             migrationBuilder.DropTable(
-                name: "Tb_M_Role");
-
-            migrationBuilder.DropTable(
                 name: "Tb_M_Topic");
 
             migrationBuilder.DropTable(
                 name: "Tb_M_User");
+
+            migrationBuilder.DropTable(
+                name: "Tb_M_Role");
+
+            migrationBuilder.DropTable(
+                name: "Tb_M_Account");
         }
     }
 }

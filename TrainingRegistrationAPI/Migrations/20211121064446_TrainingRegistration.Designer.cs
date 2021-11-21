@@ -10,8 +10,8 @@ using TrainingRegistrationAPI.Context;
 namespace TrainingRegistrationAPI.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20211119133918_createAPI")]
-    partial class createAPI
+    [Migration("20211121064446_TrainingRegistration")]
+    partial class TrainingRegistration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,18 +41,15 @@ namespace TrainingRegistrationAPI.Migrations
 
             modelBuilder.Entity("TrainingRegistrationAPI.Models.AccountRole", b =>
                 {
-                    b.Property<int>("AccountRoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AccountId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.HasKey("AccountRoleId");
+                    b.HasKey("AccountId", "RoleId");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Tb_M_AccountRole");
                 });
@@ -80,8 +77,13 @@ namespace TrainingRegistrationAPI.Migrations
 
             modelBuilder.Entity("TrainingRegistrationAPI.Models.Employee", b =>
                 {
-                    b.Property<string>("EmployeeId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("EmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -109,6 +111,9 @@ namespace TrainingRegistrationAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeId");
+
+                    b.HasIndex("AccountId")
+                        .IsUnique();
 
                     b.ToTable("Tb_M_Employee");
                 });
@@ -172,18 +177,15 @@ namespace TrainingRegistrationAPI.Migrations
 
             modelBuilder.Entity("TrainingRegistrationAPI.Models.Role", b =>
                 {
-                    b.Property<int>("Account_Role_Id")
+                    b.Property<int>("Role_Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Role_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Role_Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Account_Role_Id");
+                    b.HasKey("Role_Id");
 
                     b.ToTable("Tb_M_Role");
                 });
@@ -212,6 +214,9 @@ namespace TrainingRegistrationAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -243,7 +248,65 @@ namespace TrainingRegistrationAPI.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("AccountId")
+                        .IsUnique();
+
                     b.ToTable("Tb_M_User");
+                });
+
+            modelBuilder.Entity("TrainingRegistrationAPI.Models.AccountRole", b =>
+                {
+                    b.HasOne("TrainingRegistrationAPI.Models.Account", "Account")
+                        .WithMany("AccountRoles")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TrainingRegistrationAPI.Models.Role", "Role")
+                        .WithMany("AccountRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("TrainingRegistrationAPI.Models.Employee", b =>
+                {
+                    b.HasOne("TrainingRegistrationAPI.Models.Account", "Account")
+                        .WithOne("Employee")
+                        .HasForeignKey("TrainingRegistrationAPI.Models.Employee", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("TrainingRegistrationAPI.Models.User", b =>
+                {
+                    b.HasOne("TrainingRegistrationAPI.Models.Account", "Account")
+                        .WithOne("User")
+                        .HasForeignKey("TrainingRegistrationAPI.Models.User", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("TrainingRegistrationAPI.Models.Account", b =>
+                {
+                    b.Navigation("AccountRoles");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TrainingRegistrationAPI.Models.Role", b =>
+                {
+                    b.Navigation("AccountRoles");
                 });
 #pragma warning restore 612, 618
         }
