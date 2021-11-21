@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TrainingRegistrationAPI.Context;
 using TrainingRegistrationAPI.Repository.Interface;
+using TrainingRegistrationAPI.ViewModel;
 
 namespace TrainingRegistrationAPI.Repository
 {
@@ -47,7 +48,7 @@ namespace TrainingRegistrationAPI.Repository
             return result;
         }
 
-        public int Register(RegisterVM entity)
+        public int RegisterUser(RegisterUserVM entity)
         {
             throw new NotImplementedException();
         }
