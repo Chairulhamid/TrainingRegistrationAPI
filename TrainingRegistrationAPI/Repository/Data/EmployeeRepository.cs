@@ -115,7 +115,27 @@ namespace TrainingRegistrationAPI.Repository.Data
             return result;
         }
 
-        
+        public int Login(LoginEmpVM loginEmpVM)
+        {
+            Employee employee = new Employee();
+            Account account = new Account();
+            var checkEmail = myContext.Employees.Where(x => x.Email == loginEmpVM.Email).FirstOrDefault();
+            if (checkEmail == null)
+            {
+                return 2;
+            }
+            var checkNik = checkEmail.AccountId;
+            var checkPass = myContext.Accounts.Find(checkEmail.AccountId);
+            bool validPass = BCrypt.Net.BCrypt.Verify(loginEmpVM.Password, checkPass.Password);
+            if (validPass)
+            {
+                return 3;
+            }
+            else
+            {
+                return 4;
+            }
+        }
     }
 }
 

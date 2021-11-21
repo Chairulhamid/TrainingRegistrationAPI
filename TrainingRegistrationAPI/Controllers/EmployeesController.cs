@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using API.ViewModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using TrainingRegistrationAPI.Context;
 using TrainingRegistrationAPI.Controller.Base;
@@ -19,12 +24,12 @@ namespace TrainingRegistrationAPI.Controllers
     public class EmployeesController : BaseController<Employee, EmployeeRepository, int>
     {
         private readonly EmployeeRepository employeeRepository;
-        //private readonly MyContext myContext;
+        private readonly MyContext myContext;
         public IConfiguration _configuration;
         public EmployeesController(EmployeeRepository employeeRepository, IConfiguration configuration, MyContext myContext) : base(employeeRepository)
         {
             this.employeeRepository = employeeRepository;
-            //this.myContext = myContext; 
+            this.myContext = myContext; 
             this._configuration = configuration;
         }
 
@@ -77,6 +82,65 @@ namespace TrainingRegistrationAPI.Controllers
 
             }
 
+        }
+        [Route("LoginEmp")]
+        [HttpPost]
+        public ActionResult Login(LoginEmpVM loginEmpVM)
+        {
+            var result = employeeRepository.Login(loginEmpVM);
+            if (result == 2)
+            {
+                return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data gagal dimasukkan: Email yang Anda masukkan belum sudah terdaftar!" });
+            }
+            else if (result == 3)
+            {
+                var getDataUser = (from e in myContext.Employees
+                                   join a in myContext.Accounts on e.AccountId equals a.AccountId
+                                   join ar in myContext.AccountRoles on a.AccountId equals ar.AccountId
+                                   join r in myContext.Roles on ar.RoleId equals r.Role_Id
+                                   orderby e.AccountId
+                                   select new
+                                   {
+                                       AccountId = e.AccountId,
+                                       Email = e.Email,
+                                       Role = r.Role_Name
+                                   }).Where(e => e.Email == loginEmpVM.Email).ToList();
+                List<string> listRole = new List<string>();
+                foreach (var item in getDataUser)
+                {
+                    listRole.Add(item.Role);
+                }
+                var data = new LoginUserVM()
+                {
+                    Email = loginEmpVM.Email,
+                    Role = listRole.ToArray()
+                };
+                var claims = new List<Claim>
+                 {
+                new Claim("email", data.Email),
+                };
+                foreach (var item in data.Role)
+                {
+                    claims.Add(new Claim("roles", item.ToString()));
+                }
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:key"]));
+                var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var token = new JwtSecurityToken(
+                    _configuration["Jwt:Issuer"],
+                    _configuration["Jwt:Audience"],
+                    claims,
+                    expires: DateTime.UtcNow.AddMinutes(10),
+                    signingCredentials: signIn
+                    );
+                var idToken = new JwtSecurityTokenHandler().WriteToken(token);
+                claims.Add(new Claim("TokenSecurity", idToken.ToString()));
+                return Ok(new JWTokenVM
+                {
+                    Token = idToken,
+                    Messages = "Login Berhasil!!"
+                });
+            }
+            return Ok(new { status = HttpStatusCode.OK, result = result, message = "Login Gagal, Password yang anda masukan Salah" });
         }
     }
 }
