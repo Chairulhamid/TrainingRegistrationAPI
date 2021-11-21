@@ -9,6 +9,7 @@ namespace TrainingRegistrationAPI.Repository.Data
 {
     public class UserRepository : GeneralRepository<MyContext, User, int>
     {
+     /*   private readonly MyContext myContext;*/
         public UserRepository(MyContext myContext) : base(myContext)
         {
         }
