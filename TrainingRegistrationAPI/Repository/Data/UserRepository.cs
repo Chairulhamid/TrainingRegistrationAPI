@@ -32,15 +32,17 @@ namespace TrainingRegistrationAPI.Repository.Data
                               acr.RoleId equals r.Role_Id
                               select new RegisterUserVM
                               {
-                                  FullName = u.FirstName + " " + u.LastName,
+                                  FirstName = u.FirstName,
+                                  LastName = u.LastName,
                                   Email = u.Email,
                                   Phone = u.Phone,
                                   Gender = (ViewModel.Gender)u.Gender,
                                   BirthDate = u.BirthDate,
                                   Address = u.Address,
-                                  //Password = acc.Password,
+                                  Password = acc.Password,
                                   RegistDate = u.RegistDate,
-                                  Role_Id = r.Role_Id
+                                  Role_Id = r.Role_Id,
+                                  AccountId = acc.AccountId
                               }).ToList();
 
             return getProfile;
@@ -57,7 +59,8 @@ namespace TrainingRegistrationAPI.Repository.Data
                               acr.RoleId equals r.Role_Id
                               select new RegisterUserVM
                               {
-                                  FullName = u.FirstName + " " + u.LastName,
+                                  FirstName = u.FirstName,
+                                  LastName = u.LastName,
                                   Email = u.Email,
                                   Phone = u.Phone,
                                   Gender = (ViewModel.Gender)u.Gender,
@@ -86,7 +89,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                 return 3;
             }
             Account account = new Account();
-            /*  account.AccountId = registerUserVM.AccountId;*/
+            account.Email = registerUserVM.Email;
             account.Password = BCrypt.Net.BCrypt.HashPassword(registerUserVM.Password, GetRandomSalt());
             myContext.Accounts.Add(account);
             myContext.SaveChanges();
@@ -100,17 +103,13 @@ namespace TrainingRegistrationAPI.Repository.Data
             user.BirthDate = registerUserVM.BirthDate;
             user.Address = registerUserVM.Address;
             user.RegistDate = registerUserVM.RegistDate;
-        
 
-          
             myContext.Users.Add(user);
             myContext.SaveChanges();
 
             AccountRole accountRole = new AccountRole();
-            /*    accountRole.AccountId = account.AccountId;*/
             accountRole.AccountId = account.AccountId;
             accountRole.RoleId = 2;
-            /*accountRole.RoleId = registerUserVM.Role_Id;*/
             myContext.AccountRoles.Add(accountRole);
             var result = myContext.SaveChanges();
             return result;
