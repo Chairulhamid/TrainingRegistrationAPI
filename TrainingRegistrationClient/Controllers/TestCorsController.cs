@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TrainingRegistrationClient.Views.TestCors
+namespace TrainingRegistrationClient.Controllers
 {
     public class TestCorsController : Controller
     {
