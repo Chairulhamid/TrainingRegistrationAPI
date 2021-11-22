@@ -11,7 +11,7 @@ using TrainingRegistrationClient.Base.Urls;
 
 namespace TrainingRegistrationClient.Repository.Data
 {
-    public class LoginEmpRepository : GeneralRepository<LoginEmpRepository, int>
+    public class LoginEmpRepository : GeneralRepository<LoginEmpVM, int>
     {
         private readonly Address address;
         private readonly HttpClient httpClient;
