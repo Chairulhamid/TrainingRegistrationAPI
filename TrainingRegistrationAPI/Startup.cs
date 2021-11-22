@@ -79,6 +79,8 @@ namespace TrainingRegistrationAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(options => options.AllowAnyOrigin());
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
