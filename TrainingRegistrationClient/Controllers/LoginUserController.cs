@@ -55,11 +55,11 @@ namespace TrainingRegistrationClient.Controllers
             {
                 if (pesan == "0")
                 {
-                    return RedirectToAction("ErrorEmail", "Logins");
+                    return RedirectToAction("Home", "LoginPage");
                 }
                 else
                 {
-                    return RedirectToAction("ErrorPassword", "Logins");
+                    return RedirectToAction("Home", "LoginPage");
                 }
             }
 

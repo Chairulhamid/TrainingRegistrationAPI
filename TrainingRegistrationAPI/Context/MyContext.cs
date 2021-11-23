@@ -40,7 +40,13 @@ namespace TrainingRegistrationAPI.Context
                  .HasOne(a => a.Employee)
                  .WithOne(b => b.Account)
                  .HasForeignKey<Employee>(b => b.AccountId);
-            
+
+            //One to one => RegisteredCourse to Payment
+            modelBuilder.Entity<RegisteredCourse>()
+                .HasOne(a => a.Payment)
+                .WithOne(b => b.RegisteredCourse)
+                .HasForeignKey<Payment>(b => b.RegisteredCourseId);
+
             //Many to many Role
             modelBuilder.Entity<AccountRole>()
               .HasKey(bc => new { bc.AccountId, bc.RoleId });
@@ -65,54 +71,13 @@ namespace TrainingRegistrationAPI.Context
             modelBuilder.Entity<RegisteredCourse>()
               .HasMany(a => a.User)
               .WithOne(b => b.RegisteredCourse);
-            modelBuilder.Entity<Payment>()
-              .HasMany(a => a.RegisteredCourse)
-              .WithOne(b => b.Payment);
             modelBuilder.Entity<Course>()
               .HasMany(a => a.RegisteredCourse)
               .WithOne(b => b.Course);
-
-
-
-            /*   //One to one => Account to Employee
-          *//*     modelBuilder.Entity<Employee>()
-                    .HasOne(a => a.Account)
-                    .WithOne(b => b.Employee)
-                    .HasForeignKey<Account>(b => b.EmployrrId);*//*
-
-            //Many to Many => Role
-            modelBuilder.Entity<AccountRole>()
-                   .HasKey(bc => new { bc.AccountId, bc.RoleId });
-
-            modelBuilder.Entity<AccountRole>()
-                .HasOne(bc => bc.Account)
-                .WithMany(b => b.AccountRoles)
-                .HasForeignKey(bc => bc.AccountId);
-
-            modelBuilder.Entity<AccountRole>()
-                .HasOne(bc => bc.Role)
-                .WithMany(c => c.AccountRoles)
-                .HasForeignKey(bc => bc.RoleId);
-            //One to one => Account to Profilling
-            modelBuilder.Entity<Account>()
-                .HasOne(a => a.Profilling)
-                .WithOne(b => b.Account)
-                .HasForeignKey<Profilling>(b => b.NIK);
-
-            //Many  to Many => Univetsity to Education
-            modelBuilder.Entity<University>()
-                .HasMany(c => c.Educations)
-                .WithOne(e => e.University);
-
-            //One to Many => Education to Profilling
-            modelBuilder.Entity<Education>()
-              .HasMany(c => c.Profillings)
-              .WithOne(e => e.Education);
-
-            //One to Many => Education to Profilling
-            modelBuilder.Entity<Education>()
-              .HasMany(c => c.Profillings)
-              .WithOne(e => e.Education);*/
+           
+            /*modelBuilder.Entity<Payment>()
+              .HasMany(a => a.RegisteredCourse)
+              .WithOne(b => b.Payment);*/
 
 
         }
