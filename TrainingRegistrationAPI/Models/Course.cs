@@ -18,9 +18,9 @@ namespace TrainingRegistrationAPI.Models
         public string CourseFee { get; set; }
         public string CourseImg { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Modul> Modul { get; set; }
+        public virtual Employee Employee { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<Modul> Modul { get; set; }
         [JsonIgnore]
         public virtual ICollection<RegisteredCourse> RegisteredCourse { get; set; }
         [JsonIgnore]
