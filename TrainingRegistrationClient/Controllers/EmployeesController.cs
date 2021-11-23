@@ -27,6 +27,7 @@ namespace TrainingRegistrationClient.Controllers
         {
             return View();
         }
+     
 
         /*[HttpGet("GetEmployees/{NIK}")]*/
         public async Task<JsonResult> GetEmployees()

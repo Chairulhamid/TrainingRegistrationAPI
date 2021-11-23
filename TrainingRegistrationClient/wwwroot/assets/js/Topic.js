@@ -99,7 +99,7 @@ $(function () {
 
 
 //INSERT DATA
-function InsertData() {
+/*function InsertData() {
     var obj = new Object();
     obj.TopicName = $('#topicName').val();
     obj.TopicDesc = $('#topicDesc').val();
@@ -111,11 +111,11 @@ function InsertData() {
             'Content-Type': 'application/json'
         },
         'type': 'POST',
-       // 'data': { entity: obj }, //objek kalian
-        'data': JSON.stringify(obj), //objek kalian
+       'data': { entity: obj }, //objek kalian
+        //'data': JSON.stringify(obj), //objek kalian
         'dataType': 'json',
-       /* 'type': 'POST',
-        'dataType': 'json',*/
+       *//* 'type': 'POST',
+        'dataType': 'json',*//*
     }).done((result) => {
         if (result == 200) {
             swal({
@@ -143,9 +143,9 @@ function InsertData() {
             button: "Close",
         });
     })
-}
+}*/
 //END INSERT
-function Insert() {
+function InsertData() {
     var obj = new Object(); //sesuaikan sendiri nama objectnya dan beserta isinya
     //ini ngambil value dari tiap inputan di form nya
     obj.TopicName = $("#topicName").val();
@@ -153,30 +153,30 @@ function Insert() {
     console.log(obj);
     //isi dari object kalian buat sesuai dengan bentuk object yang akan di post
     $.ajax({
-        url: "https://localhost:44383/API/Topics",
+        url: "https://localhost:44307/API/Topics",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         'type': 'POST',
-        'data': JSON.stringify(obj), //objek kalian
-        'dataType': 'json',
+        'data': { entity: obj }, //objek kalian
+        //'data': JSON.stringify(obj), //objek kalian
+        'dataType': 'json'
     }).done((result) => {
-        return Swal.fire(
-            'Register successful',
-            'Employee Registered!',
-            'success',
-        )
-        $("#topicModal").modal("toggle"),
-            $('#topicModal').modal('hide'),
-            mytable.ajax.reload();
-    }).fail((error) => {
-        return Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Register not successful',
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: 'Data telah ditambahkan!'
         });
-    })
+        $('#tableEmp').DataTable().ajax.reload();
+        $("#formModal").modal("hide");
+    }).fail((error) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops..',
+            text: 'Data gagal ditambahkan'
+        });
+    });
 };
 
 
