@@ -115,7 +115,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             return result;
         }
 
-        public int Login(LoginEmpVM loginEmpVM)
+        public int LoginEmp(LoginEmpVM loginEmpVM)
         {
             Employee employee = new Employee();
             Account account = new Account();

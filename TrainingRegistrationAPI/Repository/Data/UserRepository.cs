@@ -112,7 +112,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             var result = myContext.SaveChanges();
             return result;
         }
-        public int Login(LoginUserVM loginUserVM)
+        public int LoginUser(LoginUserVM loginUserVM)
         {
             User user= new User();
             Account account = new Account();

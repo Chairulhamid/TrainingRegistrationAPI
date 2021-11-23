@@ -11,10 +11,10 @@ using TrainingRegistrationClient.Repository.Data;
 
 namespace TrainingRegistrationClient.Controllers
 {
-    public class LoginEmpController : BaseController<LoginEmpVM, LoginEmpRepository, int>
+    public class LoginUserController : BaseController<LoginUserVM, LoginUserRepository, int>
     {
-        private readonly LoginEmpRepository repository;
-        public LoginEmpController(LoginEmpRepository repository) : base(repository)
+        private readonly LoginUserRepository repository;
+        public LoginUserController(LoginUserRepository repository) : base(repository)
         {
             this.repository = repository;
         }
@@ -45,7 +45,7 @@ namespace TrainingRegistrationClient.Controllers
 
         /*[ValidateAntiForgeryToken]*/
         /*[HttpPost("Auth/")]*/
-        public async Task<IActionResult> Auth(LoginEmpVM login)
+        public async Task<IActionResult> Auth(LoginUserVM login)
         {
             var jwtToken = await repository.Auth(login);
             var token = jwtToken.Token;
@@ -75,7 +75,7 @@ namespace TrainingRegistrationClient.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("LoginPage", "Home");
         }
 
     }
