@@ -13,7 +13,7 @@ namespace TrainingRegistrationAPI.Models
     {
 
         [Key]
-        public int RegisterCourse { get; set; }
+        public int RegisteredCourseId { get; set; }
         [JsonIgnore]
         public virtual ICollection<User> User { get; set; }
         [JsonIgnore]

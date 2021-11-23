@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrainingRegistrationAPI.Context;
 
 namespace TrainingRegistrationAPI.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20211123042552_add_relations")]
+    partial class add_relations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,9 +173,6 @@ namespace TrainingRegistrationAPI.Migrations
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RegisteredCourseId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -182,15 +181,12 @@ namespace TrainingRegistrationAPI.Migrations
 
                     b.HasKey("PaymentId");
 
-                    b.HasIndex("RegisteredCourseId")
-                        .IsUnique();
-
                     b.ToTable("Tb_M_Payment");
                 });
 
             modelBuilder.Entity("TrainingRegistrationAPI.Models.RegisteredCourse", b =>
                 {
-                    b.Property<int>("RegisteredCourseId")
+                    b.Property<int>("RegisterCourse")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -198,9 +194,14 @@ namespace TrainingRegistrationAPI.Migrations
                     b.Property<int?>("CourseId")
                         .HasColumnType("int");
 
-                    b.HasKey("RegisteredCourseId");
+                    b.Property<int?>("PaymentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RegisterCourse");
 
                     b.HasIndex("CourseId");
+
+                    b.HasIndex("PaymentId");
 
                     b.ToTable("Tb_M_RegisteredCourse");
                 });
@@ -276,7 +277,7 @@ namespace TrainingRegistrationAPI.Migrations
                     b.Property<DateTime>("RegistDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("RegisteredCourseId")
+                    b.Property<int?>("RegisteredCourseRegisterCourse")
                         .HasColumnType("int");
 
                     b.HasKey("UserId");
@@ -284,7 +285,7 @@ namespace TrainingRegistrationAPI.Migrations
                     b.HasIndex("AccountId")
                         .IsUnique();
 
-                    b.HasIndex("RegisteredCourseId");
+                    b.HasIndex("RegisteredCourseRegisterCourse");
 
                     b.ToTable("Tb_M_User");
                 });
@@ -343,24 +344,19 @@ namespace TrainingRegistrationAPI.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("TrainingRegistrationAPI.Models.Payment", b =>
-                {
-                    b.HasOne("TrainingRegistrationAPI.Models.RegisteredCourse", "RegisteredCourse")
-                        .WithOne("Payment")
-                        .HasForeignKey("TrainingRegistrationAPI.Models.Payment", "RegisteredCourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RegisteredCourse");
-                });
-
             modelBuilder.Entity("TrainingRegistrationAPI.Models.RegisteredCourse", b =>
                 {
                     b.HasOne("TrainingRegistrationAPI.Models.Course", "Course")
                         .WithMany("RegisteredCourse")
                         .HasForeignKey("CourseId");
 
+                    b.HasOne("TrainingRegistrationAPI.Models.Payment", "Payment")
+                        .WithMany("RegisteredCourse")
+                        .HasForeignKey("PaymentId");
+
                     b.Navigation("Course");
+
+                    b.Navigation("Payment");
                 });
 
             modelBuilder.Entity("TrainingRegistrationAPI.Models.User", b =>
@@ -373,7 +369,7 @@ namespace TrainingRegistrationAPI.Migrations
 
                     b.HasOne("TrainingRegistrationAPI.Models.RegisteredCourse", "RegisteredCourse")
                         .WithMany("User")
-                        .HasForeignKey("RegisteredCourseId");
+                        .HasForeignKey("RegisteredCourseRegisterCourse");
 
                     b.Navigation("Account");
 
@@ -401,10 +397,13 @@ namespace TrainingRegistrationAPI.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("TrainingRegistrationAPI.Models.Payment", b =>
+                {
+                    b.Navigation("RegisteredCourse");
+                });
+
             modelBuilder.Entity("TrainingRegistrationAPI.Models.RegisteredCourse", b =>
                 {
-                    b.Navigation("Payment");
-
                     b.Navigation("User");
                 });
 
