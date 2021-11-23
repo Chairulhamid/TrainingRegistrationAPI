@@ -19,7 +19,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="register">
+                <form id="addTopic">
                     <div class="form-group">
                         <div class="row">
                             <label class="col-sm-3 control-label text-right">Topic Name</label>
@@ -40,12 +40,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type='button' name="submit" class="btn btn-primary" onclick="AddTopic()">Simpan</button>
+                <button type='button' name="submit" class="btn btn-primary" onclick="Validation()">Simpan</button>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Tabel Topic-->
 <div class="card shadow mb-4" style="margin-top:10px;">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary"></h6>
@@ -56,14 +57,13 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Topic ID</th>
                         <th>Topic Name</th>
                         <th>Topic Description</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-
-                   
+                <tbody> 
                 </tbody>
             </table>
         </div>

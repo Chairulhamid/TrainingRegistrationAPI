@@ -1,24 +1,6 @@
-﻿var mytable = null;
+﻿
 //document ready
-
-
-/*$.ajax({
-    url: "https://localhost:44307/API/Topics",
-    success: function (result) {
-        console.log(result);
-        var listTopic = ""
-        $.each(result, function (key, val) {
-            listTopic += `<tr>
-                                    <td>${topicId}</td>
-                                    <td>${topicName}</td>
-                                    <td>${topicDesc}</td>
-                                    <td></td>
-                                </tr>`
-        });
-        $('#tableTopic').html(listTopic);
-    }
-})*/
-
+var mytable = null;
 $(document).ready(function () {
     mytable = $("#table").DataTable({
         //'ordering': false,
@@ -26,24 +8,6 @@ $(document).ready(function () {
             'url': "https://localhost:44307/API/Topics",
             'dataSrc': "",
         },
-        buttons: [
-            {
-                extend: 'excelHtml5',
-                name: 'excel',
-                title: 'Employee',
-                sheetName: 'Employee',
-                text: '',
-                className: 'buttonHide fa fa-download btn-default',
-                filename: 'Data',
-                autoFilter: true,
-                exportOptions: {
-                    columns: [1, 2, 3, 4, 5, 6]
-                }
-            }
-        ],
-        'columnDefs': [
-            { orderable: false, targets: 7 }
-        ],
         'columns': [
             {
                 "data": "id",
@@ -52,45 +16,18 @@ $(document).ready(function () {
                 }
             },
             {
-                "data": "nik"
+                "data": "topicId"
             },
             {
                 "data": "",
                 "render": function (data, type, row, meta) {
-                    return row['firstName'] + " " + row['lastName'];
+                    return row['topicName'];
                 }
             },
             {
                 "data": "",
                 "render": function (data, type, row, meta) {
-                    if (row['gender'] == 0) {
-                        return "Male";
-                    }
-                    else
-                        return "Female";
-                }
-            },
-            {
-                "data": "",
-                "render": function (data, type, row, meta) {
-                    if (row['phoneNumber'].substring(0, 1) == '0') {
-                        return "+62" + row['phoneNumber'].substring(1, row['phoneNumber'].length);
-                    }
-                    else {
-                        return row['phoneNumber'];
-                    }
-                }
-            },
-            {
-                "data": "",
-                "render": function (data, type, row, meta) {
-                    return row['salary'];
-                }
-            },
-            {
-                "data": "",
-                "render": function (data, type, row, meta) {
-                    return row['email'];
+                    return row['topicDesc'];
                 }
             },
             {
@@ -102,9 +39,10 @@ $(document).ready(function () {
             }
         ],
     });
+});
 
 function Validation() {
-  var a = $("#register").valid();
+  var a = $("#addTopic").valid();
    console.log(a);
      if (a == true) {
         Insert();
@@ -118,6 +56,40 @@ function Validation() {
        })
      }
 }
+
+function Insert() {
+    var obj = new Object(); //sesuaikan sendiri nama objectnya dan beserta isinya
+    //ini ngambil value dari tiap inputan di form nya
+    obj.TopicName = $("#topicName").val();
+    obj.TopicDesc = $("#topicDesc").val();
+    console.log(obj);
+    //isi dari object kalian buat sesuai dengan bentuk object yang akan di post
+    $.ajax({
+        url: "https://localhost:44383/API/Topics",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        'type': 'POST',
+        'data': JSON.stringify(obj), //objek kalian
+        'dataType': 'json',
+    }).done((result) => {
+        return Swal.fire(
+            'Register successful',
+            'Employee Registered!',
+            'success',
+        )
+        $("#topicModal").modal("toggle"),
+            $('#topicModal').modal('hide'),
+            mytable.ajax.reload();
+    }).fail((error) => {
+        return Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Register not successful',
+        });
+    })
+};
 
 
 
