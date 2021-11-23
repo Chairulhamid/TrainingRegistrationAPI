@@ -50,17 +50,16 @@ namespace TrainingRegistrationAPI.Controllers
 
         /*[Authorize(Roles = "employee, Admin")]*/
         //[Route("CariProfile/{nik}")]
-        [HttpGet("Profile/{nik}")]
-        public ActionResult GetProfile(string Email)
+        [HttpGet("Profile/{EmployeeId}")]
+        public ActionResult GetProfile(int EmployeeId)
         {
 
-            var result = employeeRepository.GetProfile(Email);
+            var result = employeeRepository.GetProfile(EmployeeId);
             if (result != null)
             {
                 return Ok(result);
             }
             return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data dengan Email tersebut tidak ditemukan" });
-
         }
 
         [Route("RegisterEmp")]
