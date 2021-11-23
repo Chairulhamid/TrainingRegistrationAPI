@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutAdmin";
+}
+
+<h4>Dashboard for Admin</h4>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#topicModal">
+    Add Topic
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="topicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Topic</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="register">
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-sm-3 control-label text-right">Topic Name</label>
+                            <div class="col-sm-8">
+                                <input name="inputTopicName" type="text" class="form-control" id="topicName" placeholder="Topic Name" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-sm-3 control-label text-right">Topic Description</label>
+                            <div class="col-sm-8">
+                                <input name="inputTopicDesc" type="text" class="form-control" id="topicDesc" placeholder="Topic Description" value="">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type='button' name="submit" class="btn btn-primary" onclick="AddTopic()">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4" style="margin-top:10px;">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"></h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Topic Name</th>
+                        <th>Topic Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
