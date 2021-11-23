@@ -45,9 +45,9 @@ namespace TrainingRegistrationClient.Controllers
 
         /*[ValidateAntiForgeryToken]*/
         /*[HttpPost("Auth/")]*/
-        public async Task<IActionResult> Auth(LoginEmpVM login)
+        public async Task<IActionResult> Auth(LoginEmpVM loginEmp)
         {
-            var jwtToken = await repository.Auth(login);
+            var jwtToken = await repository.Auth(loginEmp);
             var token = jwtToken.Token;
             var pesan = jwtToken.Messages;
 

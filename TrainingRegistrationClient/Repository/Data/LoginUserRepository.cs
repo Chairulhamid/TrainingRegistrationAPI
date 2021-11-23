@@ -26,12 +26,12 @@ namespace TrainingRegistrationClient.Repository.Data
             };
         }
 
-        public async Task<JWTokenVM> Auth(LoginUserVM login)
+        public async Task<JWTokenVM> Auth(LoginUserVM loginUser)
         {
             JWTokenVM token = null;
 
-            StringContent content = new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8, "application/json");
-            var result = await httpClient.PostAsync(request + "Log In User", content);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(loginUser), Encoding.UTF8, "application/json");
+            var result = await httpClient.PostAsync(request + "LoginUser", content);
 
             string apiResponse = await result.Content.ReadAsStringAsync();
             token = JsonConvert.DeserializeObject<JWTokenVM>(apiResponse);

@@ -45,9 +45,9 @@ namespace TrainingRegistrationClient.Controllers
 
         /*[ValidateAntiForgeryToken]*/
         /*[HttpPost("Auth/")]*/
-        public async Task<IActionResult> Auth(LoginUserVM login)
+        public async Task<IActionResult> Auth(LoginUserVM loginUser)
         {
-            var jwtToken = await repository.Auth(login);
+            var jwtToken = await repository.Auth(loginUser);
             var token = jwtToken.Token;
             var pesan = jwtToken.Messages;
 
@@ -67,7 +67,7 @@ namespace TrainingRegistrationClient.Controllers
             /*HttpContext.Session.SetString("Name", jwtHandler.GetName(token));*/
             /*HttpContext.Session.SetString("ProfilePicture", "assets/img/theme/user.png");*/
 
-            return RedirectToAction("Dashboard", "Home");
+            return RedirectToAction("Index", "User");
         }
 
         [Authorize]

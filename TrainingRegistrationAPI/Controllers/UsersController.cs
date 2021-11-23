@@ -90,7 +90,7 @@ namespace TrainingRegistrationAPI.Controller
             var result = userRepository.LoginUser(loginUserVM);
             if (result == 2)
             {
-                return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data gagal dimasukkan: Email yang Anda masukkan belum sudah terdaftar!" });
+                return NotFound(new JWTokenVM { Token = "", Messages = "0" });
             }
             else if (result == 3)
             {
@@ -140,7 +140,7 @@ namespace TrainingRegistrationAPI.Controller
                     Messages = "Login Berhasil!!"
                 });
             }
-            return Ok(new { status = HttpStatusCode.OK, result = result, message = "Login Gagal, Password yang anda masukan Salah" });
+            return NotFound(new JWTokenVM { Token = "", Messages = "1" });
         }
 
     }
