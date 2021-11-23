@@ -51,15 +51,16 @@ namespace TrainingRegistrationClient.Controllers
             var token = jwtToken.Token;
             var pesan = jwtToken.Messages;
 
+
             if (token == "")
             {
                 if (pesan == "0")
                 {
-                    return RedirectToAction("Home", "LoginPage");
+                    return RedirectToAction("LoginPage", "Home");
                 }
                 else
                 {
-                    return RedirectToAction("Home", "LoginPage");
+                    return RedirectToAction("LoginPage", "Home");
                 }
             }
 
@@ -67,15 +68,15 @@ namespace TrainingRegistrationClient.Controllers
             /*HttpContext.Session.SetString("Name", jwtHandler.GetName(token));*/
             /*HttpContext.Session.SetString("ProfilePicture", "assets/img/theme/user.png");*/
 
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("Dashboard", "User");
         }
 
-        [Authorize]
+        /*[Authorize]*/
         /*[HttpGet("Logout/")]*/
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("LoginPage", "Home");
+            return RedirectToAction("Index", "User");
         }
 
     }
