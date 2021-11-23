@@ -31,5 +31,7 @@ namespace TrainingRegistrationAPI.Models
         public int AccountId { get; set; }
         [JsonIgnore]
         public virtual Account Account { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Course> Course { get; set; }
     }
 }
