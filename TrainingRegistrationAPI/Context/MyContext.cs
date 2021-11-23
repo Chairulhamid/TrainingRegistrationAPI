@@ -53,6 +53,26 @@ namespace TrainingRegistrationAPI.Context
                 .WithMany(c => c.AccountRoles)
                 .HasForeignKey(bc => bc.RoleId);
 
+            modelBuilder.Entity<Course>()
+              .HasOne(a => a.Employee)
+              .WithMany(b => b.Course);
+            modelBuilder.Entity<Modul>()
+              .HasOne(a => a.Course)
+              .WithMany(b => b.Modul);
+            modelBuilder.Entity<Course>()
+              .HasOne(a => a.Topic)
+              .WithMany(b => b.Course);
+            modelBuilder.Entity<RegisteredCourse>()
+              .HasMany(a => a.User)
+              .WithOne(b => b.RegisteredCourse);
+            modelBuilder.Entity<Payment>()
+              .HasMany(a => a.RegisteredCourse)
+              .WithOne(b => b.Payment);
+            modelBuilder.Entity<Course>()
+              .HasMany(a => a.RegisteredCourse)
+              .WithOne(b => b.Course);
+
+
 
             /*   //One to one => Account to Employee
           *//*     modelBuilder.Entity<Employee>()
