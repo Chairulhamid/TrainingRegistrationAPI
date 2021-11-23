@@ -29,7 +29,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                               join acr in myContext.AccountRoles on
                               acc.AccountId equals acr.AccountId
                               join r in myContext.Roles on
-                              acr.RoleId equals r.Role_Id
+                              acr.RoleId equals r.RoleId
                               select new RegisterEmpVM
                               {
                                   FirstName = e.FirstName,
@@ -41,7 +41,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   /*Address = e.Address,*/
                                   Password = acc.Password,
                                   HireDate = e.HireDate,
-                                  Role_Id = r.Role_Id,
+                                  RoleId = r.RoleId,
                                   AccountId = acc.AccountId
                               }).ToList();
 
@@ -56,7 +56,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                               join acr in myContext.AccountRoles on
                               acc.AccountId equals acr.AccountId
                               join r in myContext.Roles on
-                              acr.RoleId equals r.Role_Id
+                              acr.RoleId equals r.RoleId
                               select new RegisterEmpVM
                               {
                                   FirstName = e.FirstName,
@@ -65,10 +65,10 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   Phone = e.Phone,
                                   Gender = (ViewModel.Gender)e.Gender,
                                   BirthDate = e.BirthDate,
-                                 /* Address = e.Address,*/
+                                  Address = e.Address,
                                   //Password = acc.Password,
                                   HireDate = e.HireDate,
-                                  Role_Id = r.Role_Id
+                                  RoleId = r.RoleId
                               }).Where(u => u.Email == Email).ToList();
 
             return getProfile;
@@ -101,7 +101,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             employee.Phone = registerEmpVM.Phone;
             employee.Gender = (Models.Gender)registerEmpVM.Gender;
             employee.BirthDate = registerEmpVM.BirthDate;
-/*            employee.Address = registeremployeeVM.Address;*/
+            employee.Address = registerEmpVM.Address;
             employee.HireDate = registerEmpVM.HireDate;
 
             myContext.Employees.Add(employee);
@@ -109,7 +109,7 @@ namespace TrainingRegistrationAPI.Repository.Data
 
             AccountRole accountRole = new AccountRole();
             accountRole.AccountId = account.AccountId;
-            accountRole.RoleId = registerEmpVM.Role_Id;
+            accountRole.RoleId = registerEmpVM.RoleId;
             myContext.AccountRoles.Add(accountRole);
             var result = myContext.SaveChanges();
             return result;

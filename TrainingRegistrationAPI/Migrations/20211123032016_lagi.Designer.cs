@@ -10,8 +10,8 @@ using TrainingRegistrationAPI.Context;
 namespace TrainingRegistrationAPI.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20211121064446_TrainingRegistration")]
-    partial class TrainingRegistration
+    [Migration("20211123032016_lagi")]
+    partial class lagi
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,6 +67,9 @@ namespace TrainingRegistrationAPI.Migrations
                     b.Property<string>("CourseFee")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CourseImg")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CourseName")
                         .HasColumnType("nvarchar(max)");
 
@@ -84,6 +87,9 @@ namespace TrainingRegistrationAPI.Migrations
 
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -177,15 +183,15 @@ namespace TrainingRegistrationAPI.Migrations
 
             modelBuilder.Entity("TrainingRegistrationAPI.Models.Role", b =>
                 {
-                    b.Property<int>("Role_Id")
+                    b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Role_Name")
+                    b.Property<string>("RoleName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Role_Id");
+                    b.HasKey("RoleId");
 
                     b.ToTable("Tb_M_Role");
                 });

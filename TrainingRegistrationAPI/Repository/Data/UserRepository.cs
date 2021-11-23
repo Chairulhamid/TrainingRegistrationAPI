@@ -27,7 +27,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                               join acr in myContext.AccountRoles on
                               acc.AccountId equals acr.AccountId
                               join r in myContext.Roles on
-                              acr.RoleId equals r.Role_Id
+                              acr.RoleId equals r.RoleId
                               select new RegisterUserVM
                               {
                                   FirstName = u.FirstName,
@@ -39,7 +39,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   Address = u.Address,
                                   Password = acc.Password,
                                   RegistDate = u.RegistDate,
-                                  Role_Id = r.Role_Id,
+                                  RoleId = r.RoleId,
                                   AccountId = acc.AccountId
                               }).ToList();
 
@@ -54,7 +54,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                               join acr in myContext.AccountRoles on
                               acc.AccountId equals acr.AccountId
                               join r in myContext.Roles on
-                              acr.RoleId equals r.Role_Id
+                              acr.RoleId equals r.RoleId
                               select new RegisterUserVM
                               {
                                   FirstName = u.FirstName,
@@ -66,7 +66,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   Address = u.Address,
                                   //Password = acc.Password,
                                   RegistDate = u.RegistDate,
-                                  Role_Id = r.Role_Id
+                                  RoleId = r.RoleId
                               }).Where(u => u.Email == Email).ToList();
 
             return getProfile;

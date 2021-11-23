@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TrainingRegistrationAPI.Migrations
 {
-    public partial class TrainingRegistration : Migration
+    public partial class lagi : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,8 @@ namespace TrainingRegistrationAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CourseName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CourseDesc = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CourseFee = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CourseFee = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CourseImg = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -83,13 +84,13 @@ namespace TrainingRegistrationAPI.Migrations
                 name: "Tb_M_Role",
                 columns: table => new
                 {
-                    Role_Id = table.Column<int>(type: "int", nullable: false)
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Role_Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tb_M_Role", x => x.Role_Id);
+                    table.PrimaryKey("PK_Tb_M_Role", x => x.RoleId);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,6 +116,7 @@ namespace TrainingRegistrationAPI.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -179,7 +181,7 @@ namespace TrainingRegistrationAPI.Migrations
                         name: "FK_Tb_M_AccountRole_Tb_M_Role_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Tb_M_Role",
-                        principalColumn: "Role_Id",
+                        principalColumn: "RoleId",
                         onDelete: ReferentialAction.Cascade);
                 });
 

@@ -97,13 +97,13 @@ namespace TrainingRegistrationAPI.Controllers
                 var getDataUser = (from e in myContext.Employees
                                    join a in myContext.Accounts on e.AccountId equals a.AccountId
                                    join ar in myContext.AccountRoles on a.AccountId equals ar.AccountId
-                                   join r in myContext.Roles on ar.RoleId equals r.Role_Id
+                                   join r in myContext.Roles on ar.RoleId equals r.RoleId
                                    orderby e.AccountId
                                    select new
                                    {
                                        AccountId = e.AccountId,
                                        Email = e.Email,
-                                       Role = r.Role_Name
+                                       Role = r.RoleName
                                    }).Where(e => e.Email == loginEmpVM.Email).ToList();
                 List<string> listRole = new List<string>();
                 foreach (var item in getDataUser)
