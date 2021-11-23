@@ -85,11 +85,11 @@ namespace TrainingRegistrationClient
 
                 if (response.StatusCode.Equals((int)HttpStatusCode.Unauthorized))
                 {
-                    response.Redirect("/Logins/Error401");
+                    response.Redirect("");
                 }
                 else if (response.StatusCode.Equals((int)HttpStatusCode.NotFound))
                 {
-                    response.Redirect("/Logins/ErrorNotfound");
+                    response.Redirect("");
                 }
             });
 
