@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace TrainingRegistrationAPI.Models
@@ -13,5 +14,11 @@ namespace TrainingRegistrationAPI.Models
 
         [Key]
         public int RegisterCourse { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<User> User { get; set; }
+        [JsonIgnore]
+        public virtual Course Course { get; set; }
+        [JsonIgnore]
+        public virtual Payment Payment { get; set; }
     }
 }

@@ -31,6 +31,8 @@ namespace TrainingRegistrationAPI.Models
         public int AccountId { get; set; }
         [JsonIgnore]
         public virtual Account Account { get; set; }
+        [JsonIgnore]
+        public virtual RegisteredCourse RegisteredCourse { get; set; }
     }
 
     public enum Gender

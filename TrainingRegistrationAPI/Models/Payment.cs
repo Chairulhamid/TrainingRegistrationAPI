@@ -19,6 +19,9 @@ namespace TrainingRegistrationAPI.Models
         public int TotalPayment { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public Status Status { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<RegisteredCourse> RegisteredCourse { get; set; }
+        
     }
     public enum Status
     {
