@@ -15,5 +15,6 @@ namespace TrainingRegistrationAPI.Models
         public string CourseName { get; set; }
         public string CourseDesc { get; set; }
         public string CourseFee { get; set; }
+        public string CourseImg { get; set; }
     }
 }

@@ -12,8 +12,8 @@ namespace TrainingRegistrationAPI.Models
     public class Role
     {
         [Key]
-        public int Role_Id { get; set; }
-        public string Role_Name { get; set; }
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
         [JsonIgnore]
         public virtual ICollection<AccountRole> AccountRoles { get; set; }
     }
