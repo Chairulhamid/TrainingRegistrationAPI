@@ -85,9 +85,9 @@ namespace TrainingRegistrationAPI.Controller
         }
         [Route("LoginUser")]
         [HttpPost]
-        public ActionResult Login(LoginUserVM loginUserVM)
+        public ActionResult LoginUser(LoginUserVM loginUserVM)
         {
-            var result = userRepository.Login(loginUserVM);
+            var result = userRepository.LoginUser(loginUserVM);
             if (result == 2)
             {
                 return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data gagal dimasukkan: Email yang Anda masukkan belum sudah terdaftar!" });

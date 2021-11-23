@@ -13,6 +13,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TrainingRegistrationClient.Base.Urls;
 using TrainingRegistrationClient.Repository.Data;
+using Microsoft.AspNetCore.Http;
+using System.Net;
+using TrainingRegistrationAPI.Repository.Data;
 
 namespace TrainingRegistrationClient
 {
@@ -28,7 +31,10 @@ namespace TrainingRegistrationClient
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<EmployeeRepository>();
+            services.AddScoped<Repository.Data.EmployeeRepository>();
+            services.AddScoped<Repository.Data.UserRepository>();
+            services.AddScoped<LoginUserRepository>();
+            services.AddScoped<LoginEmpRepository>();
             services.AddScoped<Address>();
             services.AddControllersWithViews();
             services.AddSession();
@@ -72,6 +78,32 @@ namespace TrainingRegistrationClient
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseStatusCodePages(async context => {
+                var request = context.HttpContext.Request;
+                var response = context.HttpContext.Response;
+
+                if (response.StatusCode.Equals((int)HttpStatusCode.Unauthorized))
+                {
+                    response.Redirect("/Logins/Error401");
+                }
+                else if (response.StatusCode.Equals((int)HttpStatusCode.NotFound))
+                {
+                    response.Redirect("/Logins/ErrorNotfound");
+                }
+            });
+
+            app.UseSession();
+
+            app.Use(async (context, next) =>
+            {
+                var JWToken = context.Session.GetString("JWToken");
+                if (!string.IsNullOrEmpty(JWToken))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + JWToken);
+                }
+                await next();
+            });
 
             app.UseAuthorization();
             app.UseAuthentication();
