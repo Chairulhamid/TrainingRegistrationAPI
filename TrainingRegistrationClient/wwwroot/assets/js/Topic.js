@@ -41,7 +41,44 @@ $(document).ready(function () {
     });
 });
 
-function Validation() {
+
+
+////VALIDATE
+$(function () {
+    $("form[name='nameModal']").validate({
+        rules: {
+            topicName: {
+                required: true
+            },
+            topicDesc: {
+                required: true
+            },
+        },
+        messages: {
+            topicName: {
+                required: "Please enter your Topic Name"
+            },
+            topicDesc: {
+                required: "Please enter your Tapic Desc"
+            },
+        }
+    });
+    $('#btnAdd').click(function (e) {
+        e.preventDefault();
+        if ($('#formValidation').valid() == true) {
+            InsertData();
+        }
+    });
+    $('#btnUpdate').click(function (e) {
+        e.preventDefault();
+        if ($('#formValidation').valid() == true) {
+            Update();
+        }
+    });
+});
+
+//LAMA
+/*function Validation() {
   var a = $("#addTopic").valid();
    console.log(a);
      if (a == true) {
@@ -56,7 +93,58 @@ function Validation() {
        })
      }
 }
+*/
 
+//END LAMA
+
+
+//INSERT DATA
+function InsertData() {
+    var obj = new Object();
+    obj.TopicName = $('#topicName').val();
+    obj.TopicDesc = $('#topicDesc').val();
+    console.log(obj);
+    $.ajax({
+        url: "https://localhost:44307/API/Topics",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        'type': 'POST',
+       // 'data': { entity: obj }, //objek kalian
+        'data': JSON.stringify(obj), //objek kalian
+        'dataType': 'json',
+       /* 'type': 'POST',
+        'dataType': 'json',*/
+    }).done((result) => {
+        if (result == 200) {
+            swal({
+                title: "Good job!",
+                text: "Data Berhasil Ditambahkan!!",
+                icon: "success",
+                button: "Okey!",
+            }).then(function () {
+                window.location = "https://localhost:44306/auth";
+            });
+        } else if (result == 400) {
+            swal({
+                title: "Failed!",
+                text: "Data Gagal Dimasukan, NIK,Phone,Email Sudah Terdaftar!!",
+                icon: "error",
+                button: "Close",
+            });
+        }
+    }).fail((error) => {
+
+        swal({
+            title: "Failed!",
+            text: "Data Gagal Dimasukan!!",
+            icon: "error",
+            button: "Close",
+        });
+    })
+}
+//END INSERT
 function Insert() {
     var obj = new Object(); //sesuaikan sendiri nama objectnya dan beserta isinya
     //ini ngambil value dari tiap inputan di form nya

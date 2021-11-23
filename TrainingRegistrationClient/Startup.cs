@@ -39,6 +39,12 @@ namespace TrainingRegistrationClient
             services.AddControllersWithViews();
             services.AddSession();
             services.AddHttpContextAccessor();
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin()
+                                                             .AllowAnyHeader()
+                                                             .AllowAnyMethod());
+            });
 
             services.AddAuthentication(auth =>
             {
@@ -64,6 +70,7 @@ namespace TrainingRegistrationClient
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(option => option.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

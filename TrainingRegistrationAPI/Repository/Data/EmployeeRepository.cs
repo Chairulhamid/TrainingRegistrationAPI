@@ -32,13 +32,14 @@ namespace TrainingRegistrationAPI.Repository.Data
                               acr.RoleId equals r.RoleId
                               select new RegisterEmpVM
                               {
+                                  EmployeeId = e.EmployeeId,
                                   FirstName = e.FirstName,
                                   LastName = e.LastName,
                                   Email = e.Email,
                                   Phone = e.Phone,
                                   Gender = (ViewModel.Gender)e.Gender,
                                   BirthDate = e.BirthDate,
-                                  /*Address = e.Address,*/
+                                  Address = e.Address,
                                   Password = acc.Password,
                                   HireDate = e.HireDate,
                                   RoleId = r.RoleId,
@@ -48,7 +49,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             return getProfile;
         }
 
-        public IEnumerable<RegisterEmpVM> GetProfile(string Email)
+        public IEnumerable<RegisterEmpVM> GetProfile(int EmployeeId)
         {
             var getProfile = (from e in myContext.Employees
                               join acc in myContext.Accounts on
@@ -59,6 +60,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                               acr.RoleId equals r.RoleId
                               select new RegisterEmpVM
                               {
+                                  EmployeeId = e.EmployeeId,
                                   FirstName = e.FirstName,
                                   LastName = e.LastName,
                                   Email = e.Email,
@@ -66,10 +68,10 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   Gender = (ViewModel.Gender)e.Gender,
                                   BirthDate = e.BirthDate,
                                   Address = e.Address,
-                                  //Password = acc.Password,
+                                  Password = acc.Password,
                                   HireDate = e.HireDate,
                                   RoleId = r.RoleId
-                              }).Where(u => u.Email == Email).ToList();
+                              }).Where(u => u.EmployeeId == EmployeeId).ToList();
 
             return getProfile;
         }
