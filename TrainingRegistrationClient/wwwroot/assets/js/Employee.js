@@ -382,8 +382,9 @@ function DeleleEmp(id) {
                             'Delete Successfull',
                             'Employee Data Deleted!',
                             'success',
-                        )
-                        window.location = "https://localhost:44344/auth/Employee";
+                        ).then(function () {
+                            window.location = "https://localhost:44344/auth/Employee";
+                        });
                     },
 
                     error: function (errormessage) {
