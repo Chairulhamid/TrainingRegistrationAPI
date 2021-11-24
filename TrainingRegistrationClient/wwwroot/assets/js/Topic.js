@@ -2,7 +2,7 @@
 //document ready
 var mytable = null;
 $(document).ready(function () {
-    mytable = $("#table").DataTable({
+    mytable = $("#tableTopic").DataTable({
         //'ordering': false,
         'ajax': {
             'url': "https://localhost:44307/API/Topics",
@@ -33,8 +33,8 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row) {
-                    return `<button id="button-update" style="background-color:#2eb0e8; color:white; margin-right:15px;" type="button" name="submit" class="btn btn-sm" onclick="ModalUpdate(${row['nik']})" data-dismiss="modal">Update</button>`
-                        + `<button id="button-delete" style="background-color:#c41f2b; color: white;" type="button" name="submit" class="btn btn-sm" onclick="Delete(${row['nik']})" data-dismiss="modal">Delete</button>`;
+                    return `<button id="button-update" style="background-color:#2eb0e8; color:white; margin-right:15px;" type="button" name="submit" class="btn btn-sm" onclick="ModalUpdate(${row['topicId']})" data-dismiss="modal">Update</button>`
+                        + `<button id="button-delete" style="background-color:#c41f2b; color: white;" type="button" name="submit" class="btn btn-sm" onclick="Delete(${row['topicId']})" data-dismiss="modal">Delete</button>`;
                 }
             }
         ],
@@ -63,10 +63,10 @@ $(function () {
             },
         }
     });
-    $('#btnAdd').click(function (e) {
+    $('#btnAddTopic').click(function (e) {
         e.preventDefault();
         if ($('#formValidation').valid() == true) {
-            InsertData();
+            InsertTopic();
         }
     });
     $('#btnUpdate').click(function (e) {
@@ -145,7 +145,7 @@ $(function () {
     })
 }*/
 //END INSERT
-function InsertData() {
+function InsertTopic() {
     var obj = new Object(); //sesuaikan sendiri nama objectnya dan beserta isinya
     //ini ngambil value dari tiap inputan di form nya
     obj.TopicName = $("#topicName").val();
@@ -153,7 +153,7 @@ function InsertData() {
     console.log(obj);
     //isi dari object kalian buat sesuai dengan bentuk object yang akan di post
     $.ajax({
-        url: "https://localhost:44307/API/Topics",
+        url: "/Topics/RegisterTopic",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -168,8 +168,8 @@ function InsertData() {
             title: 'Berhasil!',
             text: 'Data telah ditambahkan!'
         });
-        $('#tableEmp').DataTable().ajax.reload();
-        $("#formModal").modal("hide");
+        $('#tableTopic').DataTable().ajax.reload();
+        $("#topicModal").modal("hide");
     }).fail((error) => {
         Swal.fire({
             icon: 'error',

@@ -246,11 +246,7 @@ function getEmp(employeeId) {
             $('#lastName').val(result[0].lastName);
             $('#email').val(result[0].email);
             $('#phone').val(result[0].phone);
-            if (result[0].gender === "Male") {
-                $('#gender').val(0);
-            } else {
-                $('#gender').val(1);
-            };
+            $('#gender').val(result[0].gender);
             $('#address').val(result[0].address);
             $('#birthDate').val(tanggal);
             $('#password').val(result[0].password);
@@ -335,11 +331,7 @@ function getDetailEmp(employeeId) {
             $('#lastName').val(result[0].lastName);
             $('#email').val(result[0].email);
             $('#phone').val(result[0].phone);
-            if (result[0].gender === "Male") {
-                $('#gender').val(0);
-            } else {
-                $('#gender').val(1);
-            };
+            $('#gender').val(result[0].gender);
             $('#address').val(result[0].address);
             $('#birthDate').val(tanggal);
             $('#password').val(result[0].password);
@@ -395,7 +387,9 @@ function DeleleEmp(id) {
                             'Delete Successfull',
                             'Employee Data Deleted!',
                             'success',
-                        )
+                        ).then(function () {
+                            window.location = "https://localhost:44344/auth/Employee";
+                        });
                     },
                     error: function (errormessage) {
                         alert(errormessage.responseText);
