@@ -7,20 +7,20 @@ using TrainingRegistrationClient.Repository.Interface;
 
 namespace TrainingRegistrationClient.Base.Controllers
 {
-   
-    
-        public class BaseController<TEntity, TRepository, TId> : Controller
+
+
+    public class BaseController<TEntity, TRepository, TId> : Controller
         where TEntity : class
         where TRepository : IRepository<TEntity, TId>
+    {
+        private readonly TRepository repository;
+
+        public BaseController(TRepository repository)
         {
-            private readonly TRepository repository;
+            this.repository = repository;
+        }
 
-            public BaseController(TRepository repository)
-            {
-                this.repository = repository;
-            }
-
-            [HttpGet]
+        [HttpGet]
             public async Task<JsonResult> GetAll()
             {
                 var result = await repository.Get();

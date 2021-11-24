@@ -210,7 +210,6 @@ function InsertData() {
     obj.password = $('#password').val();
     obj.HireDate = $('#hireDate').val();
     obj.RoleId = $('#role_id').val();
-
     console.log(obj);
     $.ajax({
         url: "/Employees/RegisterEmp",
@@ -241,9 +240,10 @@ function getEmp(employeeId) {
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
-            console.log(result[0].hireDate);
+            console.log(result);
             var tanggal = result[0].birthDate.substr(0, 10);
             $('#employeeId').val(result[0].employeeId);
+            $('#accountId').val(result[0].accountId);
             $('#firstName').val(result[0].firstName);
             $('#lastName').val(result[0].lastName);
             $('#email').val(result[0].email);
@@ -265,12 +265,10 @@ function getEmp(employeeId) {
         },
         error: function (errormessage) {
             /*alert(errormessage.responseText);*/
-            swal({
-                title: "FAILED",
-                text: "Data tidak ditemukan!",
-                icon: "error"
-            }).then(function () {
-                window.location = "https://localhost:44344/auth/Employee";
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops..',
+                text: 'Data gagal Tidak DItemukan'
             });
         }
     });
@@ -279,7 +277,8 @@ function getEmp(employeeId) {
 function UpdateEmp() {
     var employeeId = $('#employeeId').val();
     var obj = new Object();
-  /*  obj.employeeId = $('#employeeId').val();*/
+    obj.employeeId = $('#employeeId').val();
+    obj.accountId = $('#accountId').val();
     obj.FirstName = $('#firstName').val();
     obj.LastName = $('#lastName').val();
     obj.Email = $('#email').val();
@@ -287,16 +286,12 @@ function UpdateEmp() {
     obj.Gender = $('#gender').val();
     obj.Address = $('#address').val();
     obj.BirthDate = $('#birthDate').val();
-    obj.password = $('#password').val();
     obj.HireDate = $('#tanggal').val();
-    obj.RoleId = $('#role_id').val();
     console.log(obj);
     $.ajax({
         url: "/Employees/Put/" + employeeId,
         type: "PUT",
-        data: { id: employeeId, entity: obj },
-        /*contentType: "application/json;charset=utf-8",
-        dataType: "json",*/
+        data: { id: employeeId, entity: obj }, 
     }).done((result) => {
         Swal.fire({
             icon: 'success',
@@ -314,48 +309,6 @@ function UpdateEmp() {
     });
 
 }
-/*function UpdateEmp() {
-    var obj = new Object();
-    obj.FirstName = $('#firstName').val();
-    obj.LastName = $('#lastName').val();
-    obj.Email = $('#email').val();
-    obj.Phone = $('#phone').val();
-    obj.Gender = $('#gender').val();
-    obj.Address = $('#address').val();
-    obj.BirthDate = $('#birthDate').val();
-    obj.password = $('#password').val();
-    obj.HireDate = $('#tanggal').val();
-    obj.RoleId = $('#role_id').val();
-    console.log(obj);
-    $.ajax({
-        url: "/Employees/Put/" + employeeId,
-        type: "Put",
-        data: { id: employeeId, entity: obj },
-        *//*contentType: "application/json;charset=utf-8",
-        dataType: "json",*//*
-        success: function (result) {
-            $('#modalData').modal('hide');
-          
-            swal({
-                title: "Good job!",
-                text: "Data Berhasil Diipdate!!",
-                icon: "success",
-                button: "Okey!",
-            }).then(function () {
-                window.location = "https://localhost:44344/auth/Employee";
-            });
-        },
-        error: function (errormessage) {
-            swal({
-                title: "FAILED",
-                text: "Data Gagal Dihapus!",
-                icon: "error"
-            }).then(function () {
-                window.location = "https://localhost:44344/auth/Employee";
-            });
-        }
-    });
-}*/
 function getDetailEmp(employeeId) {
     console.log(employeeId)
     $.ajax({
