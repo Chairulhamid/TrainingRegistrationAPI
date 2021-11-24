@@ -76,20 +76,5 @@ namespace TrainingRegistrationClient.Repository
             var result = httpClient.PostAsync(address.link + request, content).Result;
             return result.StatusCode;
         }
-
-        HttpStatusCode IRepository<TEntity, TId>.Post(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        HttpStatusCode IRepository<TEntity, TId>.Put(TId id, TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        HttpStatusCode IRepository<TEntity, TId>.Delete(TId id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -372,38 +372,37 @@ function getDetailEmp(employeeId) {
     });
     return false;
 }
-function DeleleEmp(employeeId) {
-    console.log(employeeId);
-    swal({
-        title: "Are you sure?",
-        text: "Hapus Data Ini!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
+function DeleleEmp(id) {
+    console.log(id);
+    Swal.fire({
+        title: 'Are you sure want to delete this Employee?',
+        text: "you won't be able to revert this!",
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, Delete it!'
     })
         .then((willDelete) => {
             if (willDelete) {
                 $.ajax({
-                    url: "/Employees/Delete/" + employeeId,
+                    url: "/Employees/Delete/" + id,
                     type: "Delete",
                     /*  contentType: "application/json;charset=UTF-8",
                       dataType: "json",*/
                     success: function (result) {
-                        swal({
-                            title: "Good job!",
-                            text: "Data Berhasil Di Hapus!",
-                            icon: "success",
-                            button: "Oke!",
-                        });
-                        $('#table_id').DataTable().ajax.reload();
+                        mytable.ajax.reload();
+                        return Swal.fire(
+                            'Delete Successfull',
+                            'Employee Data Deleted!',
+                            'success',
+                        )
                     },
                     error: function (errormessage) {
                         alert(errormessage.responseText);
-                        swal({
-                            title: "Failed!",
-                            text: "Data Gagal dihapus!!",
-                            icon: "error",
-                            button: "Close",
+                        return Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Delete not successful',
                         });
                     }
                 });
