@@ -149,9 +149,9 @@ function getTopic(topicId) {
         success: function (result) {
             console.log(result);
             $('#modalUpdate').modal('show');
+            $('#topicId1').val(result[0].topicId);
             $('#topicName1').val(result[0].topicName);
             $('#topicDesc1').val(result[0].topicDesc);
-            
         },
         error: function (errormessage) {
             /*alert(errormessage.responseText);*/
@@ -165,15 +165,16 @@ function getTopic(topicId) {
     return false;
 }
 function Update() {
-    var topicId = $('#topicId').val();
+    var topicId = $('#topicId1').val();
     var obj = new Object();
+    obj.TopicId = $('#topicId1').val()
     obj.TopicName = $("#topicName1").val();
     obj.TopicDesc = $("#topicDesc1").val();
     console.log(obj);
     $.ajax({
         url: "/Topics/Put/" + topicId,
         type: "PUT",
-        'data': { id: topicId, entity: obj },
+        data: { id: topicId, entity: obj },
     }).done((result) => {
         mytable.ajax.reload();
         Swal.fire({
