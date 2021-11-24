@@ -22,7 +22,6 @@ namespace TrainingRegistrationClient.Controllers
         {
             this.repository = repository;
         }
-
         public IActionResult Index()
         {
             return View();

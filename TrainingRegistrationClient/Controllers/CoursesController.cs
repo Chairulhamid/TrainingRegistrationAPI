@@ -10,11 +10,11 @@ using TrainingRegistrationClient.Repository.Data;
 
 namespace TrainingRegistrationClient.Controllers
 {
-    /*[Authorize]*/
-    public class ModulsController : BaseController<Modul, ModulRepository, int>
+    public class CoursesController : BaseController<Course, CourseRepository, int>
     {
-        private readonly ModulRepository repository;
-        public ModulsController(ModulRepository repository) : base(repository)
+
+        private readonly CourseRepository repository;
+        public CoursesController(CourseRepository repository) : base(repository)
         {
             this.repository = repository;
         }
@@ -23,23 +23,21 @@ namespace TrainingRegistrationClient.Controllers
             return View();
         }
         /*[HttpGet("GetTopics/{NIK}")]*/
-        public async Task<JsonResult> GetModuls()
+        public async Task<JsonResult> GetCourses()
         {
-            var result = await repository.GetModuls();
-            return Json(result);
-        }
-        public async Task<JsonResult> GetIdModul(int id)
-        {
-            var result = await repository.GetIdModul(id);
+            var result = await repository.GetCourses();
             return Json(result);
         }
 
-
-        public JsonResult RegisterModul(ModulVM entity)
+        public async Task<JsonResult> GetIdCourse(int id)
+        {
+            var result = await repository.GetIdCourse(id);
+            return Json(result);
+        }
+        public JsonResult RegisterCourse(CourseVM entity)
         {
             var result = repository.Post(entity);
             return Json(result);
         }
-
     }
 }

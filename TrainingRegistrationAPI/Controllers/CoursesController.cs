@@ -30,7 +30,7 @@ namespace TrainingRegistrationAPI.Controllers
         }
         [Route("RegisterCourse")]
         [HttpPost]
-        public ActionResult RegisterTopic(CourseVM courseVM)
+        public ActionResult RegisterCourse(CourseVM courseVM)
         {
             var check = courseRepository.RegisterCourse(courseVM);
             if (check == 1)
@@ -47,7 +47,6 @@ namespace TrainingRegistrationAPI.Controllers
 
             }
         }
-
             [HttpGet("GetIdCourse/{CourseId}")]
             public ActionResult GetIdCourse(int courseId)
             {
@@ -58,7 +57,6 @@ namespace TrainingRegistrationAPI.Controllers
                 }
                 return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
             }
-
         }
     }
 

@@ -20,7 +20,6 @@ namespace TrainingRegistrationAPI.Repository.Data
             Course course = new Course();
             var checkCourseName = myContext.Courses.Where(x => x.CourseName == courseVM.CourseName).FirstOrDefault();
             course.CourseName= courseVM.CourseName;
-
             if (checkCourseName  != null)
             {
                 return 2;
