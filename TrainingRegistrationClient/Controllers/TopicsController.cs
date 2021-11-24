@@ -43,7 +43,7 @@ namespace TrainingRegistrationClient.Controllers
         }
 
 
-        public JsonResult RegisterTopic(Topic entity)
+        public JsonResult RegisterTopic(TopicVM entity)
         {
             var result = repository.Post(entity);
             return Json(result);

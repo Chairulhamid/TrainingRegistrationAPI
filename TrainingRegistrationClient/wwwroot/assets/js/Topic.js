@@ -146,12 +146,10 @@ $(function () {
 }*/
 //END INSERT
 function InsertTopic() {
-    var obj = new Object(); //sesuaikan sendiri nama objectnya dan beserta isinya
-    //ini ngambil value dari tiap inputan di form nya
+    var obj = new Object();
     obj.TopicName = $("#topicName").val();
     obj.TopicDesc = $("#topicDesc").val();
     console.log(obj);
-    //isi dari object kalian buat sesuai dengan bentuk object yang akan di post
     $.ajax({
         url: "/Topics/RegisterTopic",
         headers: {
@@ -159,8 +157,7 @@ function InsertTopic() {
             'Content-Type': 'application/json'
         },
         'type': 'POST',
-        'data': { entity: obj }, //objek kalian
-        //'data': JSON.stringify(obj), //objek kalian
+        'data': { entity: obj },
         'dataType': 'json'
     }).done((result) => {
         Swal.fire({

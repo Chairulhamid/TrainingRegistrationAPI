@@ -28,32 +28,32 @@ namespace TrainingRegistrationClient.Repository.Data
             };
         }
 
-        public async Task<List<Topic>> GetTopics()
+        public async Task<List<TopicVM>> GetTopics()
         {
 
-            List<Topic> entities = new List<Topic>();
+            List<TopicVM> entities = new List<TopicVM>();
 
             using (var response = await httpClient.GetAsync(request))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                entities = JsonConvert.DeserializeObject<List<Topic>>(apiResponse);
+                entities = JsonConvert.DeserializeObject<List<TopicVM>>(apiResponse);
             }
             return entities;
         }
 
-        public async Task<List<Topic>> GetTopic(int id)
+        public async Task<List<TopicVM>> GetTopic(int id)
         {
-            List<Topic> entities = new List<Topic>();
+            List<TopicVM> entities = new List<TopicVM>();
 
             using (var response = await httpClient.GetAsync(request + id))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                entities = JsonConvert.DeserializeObject<List<Topic>>(apiResponse);
+                entities = JsonConvert.DeserializeObject<List<TopicVM>>(apiResponse);
             }
             return entities;
         }
 
-        public new HttpStatusCode Post(Topic entity)
+        public HttpStatusCode Post(TopicVM entity)
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(entity), Encoding.UTF8, "application/json");
             var result = httpClient.PostAsync(address.link + request + "RegisterTopic", content).Result;
