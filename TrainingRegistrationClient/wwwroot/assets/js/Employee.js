@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('#tableEmployee').DataTable({
-        dom: 'Bfrtip',
+      /*  dom: 'Bfrtip',
         buttons: [
             {
                 extend: 'excel',
@@ -34,7 +34,7 @@
         columnDefs: [{
             targets: [0],
             visible: false
-        }],
+        }],*/
         'ajax': {
             'url': "/Employees/GetAll",
             'order': [[0, 'asc']],
@@ -47,7 +47,7 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }
             },
-            { "data": "employeeId" },
+        /*    { "data": "employeeId" },*/
             {
                 "data": "",
                 'render': function (data, type, row, meta) {
@@ -77,7 +77,7 @@
                 }
             },
             { "data": "birthDate" },
-            { "data": "hireDate" },
+          /*  { "data": "hireDate" },*/
             {
                 "data": "",
                 'render': function (data, type, row, meta) {
