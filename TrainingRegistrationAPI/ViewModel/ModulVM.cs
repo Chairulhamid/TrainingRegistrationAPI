@@ -9,6 +9,8 @@ namespace TrainingRegistrationAPI.ViewModel
     public class ModulVM
     {
         [Required]
+        public int ModulId { get; set; }
+        [Required]
         public string ModulTitle { get; set; }
         [Required]
         public string ModulDesc { get; set; }
