@@ -16,6 +16,7 @@ using TrainingRegistrationClient.Repository.Data;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 using TrainingRegistrationAPI.Repository.Data;
+using TrainingRegistrationClient.Repository.Interface;
 
 namespace TrainingRegistrationClient
 {
@@ -32,6 +33,7 @@ namespace TrainingRegistrationClient
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<Repository.Data.EmployeeRepository>();
+            services.AddScoped<Repository.Data.TopicRepository>();
             services.AddScoped<Repository.Data.UserRepository>();
             services.AddScoped<LoginUserRepository>();
             services.AddScoped<LoginEmpRepository>();
