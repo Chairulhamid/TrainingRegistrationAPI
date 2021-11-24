@@ -10,6 +10,8 @@ namespace TrainingRegistrationAPI.ViewModel
     public class RegisterUserVM
     {
         [Required]
+        public int UserId { get; set; }
+        [Required]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }

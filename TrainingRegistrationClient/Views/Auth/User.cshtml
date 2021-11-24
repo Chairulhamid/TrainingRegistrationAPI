@@ -7,7 +7,7 @@
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalData">
-    Add Employee
+    Add User
 </button>
 
 
@@ -18,7 +18,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover display nowrap dataTable dtr-inline table table-bordered table-striped text-center table-secondary table-hover" id="tableEmployee">
+            <table class="table table-hover display nowrap dataTable dtr-inline table table-bordered table-striped text-center table-secondary table-hover" id="tableUser">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -26,10 +26,10 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Addrees</th>
+                        <th>Address</th>
                         <th>Gender</th>
                         <th>BirthDate</th>
-                        @*<th>Hire Date</th>*@
+                        <th>Regist Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -45,7 +45,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal Data Employee</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modal Data User</h5>
                 <button type="button" class="close" onclick="window.location.reload()" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -54,7 +54,7 @@
                 <form action="" id="formValidation" name="nameModal" method="post">
                     <div class="row mb-2">
                         <div class="col" hidden >
-                            <input type="text" class="form-control" id="employeeId" name="employeeId" placeholder="">
+                            <input type="text" class="form-control" id="userId" name="userId" placeholder="">
                             <input type="text" class="form-control" id="accountId" name="accountId" placeholder="">
                         </div>
                         <div class="col">
@@ -75,13 +75,13 @@
                             <label>Birth Date</label>
                             <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="Birth Date....">
                         </div>
-                        <div class="col" id="hireDate1">
-                            <label>Hire Date</label>
-                            <input type="date" class="form-control" id="hireDate" name="hireDate" placeholder="hire Date....">
+                        <div class="col" id="registDate1">
+                            <label>Regist Date</label>
+                            <input type="date" class="form-control" id="registDate" name="registDate" placeholder="Regist Date....">
                         </div> 
-                        <div class="col" id="hireDate2" style="display:none;">
+                        <div class="col" id="registDate2" style="display:none;">
                             <label>Hire Date</label>
-                            <input type="text" class="form-control" id="tanggal" name="hireDate" placeholder="hire Date....">
+                            <input type="text" class="form-control" id="tanggal" name="registDate" placeholder="Regist Date....">
                         </div> 
                         <div class="col">
                             <label>Address</label>
@@ -120,8 +120,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Close</button>
-                <button id="btnAddEmployee" type="submit" class="btn btn-primary">Add</button>
-                <button id="btnUpdateEmployee" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateEmp();">Update</button>
+                <button id="btnAddUser" type="submit" class="btn btn-primary">Add</button>
+                <button id="btnUpdateUser" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateUser();">Update</button>
             </div>
         </div>
     </div>
