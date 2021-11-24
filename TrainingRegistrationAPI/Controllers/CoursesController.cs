@@ -46,6 +46,8 @@ namespace TrainingRegistrationAPI.Controllers
                 return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data gagal ditambahkan. Course sudah terdaftar" });
 
             }
+        }
+
             [HttpGet("GetIdCourse/{CourseId}")]
             public ActionResult GetIdCourse(int courseId)
             {
@@ -59,4 +61,4 @@ namespace TrainingRegistrationAPI.Controllers
 
         }
     }
-}
+
