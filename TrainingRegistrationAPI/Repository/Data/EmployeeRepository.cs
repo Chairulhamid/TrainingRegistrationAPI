@@ -60,6 +60,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                               acr.RoleId equals r.RoleId
                               select new RegisterEmpVM
                               {
+                                  AccountId = e.AccountId,
                                   EmployeeId = e.EmployeeId,
                                   FirstName = e.FirstName,
                                   LastName = e.LastName,
