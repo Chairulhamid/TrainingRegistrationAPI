@@ -33,5 +33,18 @@ namespace TrainingRegistrationAPI.Repository.Data
             var result = myContext.SaveChanges();
             return result;
         }
+        public IEnumerable<ModulVM> GetIdModul(int modulId)
+        {
+            var getTopic = (from m in myContext.Moduls
+                            select new ModulVM()
+                            {
+                                ModulId = m.ModulId,
+                                ModulTitle = m.ModulTittle,
+                                ModulDesc = m.ModulDesc,
+                                ModulContent = m.ModulContent,
+                                CourseId = m.CourseId,
+                            }).Where(u => u.ModulId == modulId).ToList();
+            return getTopic;
+        }
     }
 }

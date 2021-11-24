@@ -46,5 +46,15 @@ namespace TrainingRegistrationAPI.Controllers.Base
                 return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data gagal ditambahkan." });
             }
         }
+        [HttpGet("GetIdModul/{ModulId}")]
+        public ActionResult GetIdModul(int modulId)
+        {
+            var result = modulRepository.GetIdModul(modulId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
+        }
     }
 }

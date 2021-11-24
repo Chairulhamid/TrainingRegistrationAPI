@@ -17,6 +17,8 @@ namespace TrainingRegistrationAPI.Models
         public string CourseDesc { get; set; }
         public string CourseFee { get; set; }
         public string CourseImg { get; set; }
+        public int TopicId { get; set; }
+        public int EmployeeId { get; set; }
         [JsonIgnore]
         public virtual Employee Employee { get; set; }
         [JsonIgnore]
