@@ -53,5 +53,16 @@ namespace TrainingRegistrationAPI.Controllers
             }
 
         }
+
+        [HttpGet("GetTopic/{TopicId}")]
+        public ActionResult GetTopic(int topicId)
+        {
+            var result = topicRepository.GetTopic(topicId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data dengan Email tersebut tidak ditemukan" });
+        }
     }
 }
