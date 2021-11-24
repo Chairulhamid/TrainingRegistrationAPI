@@ -54,3 +54,4 @@ namespace TrainingRegistrationAPI.Repository.Data
         }
     }
 }
+//test
