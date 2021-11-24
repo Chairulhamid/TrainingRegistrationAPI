@@ -50,11 +50,11 @@ namespace TrainingRegistrationAPI.Controller
 
         /*[Authorize(Roles = "User, Admin")]*/
         //[Route("CariProfile/{nik}")]
-        [HttpGet("Profile/{nik}")]
-        public ActionResult GetProfile(string Email)
+        [HttpGet("GetIdProfile/{userId}")]
+        public ActionResult GetIdProfile(int userId)
         {
 
-            var result = userRepository.GetProfile(Email);
+            var result = userRepository.GetIdProfile(userId);
             if (result != null)
             {
                 return Ok(result);

@@ -46,7 +46,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             return getProfile;
         }
 
-        public IEnumerable<RegisterUserVM> GetProfile(string Email)
+        public IEnumerable<RegisterUserVM> GetIdProfile(int UserId)
         {
             var getProfile = (from u in myContext.Users
                               join acc in myContext.Accounts on
@@ -57,6 +57,8 @@ namespace TrainingRegistrationAPI.Repository.Data
                               acr.RoleId equals r.RoleId
                               select new RegisterUserVM
                               {
+                                  AccountId = u.AccountId,
+                                  UserId = u.UserId,
                                   FirstName = u.FirstName,
                                   LastName = u.LastName,
                                   Email = u.Email,
@@ -64,10 +66,10 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   Gender = (ViewModel.Gender)u.Gender,
                                   BirthDate = u.BirthDate,
                                   Address = u.Address,
-                                  //Password = acc.Password,
+                                  Password = acc.Password,
                                   RegistDate = u.RegistDate,
                                   RoleId = r.RoleId
-                              }).Where(u => u.Email == Email).ToList();
+                              }).Where(u => u.UserId == UserId).ToList();
 
             return getProfile;
         }
