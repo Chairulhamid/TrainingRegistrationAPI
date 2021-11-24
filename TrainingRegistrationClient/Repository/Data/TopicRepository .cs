@@ -45,7 +45,7 @@ namespace TrainingRegistrationClient.Repository.Data
         {
             List<TopicVM> entities = new List<TopicVM>();
 
-            using (var response = await httpClient.GetAsync(request + id))
+            using (var response = await httpClient.GetAsync(request + "GetTopic/" + id))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 entities = JsonConvert.DeserializeObject<List<TopicVM>>(apiResponse);

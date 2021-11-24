@@ -33,5 +33,19 @@ namespace TrainingRegistrationAPI.Repository.Data
             return result;
 
         }
+
+        public IEnumerable<TopicVM> GetTopic(int topicId)
+        {
+            var getTopic = (from t in myContext.Topics
+                              select new TopicVM()
+                              {
+                                  TopicId = t.TopicId,
+                                  TopicName = t.TopicName,
+                                  TopicDesc = t.TopicDesc,
+                                  
+                              }).Where(u => u.TopicId == topicId).ToList();
+
+            return getTopic;
+        }
     }
 }

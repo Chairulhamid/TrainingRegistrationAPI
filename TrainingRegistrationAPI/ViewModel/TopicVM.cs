@@ -8,6 +8,7 @@ namespace TrainingRegistrationAPI.ViewModel
 {
     public class TopicVM
     {
+        public int TopicId { get; set; }
         [Required]
         public string TopicName { get; set; }
         [Required]
