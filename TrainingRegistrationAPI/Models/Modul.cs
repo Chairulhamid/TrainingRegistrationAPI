@@ -17,6 +17,7 @@ namespace TrainingRegistrationAPI.Models
         public string ModulDesc { get; set; }
         public string ModulContent { get; set; }
         [JsonIgnore]
+        public int CourseId { get; set; }
         public virtual Course Course { get; set; }
 
     }
