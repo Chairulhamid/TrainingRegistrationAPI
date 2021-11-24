@@ -53,6 +53,9 @@
             <div class="modal-body">
                 <form action="" id="formValidation" name="nameModal" method="post">
                     <div class="row mb-2">
+                        <div class="col" hidden>
+                            <input type="text" class="form-control" id="employeeId" name="employeeId" placeholder="">
+                        </div>
                         <div class="col">
                             <label>First Name</label>
                             <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name....">
@@ -71,9 +74,9 @@
                             <label>Birth Date</label>
                             <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="Birth Date....">
                         </div>
-                        <div class="col">
+                        <div class="col" id="hireDate1">
                             <label>Hire Date</label>
-                            <input type="date" class="form-control" id="hireDate" name="hireDate" placeholder="hire Date....">
+                            <input type="text" class="form-control" id="hireDate" name="hireDate" placeholder="hire Date....">
                         </div> 
                         <div class="col">
                             <label>Address</label>
@@ -112,8 +115,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">CLose</button>
-                <button id="btnAdd" type="submit" class="btn btn-primary">Add</button>
-                <button id="btnUpdate" type="button" class="btn btn-primary" style="display:none;" onclick="Update();">Update</button>
+                <button id="btnAddEmployee" type="submit" class="btn btn-primary">Add</button>
+                <button id="btnUpdateEmployee" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateEmp();">Update</button>
             </div>
         </div>
     </div>
