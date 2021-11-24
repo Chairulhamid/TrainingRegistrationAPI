@@ -185,6 +185,7 @@
         $('#btnAddEmployee').click(function (e) {
             e.preventDefault();
             if ($('#formValidation').valid() == true) {
+
                 InsertData();
             }
         });
@@ -209,6 +210,7 @@ function InsertData() {
     obj.password = $('#password').val();
     obj.HireDate = $('#hireDate').val();
     obj.RoleId = $('#role_id').val();
+
     console.log(obj);
     $.ajax({
         url: "/Employees/RegisterEmp",
@@ -246,23 +248,20 @@ function getEmp(employeeId) {
             $('#lastName').val(result[0].lastName);
             $('#email').val(result[0].email);
             $('#phone').val(result[0].phone);
-            if (result[0].gender === "Male") {
-                $('#gender').val(0);
-            } else {
-                $('#gender').val(1);
-            };
+            $('#gender').val(result[0].gender);
             $('#address').val(result[0].address);
             $('#birthDate').val(tanggal);
             $('#password').val(result[0].password);
-            $('#hireDate').val(result[0].hireDate);
+            $('#tanggal').val(result[0].hireDate);
             $('#role_id').val(result[0].roleId);
             $('#modalData').modal('show');
             $('#btnUpdateEmployee').show();
             $('#btnAddEmployee').hide();
-            /*$('#hidePass').hide();*/
+            $('#hireDate2').show();
             $('#hireDate1').hide();
             $('#hideRow').hide();
             $('#email').prop('disabled', true);;
+            $('#tanggal').prop('disabled', true);;
         },
         error: function (errormessage) {
             /*alert(errormessage.responseText);*/
@@ -278,8 +277,9 @@ function getEmp(employeeId) {
     return false;
 }
 function UpdateEmp() {
+    var employeeId = $('#employeeId').val();
     var obj = new Object();
-  
+  /*  obj.employeeId = $('#employeeId').val();*/
     obj.FirstName = $('#firstName').val();
     obj.LastName = $('#lastName').val();
     obj.Email = $('#email').val();
@@ -288,7 +288,7 @@ function UpdateEmp() {
     obj.Address = $('#address').val();
     obj.BirthDate = $('#birthDate').val();
     obj.password = $('#password').val();
-    obj.HireDate = $('#hireDate').val();
+    obj.HireDate = $('#tanggal').val();
     obj.RoleId = $('#role_id').val();
     console.log(obj);
     $.ajax({
@@ -297,6 +297,42 @@ function UpdateEmp() {
         data: { id: employeeId, entity: obj },
         /*contentType: "application/json;charset=utf-8",
         dataType: "json",*/
+    }).done((result) => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Data has been updated!'
+        });
+        $('#tableEmployee').DataTable().ajax.reload();
+        $("#modalData").modal("hide");
+    }).fail((error) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops..',
+            text: 'Data gagal ditambahkan'
+        });
+    });
+
+}
+/*function UpdateEmp() {
+    var obj = new Object();
+    obj.FirstName = $('#firstName').val();
+    obj.LastName = $('#lastName').val();
+    obj.Email = $('#email').val();
+    obj.Phone = $('#phone').val();
+    obj.Gender = $('#gender').val();
+    obj.Address = $('#address').val();
+    obj.BirthDate = $('#birthDate').val();
+    obj.password = $('#password').val();
+    obj.HireDate = $('#tanggal').val();
+    obj.RoleId = $('#role_id').val();
+    console.log(obj);
+    $.ajax({
+        url: "/Employees/Put/" + employeeId,
+        type: "Put",
+        data: { id: employeeId, entity: obj },
+        *//*contentType: "application/json;charset=utf-8",
+        dataType: "json",*//*
         success: function (result) {
             $('#modalData').modal('hide');
           
@@ -319,7 +355,7 @@ function UpdateEmp() {
             });
         }
     });
-}
+}*/
 function getDetailEmp(employeeId) {
     console.log(employeeId)
     $.ajax({
@@ -335,26 +371,24 @@ function getDetailEmp(employeeId) {
             $('#lastName').val(result[0].lastName);
             $('#email').val(result[0].email);
             $('#phone').val(result[0].phone);
-            if (result[0].gender === "Male") {
-                $('#gender').val(0);
-            } else {
-                $('#gender').val(1);
-            };
+            $('#gender').val(result[0].gender);
             $('#address').val(result[0].address);
             $('#birthDate').val(tanggal);
             $('#password').val(result[0].password);
-            $('#hireDate').val(result[0].hireDate);
+            $('#tanggal').val(result[0].hireDate);
             $('#role_id').val(result[0].roleId);
             $('#modalData').modal('show');
             $('#btnUpdateEmployee').hide();
             $('#btnAddEmployee').hide();
             $('#hireDate1').hide();
+            $('#hireDate2').show();
             $('#hideRow').hide();
             $('#firstName').prop('disabled', true);;
             $('#lastName').prop('disabled', true);;
             $('#phone').prop('disabled', true);;
             $('#gender').prop('disabled', true);;
             $('#birthDate').prop('disabled', true);;
+            $('#tanggal').prop('disabled', true);;
             $('#address').prop('disabled', true);;
             $('#password').prop('disabled', true);;
             $('#email').prop('disabled', true);;
@@ -396,7 +430,9 @@ function DeleleEmp(id) {
                             'Employee Data Deleted!',
                             'success',
                         )
+                        window.location = "https://localhost:44344/auth/Employee";
                     },
+
                     error: function (errormessage) {
                         alert(errormessage.responseText);
                         return Swal.fire({

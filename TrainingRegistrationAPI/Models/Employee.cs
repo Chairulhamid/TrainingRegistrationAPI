@@ -34,4 +34,5 @@ namespace TrainingRegistrationAPI.Models
         [JsonIgnore]
         public virtual ICollection<Course> Course { get; set; }
     }
+
 }
