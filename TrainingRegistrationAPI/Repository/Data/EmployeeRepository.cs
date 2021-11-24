@@ -49,7 +49,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             return getProfile;
         }
 
-        public IEnumerable<RegisterEmpVM> GetProfile(int EmployeeId)
+        public IEnumerable<RegisterEmpVM> GetIdProfile(int EmployeeId)
         {
             var getProfile = (from e in myContext.Employees
                               join acc in myContext.Accounts on

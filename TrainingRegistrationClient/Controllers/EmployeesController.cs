@@ -43,7 +43,7 @@ namespace TrainingRegistrationClient.Controllers
         }
 
 
-        public JsonResult Register(RegisterEmpVM entity)
+        public JsonResult RegisterEmp(RegisterEmpVM entity)
         {
             var result = repository.Post(entity);
             return Json(result);

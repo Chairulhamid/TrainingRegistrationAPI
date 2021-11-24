@@ -45,7 +45,7 @@ namespace TrainingRegistrationClient.Repository.Data
         {
             List<RegisterEmpVM> entities = new List<RegisterEmpVM>();
 
-            using (var response = await httpClient.GetAsync(request + "Profile/" + id))
+            using (var response = await httpClient.GetAsync(request + "GetIdProfile/" + id))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 entities = JsonConvert.DeserializeObject<List<RegisterEmpVM>>(apiResponse);
@@ -56,7 +56,7 @@ namespace TrainingRegistrationClient.Repository.Data
         public HttpStatusCode Post(RegisterEmpVM entity)
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(entity), Encoding.UTF8, "application/json");
-            var result = httpClient.PostAsync(address.link + request + "Register", content).Result;
+            var result = httpClient.PostAsync(address.link + request + "RegisterEmp", content).Result;
             return result.StatusCode;
         }
 

@@ -81,9 +81,9 @@
             {
                 "data": "",
                 'render': function (data, type, row, meta) {
-                    return `<td scope=" row">  <a class="btn btn-warning btn-sm text-light" data-url=""  onclick="getData('${row.nik}')" title="Detail"><i class="fa fa-info-circle"></i> </a></td>
-                                    <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getNIK('${row.nik}')"  title="Update"><i class="far fa-edit"></i></a></td>
-                                  <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="Delele('${row.nik}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
+                    return `<td scope=" row">  <a class="btn btn-warning btn-sm text-light" data-url=""  onclick="getDetailEmp('${row.employeeId}')" title="Detail"><i class="fa fa-info-circle"></i> </a></td>
+                                    <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getEmp('${row.employeeId}')"  title="Update"><i class="far fa-edit"></i></a></td>
+                                  <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="DeleleEmp('${row.employeeId}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
                 }
             }
         ]
@@ -182,16 +182,16 @@
                 }
             }
         });
-        $('#btnAdd').click(function (e) {
+        $('#btnAddEmployee').click(function (e) {
             e.preventDefault();
             if ($('#formValidation').valid() == true) {
                 InsertData();
             }
         });
-        $('#btnUpdate').click(function (e) {
+        $('#btnUpdateEmployee').click(function (e) {
             e.preventDefault();
             if ($('#formValidation').valid() == true) {
-                Update();
+                UpdateEmp();
             }
         });
     });
@@ -201,16 +201,17 @@ function InsertData() {
     var obj = new Object();
     obj.FirstName = $('#firstName').val();
     obj.LastName = $('#lastName').val();
-    obj.Phone = $('#phone').val();
     obj.Email = $('#email').val();
-    obj.Address = $('#address').val();
+    obj.Phone = $('#phone').val();
     obj.Gender = $('#gender').val();
+    obj.Address = $('#address').val();
     obj.BirthDate = $('#birthDate').val();
+    obj.password = $('#password').val();
     obj.HireDate = $('#hireDate').val();
     obj.RoleId = $('#role_id').val();
     console.log(obj);
     $.ajax({
-        url: "/Employees/Register",
+        url: "/Employees/RegisterEmp",
         'type': 'POST',
         'data': { entity: obj }, //objek kalian
         'dataType': 'json',
@@ -220,7 +221,7 @@ function InsertData() {
             title: 'Berhasil!',
             text: 'Data telah ditambahkan!'
         });
-        window.location = "https://localhost:44344/auth/Employee";
+       window.location = "https://localhost:44344/auth/Employee";
     }).fail((error) => {
         Swal.fire({
             icon: 'error',
@@ -229,6 +230,188 @@ function InsertData() {
         });
     });
 };
+
+function getEmp(employeeId) {
+    console.log(employeeId)
+    $.ajax({
+        url: "/Employees/GetEmp/" + employeeId,
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            console.log(result[0].hireDate);
+            var tanggal = result[0].birthDate.substr(0, 10);
+            $('#employeeId').val(result[0].employeeId);
+            $('#firstName').val(result[0].firstName);
+            $('#lastName').val(result[0].lastName);
+            $('#email').val(result[0].email);
+            $('#phone').val(result[0].phone);
+            if (result[0].gender === "Male") {
+                $('#gender').val(0);
+            } else {
+                $('#gender').val(1);
+            };
+            $('#address').val(result[0].address);
+            $('#birthDate').val(tanggal);
+            $('#password').val(result[0].password);
+            $('#hireDate').val(result[0].hireDate);
+            $('#role_id').val(result[0].roleId);
+            $('#modalData').modal('show');
+            $('#btnUpdateEmployee').show();
+            $('#btnAddEmployee').hide();
+            /*$('#hidePass').hide();*/
+            $('#hireDate1').hide();
+            $('#hideRow').hide();
+            $('#email').prop('disabled', true);;
+        },
+        error: function (errormessage) {
+            /*alert(errormessage.responseText);*/
+            swal({
+                title: "FAILED",
+                text: "Data tidak ditemukan!",
+                icon: "error"
+            }).then(function () {
+                window.location = "https://localhost:44344/auth/Employee";
+            });
+        }
+    });
+    return false;
+}
+function UpdateEmp() {
+    var obj = new Object();
+  
+    obj.FirstName = $('#firstName').val();
+    obj.LastName = $('#lastName').val();
+    obj.Email = $('#email').val();
+    obj.Phone = $('#phone').val();
+    obj.Gender = $('#gender').val();
+    obj.Address = $('#address').val();
+    obj.BirthDate = $('#birthDate').val();
+    obj.password = $('#password').val();
+    obj.HireDate = $('#hireDate').val();
+    obj.RoleId = $('#role_id').val();
+    console.log(obj);
+    $.ajax({
+        url: "/Employees/Put/" + employeeId,
+        type: "PUT",
+        data: { id: employeeId, entity: obj },
+        /*contentType: "application/json;charset=utf-8",
+        dataType: "json",*/
+        success: function (result) {
+            $('#modalData').modal('hide');
+          
+            swal({
+                title: "Good job!",
+                text: "Data Berhasil Diipdate!!",
+                icon: "success",
+                button: "Okey!",
+            }).then(function () {
+                window.location = "https://localhost:44344/auth/Employee";
+            });
+        },
+        error: function (errormessage) {
+            swal({
+                title: "FAILED",
+                text: "Data Gagal Dihapus!",
+                icon: "error"
+            }).then(function () {
+                window.location = "https://localhost:44344/auth/Employee";
+            });
+        }
+    });
+}
+function getDetailEmp(employeeId) {
+    console.log(employeeId)
+    $.ajax({
+        url: "/Employees/GetEmp/" + employeeId,
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            console.log(result[0].hireDate);
+            var tanggal = result[0].birthDate.substr(0, 10);
+            $('#employeeId').val(result[0].employeeId);
+            $('#firstName').val(result[0].firstName);
+            $('#lastName').val(result[0].lastName);
+            $('#email').val(result[0].email);
+            $('#phone').val(result[0].phone);
+            if (result[0].gender === "Male") {
+                $('#gender').val(0);
+            } else {
+                $('#gender').val(1);
+            };
+            $('#address').val(result[0].address);
+            $('#birthDate').val(tanggal);
+            $('#password').val(result[0].password);
+            $('#hireDate').val(result[0].hireDate);
+            $('#role_id').val(result[0].roleId);
+            $('#modalData').modal('show');
+            $('#btnUpdateEmployee').hide();
+            $('#btnAddEmployee').hide();
+            $('#hireDate1').hide();
+            $('#hideRow').hide();
+            $('#firstName').prop('disabled', true);;
+            $('#lastName').prop('disabled', true);;
+            $('#phone').prop('disabled', true);;
+            $('#gender').prop('disabled', true);;
+            $('#birthDate').prop('disabled', true);;
+            $('#address').prop('disabled', true);;
+            $('#password').prop('disabled', true);;
+            $('#email').prop('disabled', true);;
+        },
+        error: function (errormessage) {
+            /*alert(errormessage.responseText);*/
+            swal({
+                title: "FAILED",
+                text: "Data tidak ditemukan!",
+                icon: "error"
+            }).then(function () {
+                window.location = "https://localhost:44344/auth/Employee";
+            });
+        }
+    });
+    return false;
+}
+function DeleleEmp(employeeId) {
+    console.log(employeeId);
+    swal({
+        title: "Are you sure?",
+        text: "Hapus Data Ini!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: "/Employees/Delete/" + employeeId,
+                    type: "Delete",
+                    /*  contentType: "application/json;charset=UTF-8",
+                      dataType: "json",*/
+                    success: function (result) {
+                        swal({
+                            title: "Good job!",
+                            text: "Data Berhasil Di Hapus!",
+                            icon: "success",
+                            button: "Oke!",
+                        });
+                        $('#table_id').DataTable().ajax.reload();
+                    },
+                    error: function (errormessage) {
+                        alert(errormessage.responseText);
+                        swal({
+                            title: "Failed!",
+                            text: "Data Gagal dihapus!!",
+                            icon: "error",
+                            button: "Close",
+                        });
+                    }
+                });
+            } else {
+                swal("Data Gagal Dihapus!");
+            }
+        });
+}
 
 
 $.ajax({
