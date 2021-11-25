@@ -82,7 +82,7 @@
                 "data": "",
                 'render': function (data, type, row, meta) {
                     return `<td scope=" row">  <a class="btn btn-warning btn-sm text-light" data-url=""  onclick="getDetailUser('${row.userId}')" title="Detail"><i class="fa fa-info-circle"></i> </a></td>
-                                    <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getUser('${row.userId}')"  title="Update"><i class="far fa-edit"></i></a></td>
+                                    <td scope=" row"><a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getUser('${row.userId}')"  title="Update"><i class="far fa-edit"></i></a></td>
                                   <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="DeleteUser('${row.userId}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
                 }
             }
@@ -200,15 +200,15 @@ function InsertDataUser() {
     }).done((result) => {
         Swal.fire({
             icon: 'success',
-            title: 'Berhasil!',
-            text: 'Data telah ditambahkan!'
+            title: 'Success!',
+            text: 'Data successfully Added!'
         });
        window.location = "https://localhost:44344/auth/User";
     }).fail((error) => {
         Swal.fire({
             icon: 'error',
             title: 'Oops..',
-            text: 'Data gagal ditambahkan'
+            text: 'Failed to Add Data'
         });
     });
 };
@@ -249,7 +249,7 @@ function getUser(userId) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops..',
-                text: 'Data gagal Tidak DItemukan'
+                text: 'Data not found'
             });
         }
     });
@@ -285,7 +285,7 @@ function UpdateUser() {
         Swal.fire({
             icon: 'error',
             title: 'Oops..',
-            text: 'Data gagal ditambahkan'
+            text: 'Failed to update data!'
         });
     });
 
@@ -330,8 +330,8 @@ function getDetailUser(userId) {
         error: function (errormessage) {
             /*alert(errormessage.responseText);*/
             swal.fire({
-                title: "FAILED",
-                text: "Data tidak ditemukan!",
+                title: "Failed",
+                text: "Data not found",
                 icon: "error"
             }).then(function () {
                 window.location = "https://localhost:44344/auth/User";
@@ -378,7 +378,7 @@ function DeleteUser(id) {
                     }
                 });
             } else {
-                swal("Data Gagal Dihapus!");
+                swal("Failed to delete data");
             }
         });
 }

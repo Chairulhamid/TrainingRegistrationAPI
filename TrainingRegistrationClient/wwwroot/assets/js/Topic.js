@@ -33,8 +33,8 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row) {
-                    return `<button id="button-update" style="background-color:#2eb0e8; color:white; margin-right:15px;" type="button" name="submit" class="btn btn-sm" onclick="getTopic(${row['topicId']})" data-dismiss="modal">Update</button>`
-                        + `<button id="button-delete" style="background-color:#c41f2b; color: white;" type="button" name="submit" class="btn btn-sm" onclick="Delete(${row['topicId']})" data-dismiss="modal">Delete</button>`;
+                    return ` <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getTopic('${row.topicId}')"  title="Update"><i class="far fa-edit"></i></a></td>
+                             <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="DeleteTopic('${row.topicId}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
                 }
             }
         ],
@@ -69,10 +69,10 @@ $(function () {
             InsertTopic();
         }
     });
-    $('#btnUpdate').click(function (e) {
+    $('#btnUpdateTopic').click(function (e) {
         e.preventDefault();
         if ($('#formValidation').valid() == true) {
-            Update();
+            UpdateTopic();
         }
     });
 });
@@ -92,7 +92,7 @@ function InsertTopic() {
         Swal.fire({
 
             icon: 'success',
-            title: 'Berhasil!',
+            title: 'Success!',
             text: 'Data successfully Added'
         });
         $('#tableTopic').DataTable().ajax.reload();
@@ -124,8 +124,8 @@ function Delete(id) {
             }).done((result) => {
                 mytable.ajax.reload();
                 return Swal.fire(
-                    'Delete Successfull',
-                    'Employee Data Deleted!',
+                    'Delete Successful',
+                    'Topic Deleted!',
                     'success',
                 )
             }).fail((error) => {
@@ -158,7 +158,7 @@ function getTopic(topicId) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops..',
-                text: 'Data gagal Tidak DItemukan'
+                text: 'Data not found'
             });
         }
     });
