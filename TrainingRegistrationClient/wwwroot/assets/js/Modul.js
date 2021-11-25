@@ -207,7 +207,7 @@ function Update() {
             title: 'Success!',
             text: 'Data has been updated!'
         });
-        $("#modalUpdate").modal("hide");
+        $("#modalUpdateModul").modal("hide");
     }).fail((error) => {
         Swal.fire({
             icon: 'error',
