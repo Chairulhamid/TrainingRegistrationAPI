@@ -43,6 +43,10 @@ namespace TrainingRegistrationClient.Controllers
         {
             return View();
         }
+        public IActionResult DetailCourse()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
