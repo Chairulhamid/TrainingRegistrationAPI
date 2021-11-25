@@ -54,7 +54,7 @@ $(document).ready(function () {
 $(function() {
     $("form[name='nameModal']").validate({
         rules: {
-            modulName: {
+            modulTittle: {
                 required: true
             },
             modulDesc: {
@@ -68,8 +68,8 @@ $(function() {
             },
         },
         messages: {
-            modulName: {
-                required: "Please enter your Modul Name"
+            modulTittle: {
+                required: "Please enter your Modul Tittle"
             },
             modulDesc: {
                 required: "Please enter your Modul Desc"
@@ -113,7 +113,7 @@ function InsertModul() {
         Swal.fire({
 
             icon: 'success',
-            title: 'Berhasil!',
+            title: 'Success!',
             text: 'Data successfully Added'
         });
         $('#tableModul').DataTable().ajax.reload();
@@ -181,7 +181,7 @@ function getModul(modulId) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops..',
-                text: 'Data gagal Tidak Ditemukan'
+                text: 'Data not found'
             });
         }
     });

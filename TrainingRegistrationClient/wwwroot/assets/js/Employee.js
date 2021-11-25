@@ -83,7 +83,7 @@
                 'render': function (data, type, row, meta) {
                     return `<td scope=" row">  <a class="btn btn-warning btn-sm text-light" data-url=""  onclick="getDetailEmp('${row.employeeId}')" title="Detail"><i class="fa fa-info-circle"></i> </a></td>
                                     <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getEmp('${row.employeeId}')"  title="Update"><i class="far fa-edit"></i></a></td>
-                                  <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="DeleleEmp('${row.employeeId}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
+                                  <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="DeleteEmp('${row.employeeId}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
                 }
             }
         ]
@@ -91,9 +91,6 @@
     $(function () {
         $("form[name='nameModal']").validate({
             rules: {
-                nik: {
-                    required: true
-                },
                 firstName: {
                     required: true
                 },
@@ -108,9 +105,8 @@
                 birthDate: {
                     required: true
                 },
-                salary: {
-                    required: true,
-                    number: true
+                hireDate: {
+                    required: true
                 },
                 email: {
                     required: true,
@@ -123,23 +119,11 @@
                 gender: {
                     required: true
                 },
-                universiry_id: {
-                    required: true
-                },
-                degree: {
-                    required: true
-                },
-                gpa: {
-                    required: true
-                },
                 role_id: {
                     required: true
                 }
             },
             messages: {
-                nik: {
-                    required: "Please enter your NIK"
-                },
                 firstName: {
                     required: "Please enter your first name"
                 },
@@ -154,8 +138,8 @@
                 birthDate: {
                     required: "Please enter your birthdate"
                 },
-                salary: {
-                    required: "Please enter your salary"
+                hiteDate: {
+                    required: "Please enter your hire date"
                 },
                 email: {
                     required: "Please enter your email",
@@ -168,15 +152,6 @@
                     required: "Please enter your password",
                     minlength: "Password should be at least 8 characters",
                 },
-                degree: {
-                    required: "Please choose your degree"
-                },
-                gpa: {
-                    required: "Please enter your GPA"
-                },
-                universiry_id: {
-                    required: "Please choose your university"
-                },
                 role_id: {
                     required: "Please choose your role"
                 }
@@ -186,7 +161,7 @@
             e.preventDefault();
             if ($('#formValidation').valid() == true) {
 
-                InsertData();
+                InsertDataEmp();
             }
         });
         $('#btnUpdateEmployee').click(function (e) {
@@ -198,7 +173,7 @@
     });
 });
 
-function InsertData() {
+function InsertDataEmp() {
     var obj = new Object();
     obj.FirstName = $('#firstName').val();
     obj.LastName = $('#lastName').val();
@@ -219,15 +194,15 @@ function InsertData() {
     }).done((result) => {
         Swal.fire({
             icon: 'success',
-            title: 'Berhasil!',
-            text: 'Data telah ditambahkan!'
+            title: 'Success!',
+            text: 'Data successfully Added'
         });
        window.location = "https://localhost:44344/auth/Employee";
     }).fail((error) => {
         Swal.fire({
             icon: 'error',
             title: 'Oops..',
-            text: 'Data gagal ditambahkan'
+            text: 'Failed to Add Data'
         });
     });
 };
@@ -268,7 +243,7 @@ function getEmp(employeeId) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops..',
-                text: 'Data gagal Tidak Ditemukan'
+                text: 'Data no found'
             });
         }
     });
@@ -304,7 +279,7 @@ function UpdateEmp() {
         Swal.fire({
             icon: 'error',
             title: 'Oops..',
-            text: 'Data gagal ditambahkan'
+            text: 'Failed to update data'
         });
     });
 
@@ -350,7 +325,7 @@ function getDetailEmp(employeeId) {
             /*alert(errormessage.responseText);*/
             swal({
                 title: "FAILED",
-                text: "Data tidak ditemukan!",
+                text: "Data not found!",
                 icon: "error"
             }).then(function () {
                 window.location = "https://localhost:44344/auth/Employee";
@@ -359,7 +334,7 @@ function getDetailEmp(employeeId) {
     });
     return false;
 }
-function DeleleEmp(id) {
+function DeleteEmp(id) {
     console.log(id);
     Swal.fire({
         title: 'Are you sure want to delete this Employee?',
@@ -397,7 +372,7 @@ function DeleleEmp(id) {
                     }
                 });
             } else {
-                swal("Data Gagal Dihapus!");
+                swal("Failed to delete data!");
             }
         });
 }

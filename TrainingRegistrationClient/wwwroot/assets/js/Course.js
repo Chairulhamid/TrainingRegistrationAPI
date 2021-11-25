@@ -71,96 +71,44 @@
     $(function () {
         $("form[name='nameModal']").validate({
             rules: {
-                nik: {
+                courseName: {
                     required: true
                 },
-                firstName: {
+                courseDesc: {
                     required: true
                 },
-                lastName: {
+                courseFee: {
                     required: true
                 },
-                phone: {
-                    required: true,
-                    minlength: 10,
-                    maxlength: 13
-                },
-                birthDate: {
+                courseImg: {
                     required: true
                 },
-                salary: {
-                    required: true,
-                    number: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                password: {
-                    required: true,
-                    minlength: 8
-                },
-                gender: {
+                topicName: {
                     required: true
                 },
-                universiry_id: {
+                trainerName: {
                     required: true
                 },
-                degree: {
-                    required: true
-                },
-                gpa: {
-                    required: true
-                },
-                role_id: {
-                    required: true
-                }
             },
             messages: {
-                nik: {
-                    required: "Please enter your NIK"
+                courseName: {
+                    required: "Please enter your Course Name"
                 },
-                firstName: {
-                    required: "Please enter your first name"
+                courseDesc: {
+                    required: "Please enter your Course Desc"
                 },
-                lastName: {
-                    required: "Please enter your last name"
+                courseFee: {
+                    required: "Please enter your Course Fee"
                 },
-                phone: {
-                    required: "Please enter your phone number",
-                    minlength: "Phone number should be at least 10 characters",
-                    maxlength: "Phone number can't be longer than 13 characters"
+                courseImg: {
+                    required: "Please enter your Course Image"
                 },
-                birthDate: {
-                    required: "Please enter your birthdate"
+                topicName: {
+                    required: "Please enter your Topic Name"
                 },
-                salary: {
-                    required: "Please enter your salary"
+                trainerName: {
+                    required: true
                 },
-                email: {
-                    required: "Please enter your email",
-                    email: "The email should be in the format: abc@domain.tld"
-                },
-                gender: {
-                    required: "Please choose your gender"
-                },
-                password: {
-                    required: "Please enter your password",
-                    minlength: "Password should be at least 8 characters",
-                },
-                degree: {
-                    required: "Please choose your degree"
-                },
-                gpa: {
-                    required: "Please enter your GPA"
-                },
-                universiry_id: {
-                    required: "Please choose your university"
-                },
-                role_id: {
-                    required: "Please choose your role"
-                }
-            }
         });
         $('#btnAddCourse').click(function (e) {
             e.preventDefault();
@@ -195,15 +143,15 @@ function InsertDataCourse() {
     }).done((result) => {
         Swal.fire({
             icon: 'success',
-            title: 'Berhasil!',
-            text: 'Data telah ditambahkan!'
+            title: 'Success!',
+            text: 'Data successfully Added!'
         });
        window.location = "https://localhost:44344/auth/Course";
     }).fail((error) => {
         Swal.fire({
             icon: 'error',
             title: 'Oops..',
-            text: 'Data gagal ditambahkan'
+            text: 'Failed to Add Data'
         });
     });
 };
@@ -233,7 +181,7 @@ function getCourse(courseId) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops..',
-                text: 'Data gagal Tidak DItemukan'
+                text: 'Data not found'
             });
         }
     });
@@ -266,7 +214,7 @@ function UpdateCourse() {
         Swal.fire({
             icon: 'error',
             title: 'Oops..',
-            text: 'Data gagal ditambahkan'
+            text: 'Failed to update data'
         });
     });
 
@@ -302,7 +250,7 @@ function getDetailCourse(courseId) {
             /*alert(errormessage.responseText);*/
             swal.fire({
                 title: "FAILED",
-                text: "Data tidak ditemukan!",
+                text: "Data not found!",
                 icon: "error"
             }).then(function () {
                 window.location = "https://localhost:44344/auth/Course";
