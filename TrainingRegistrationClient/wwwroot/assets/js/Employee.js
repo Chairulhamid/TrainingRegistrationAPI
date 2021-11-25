@@ -268,7 +268,7 @@ function getEmp(employeeId) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops..',
-                text: 'Data gagal Tidak DItemukan'
+                text: 'Data gagal Tidak Ditemukan'
             });
         }
     });
