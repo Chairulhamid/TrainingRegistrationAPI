@@ -44,7 +44,18 @@ namespace TrainingRegistrationClient.Repository.Data
         {
             List<CourseVM> entities = new List<CourseVM>();
 
-            using (var response = await httpClient.GetAsync(request + "GetIdCourse/" + id))
+            using (var response = await httpClient.GetAsync(request + "GetCourse/" + id))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<CourseVM>>(apiResponse);
+            }
+            return entities;
+        }
+        public async Task<List<CourseVM>> GetCourse()
+        {
+            List<CourseVM> entities = new List<CourseVM>();
+
+            using (var response = await httpClient.GetAsync(request + "GetCourse/"))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 entities = JsonConvert.DeserializeObject<List<CourseVM>>(apiResponse);

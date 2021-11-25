@@ -34,6 +34,11 @@ namespace TrainingRegistrationClient.Controllers
             var result = await repository.GetIdCourse(id);
             return Json(result);
         }
+        public async Task<JsonResult> GetCourse()
+        {
+            var result = await repository.GetCourse();
+            return Json(result);
+        }
         public JsonResult RegisterCourse(CourseVM entity)
         {
             var result = repository.Post(entity);
