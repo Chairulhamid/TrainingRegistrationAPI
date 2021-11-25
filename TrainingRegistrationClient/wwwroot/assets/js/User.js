@@ -167,7 +167,7 @@
             e.preventDefault();
             if ($('#formValidation').valid() == true) {
 
-                InsertData();
+                InsertDataUser();
             }
         });
         $('#btnUpdateUser').click(function (e) {
@@ -179,7 +179,7 @@
     });
 });
 
-function InsertData() {
+function InsertDataUser() {
     var obj = new Object();
     obj.FirstName = $('#firstName').val();
     obj.LastName = $('#lastName').val();
