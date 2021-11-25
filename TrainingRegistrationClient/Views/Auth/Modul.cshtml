@@ -7,8 +7,8 @@
 </div>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTopic">
-    Add Topic
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModul">
+    Add Modul
 </button>
 
 
@@ -19,13 +19,15 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover display nowrap dataTable dtr-inline table table-bordered table-striped text-center table-secondary table-hover" id="tableTopic">
+            <table class="table table-hover display nowrap dataTable dtr-inline table table-bordered table-striped text-center table-secondary table-hover" id="tableModul">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Topic ID</th>
-                        <th>Topic Name</th>
-                        <th>Topic Description</th>
+                        <th>Modul ID</th>
+                        <th>Modul Tittle</th>
+                        <th>Modul Description</th>
+                        <th>Modul Content</th>
+                        <th>Course Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -37,11 +39,11 @@
 </div>
 
 <!-- Modal Input -->
-<div class="modal fade" id="modalTopic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalModul" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Topic</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Modul</h5>
                 <button type="button" onclick="window.location.reload()" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -50,33 +52,49 @@
                 <form id="formValidation" name="nameModal">
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-3 control-label text-right">Topic Name</label>
+                            <label class="col-sm-3 control-label text-right">Modul Tittle</label>
                             <div class="col-sm-8">
-                                <input name="inputTopicName"  type="text" class="form-control" id="topicName" placeholder="Topic Name" value="">
+                                <input name="inputModulTittle" type="text" class="form-control" id="modulTittle" placeholder="Modul Tittle" value="">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-3 control-label text-right">Topic Description</label>
+                            <label class="col-sm-3 control-label text-right">Modul Description</label>
                             <div class="col-sm-8">
-                                <textarea name="inputTopicDesc" type="text" class="form-control" id="topicDesc" placeholder="Topic Description" value=""></textarea>
+                                <textarea name="inputModulDesc" type="text" class="form-control" id="modulDesc" placeholder="Modul Description" value=""></textarea>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-sm-3 control-label text-right">Modul Content</label>
+                            <div class="col-sm-8">
+                                <textarea name="inputModulContent" type="text" class="form-control" id="modulContent" placeholder="Modul Content" value=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Course</label>
+                            <select class="form-control" id="courseId">
+                            </select>
+                            @* <input type="number" class="form-control" id="role_id" name="role_id" placeholder="Role Id....">*@
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Close</button>
-                <button id="btnAddTopic" onlcick="Validaition()" type="submit" class="btn btn-primary">Add</button>
-                <button id="btnUpdate" type="button" class="btn btn-primary" style="display:none;" onclick="Update();">Update</button>
+                <button id="btnAddModul" onlcick="Validaition()" type="submit" class="btn btn-primary">Add</button>
+                <button id="btnUpdateModul" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateModul();">Update</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Modal Update-->
-            <div class="modal" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal" id="modalUpdateModul" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -88,23 +106,39 @@
                         <div class="modal-body">
                             <form id="update">
                                 <div class="col" hidden>
-                                    <input type="text" class="form-control" id="topicId1" name="TopicId1" placeholder="">
-                                   
+                                    <input type="text" class="form-control" id="modulId1" name="modulId1" placeholder="">
+
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label text-right">Topic Name</label>
+                                        <label class="col-sm-3 control-label text-right">Modul Tittle</label>
                                         <div class="col-sm-8">
-                                            <input name="topicName1" type="text" class="form-control" id="topicName1" placeholder="Topic Name" value="">
+                                            <input name="modulTittle1" type="text" class="form-control" id="modulTittle1" placeholder="Modul Tittle" value="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label text-right">Topic Description</label>
+                                        <label class="col-sm-3 control-label text-right">Modul Description</label>
                                         <div class="col-sm-8">
-                                            <input name="topicDesc1" type="text" class="form-control" id="topicDesc1" placeholder="Topic Desc" value="">
+                                            <input name="modulDesc1" type="text" class="form-control" id="modulDesc1" placeholder="Modul Desc" value="">
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label text-right">Modul Content</label>
+                                        <div class="col-sm-8">
+                                            <textarea name="inputModulContent1" type="text" class="form-control" id="modulContent1" placeholder="Modul Content" value=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2" id="hideRow">
+                                    <div class="col">
+                                        <label>Course</label>
+                                        <select class="form-control" id="courseId1">
+                                        </select>
+                                        @* <input type="number" class="form-control" id="role_id" name="role_id" placeholder="Role Id....">*@
                                     </div>
                                 </div>
                             </form>

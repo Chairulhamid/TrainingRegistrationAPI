@@ -59,7 +59,7 @@ $(function () {
                 required: "Please enter your Topic Name"
             },
             topicDesc: {
-                required: "Please enter your Tapic Desc"
+                required: "Please enter your Topic Desc"
             },
         }
     });
@@ -109,7 +109,7 @@ function InsertTopic() {
 function Delete(id) {
     console.log(id);
     Swal.fire({
-        title: 'Are you sure want to delete this Employee?',
+        title: 'Are you sure want to delete this Topic?',
         text: "you won't be able to revert this!",
         showCancelButton: true,
         confirmButtonColor: '#d33',
@@ -119,7 +119,7 @@ function Delete(id) {
         if (result.isConfirmed) {
             $.ajax({
                 'data': JSON.stringify(id),
-                url: 'Topics/Delete/' + id,
+                url: '/Topics/Delete/' + id,
                 type: 'Delete'
             }).done((result) => {
                 mytable.ajax.reload();
@@ -187,7 +187,7 @@ function Update() {
         Swal.fire({
             icon: 'error',
             title: 'Oops..',
-            text: 'Data gagal ditambahkan'
+            text: 'Failed to update data'
         });
     });
 }
