@@ -14,6 +14,7 @@ namespace TrainingRegistrationAPI.ViewModel
         public int RegisteredCourseId { get; set; }
         public int UserId { get; set; }
         public int CourseId { get; set; }
+        public string CourseFee { get; set; }
         public int PaymentId { get; set; }
         public DateTime PaymentDate { get; set; }
         public string BankAccount { get; set; }

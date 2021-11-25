@@ -18,6 +18,9 @@ namespace TrainingRegistrationAPI.Repository.Data
         //REGISTER
         public int RegisterPay(PaymentVM paymentVM)
         {
+            Random rnd = new Random();
+            int rPertama = rnd.Next(1, 99);   
+            int rKedua = rnd.Next(100);  
             Payment payment= new Payment();
         //REGISTERED COURSE
             RegisteredCourse registeredCourse= new RegisteredCourse();
@@ -29,13 +32,28 @@ namespace TrainingRegistrationAPI.Repository.Data
             //SAVE PAYMENT
             payment.RegisteredCourseId = registeredCourse.RegisteredCourseId;
             payment.PaymentDate = paymentVM.PaymentDate;
-            payment.BankAccount = paymentVM.BankAccount;
-            payment.TotalPayment = paymentVM.TotalPayment;
+            payment.BankAccount = paymentVM.BankAccount ;
+            payment.TotalPayment = paymentVM.TotalPayment + rPertama + rKedua;
             payment.Status = 0 ;
             myContext.Payments.Add(payment);
             var result = myContext.SaveChanges();
             return result;
         }
+/*        public static string GetRandomPassword(int length)
+        {
+            const string chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            StringBuilder sb = new StringBuilder();
+            Random rnd = new Random();
+
+            for (int i = 0; i < length; i++)
+            {
+                int index = rnd.Next(chars.Length);
+                sb.Append(chars[index]);
+            }
+
+            return sb.ToString();
+        }*/
         /* public int DataPayment(Payment payment)
          {
 
