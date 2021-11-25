@@ -57,7 +57,10 @@ namespace TrainingRegistrationAPI.Context
             modelBuilder.Entity<AccountRole>()
                 .HasOne(bc => bc.Role)
                 .WithMany(c => c.AccountRoles)
-                .HasForeignKey(bc => bc.RoleId);
+                .HasForeignKey(bc => bc.RoleId); 
+            /*modelBuilder.Entity<RegisteredCourse>()
+                .HasOne(bc => bc.User)
+                .WithMany(c => c.RegisteredCourse);*/
 
             modelBuilder.Entity<Course>()
               .HasOne(a => a.Employee)
@@ -69,8 +72,11 @@ namespace TrainingRegistrationAPI.Context
               .HasOne(a => a.Topic)
               .WithMany(b => b.Course);
             modelBuilder.Entity<RegisteredCourse>()
-              .HasMany(a => a.User)
-              .WithOne(b => b.RegisteredCourse);
+              .HasOne(a => a.User)
+              .WithMany(b => b.RegisteredCourses);
+            /*modelBuilder.Entity<User>()
+              .HasMany(a => a.RegisteredCourse)
+              .WithOne(b => b.User);*/
             modelBuilder.Entity<Course>()
               .HasMany(a => a.RegisteredCourse)
               .WithOne(b => b.Course);
