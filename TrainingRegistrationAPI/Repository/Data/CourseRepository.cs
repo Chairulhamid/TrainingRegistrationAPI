@@ -10,7 +10,7 @@ namespace TrainingRegistrationAPI.Repository.Data
 {
     public class CourseRepository : GeneralRepository<MyContext, Course, int>
     {
-        private readonly MyContext myContext;
+    private readonly MyContext myContext;
         public CourseRepository(MyContext myContext) : base(myContext)
         {
             this.myContext = myContext;
@@ -24,7 +24,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             {
                 return 2;
             }
-            course.CourseId= courseVM.CourseId;
+            
             course.CourseName= courseVM.CourseName;
             course.CourseDesc= courseVM.CourseDesc;
             course.CourseFee= courseVM.CourseFee;

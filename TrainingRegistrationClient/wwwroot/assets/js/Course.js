@@ -36,7 +36,7 @@
             visible: false
         }],*/
         'ajax': {
-            'url': "/Courses/RegisterCourse",
+            'url': "/Courses/GetCourse",
             'order': [[0, 'asc']],
             'dataSrc': ''
         },
@@ -48,7 +48,7 @@
                 }
             },
             { "data": "courseName" },
-            { "data": "topicId" },
+            { "data": "topicName" },
             {
                 data: "courseFee",
                 render: function (data, type) {
@@ -57,13 +57,13 @@
                 }
             },
             { "data": "courseImg" },
-            { "data": "trainerId" },
+            { "data": "trainerName" },
             {
                 "data": "",
                 'render': function (data, type, row, meta) {
-                    return `<td scope=" row">  <a class="btn btn-warning btn-sm text-light" data-url=""  onclick="getDetailCourse('${row.CourseId}')" title="Detail"><i class="fa fa-info-circle"></i> </a></td>
-                                    <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getCourse('${row.CourseId}')"  title="Update"><i class="far fa-edit"></i></a></td>
-                                  <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="DeleleCourse('${row.CourseId}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
+                    return `<td scope=" row">  <a class="btn btn-warning btn-sm text-light" data-url=""  onclick="getDetailCourse('${row.courseId}')" title="Detail"><i class="fa fa-info-circle"></i> </a></td>
+                                    <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getCourse('${row.courseId}')"  title="Update"><i class="far fa-edit"></i></a></td>
+                                  <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="DeleteCourse('${row.courseId}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
                 }
             }
         ]
@@ -162,37 +162,33 @@
                 }
             }
         });
-        $('#btnAddEmployee').click(function (e) {
+        $('#btnAddCourse').click(function (e) {
             e.preventDefault();
             if ($('#formValidation').valid() == true) {
 
-                InsertData();
+                InsertDataCourse();
             }
         });
-        $('#btnUpdateEmployee').click(function (e) {
+        $('#btnUpdateCourse').click(function (e) {
             e.preventDefault();
             if ($('#formValidation').valid() == true) {
-                UpdateEmp();
+                UpdateCourse();
             }
         });
     });
 });
 
-function InsertData() {
+function InsertDataCourse() {
     var obj = new Object();
-    obj.FirstName = $('#firstName').val();
-    obj.LastName = $('#lastName').val();
-    obj.Email = $('#email').val();
-    obj.Phone = $('#phone').val();
-    obj.Gender = $('#gender').val();
-    obj.Address = $('#address').val();
-    obj.BirthDate = $('#birthDate').val();
-    obj.password = $('#password').val();
-    obj.HireDate = $('#hireDate').val();
-    obj.RoleId = $('#role_id').val();
+    obj.CourseName = $('#courseName').val();
+    obj.CourseDesc = $('#courseDesc').val();
+    obj.CourseFee = $('#courseFee').val();
+    obj.CourseImg = $('#courseImg').val();
+    obj.TopicId = $('#topicId').val();
+    obj.TrainerId = $('#employeeId').val();
     console.log(obj);
     $.ajax({
-        url: "/Employees/RegisterEmp",
+        url: "/Courses/RegisterCourse",
         'type': 'POST',
         'data': { entity: obj }, //objek kalian
         'dataType': 'json',
@@ -202,7 +198,7 @@ function InsertData() {
             title: 'Berhasil!',
             text: 'Data telah ditambahkan!'
         });
-       window.location = "https://localhost:44344/auth/Employee";
+       window.location = "https://localhost:44344/auth/Course";
     }).fail((error) => {
         Swal.fire({
             icon: 'error',
@@ -212,36 +208,25 @@ function InsertData() {
     });
 };
 
-function getEmp(employeeId) {
-    console.log(employeeId)
+function getCourse(courseId) {
+    console.log(courseId)
     $.ajax({
-        url: "/Employees/GetEmp/" + employeeId,
+        url: "/Courses/GetIdCourse/" + courseId,
         type: "GET",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
             console.log(result);
-            var tanggal = result[0].birthDate.substr(0, 10);
-            $('#employeeId').val(result[0].employeeId);
-            $('#accountId').val(result[0].accountId);
-            $('#firstName').val(result[0].firstName);
-            $('#lastName').val(result[0].lastName);
-            $('#email').val(result[0].email);
-            $('#phone').val(result[0].phone);
-            $('#gender').val(result[0].gender);
-            $('#address').val(result[0].address);
-            $('#birthDate').val(tanggal);
-            $('#password').val(result[0].password);
-            $('#tanggal').val(result[0].hireDate);
-            $('#role_id').val(result[0].roleId);
-            $('#modalData').modal('show');
-            $('#btnUpdateEmployee').show();
-            $('#btnAddEmployee').hide();
-            $('#hireDate2').show();
-            $('#hireDate1').hide();
-            $('#hideRow').hide();
-            $('#email').prop('disabled', true);;
-            $('#tanggal').prop('disabled', true);;
+            $('#courseId').val(result[0].courseId);
+            $('#courseName').val(result[0].courseName);
+            $('#courseDesc').val(result[0].courseDesc);
+            $('#courseFee').val(result[0].courseFee);
+            $('#topicId').val(result[0].topicId);
+            $('#employeeId').val(result[0].trainerId);
+            $('#courseImg').val(result[0].courseImg);
+            $('#modalCourse').modal('show');
+            $('#btnUpdateCourse').show();
+            $('#btnAddCourse').hide();
         },
         error: function (errormessage) {
             /*alert(errormessage.responseText);*/
@@ -254,24 +239,21 @@ function getEmp(employeeId) {
     });
     return false;
 }
-function UpdateEmp() {
-    var employeeId = $('#employeeId').val();
+function UpdateCourse() {
+    var courseId = $('#courseId').val();
     var obj = new Object();
-    obj.employeeId = $('#employeeId').val();
-    obj.accountId = $('#accountId').val();
-    obj.FirstName = $('#firstName').val();
-    obj.LastName = $('#lastName').val();
-    obj.Email = $('#email').val();
-    obj.Phone = $('#phone').val();
-    obj.Gender = $('#gender').val();
-    obj.Address = $('#address').val();
-    obj.BirthDate = $('#birthDate').val();
-    obj.HireDate = $('#tanggal').val();
+    obj.CourseId = $('#courseId').val();
+    obj.CourseName = $('#courseName').val();
+    obj.CourseDesc = $('#courseDesc').val();
+    obj.CourseFee = $('#courseFee').val();
+    obj.CourseImg = $('#courseImg').val();
+    obj.TopicId = $('#topicId').val();
+    obj.TrainerId = $('#employeeId').val();
     console.log(obj);
     $.ajax({
-        url: "/Employees/Put/" + employeeId,
+        url: "/Courses/Put/" + courseId,
         type: "PUT",
-        data: { id: employeeId, entity: obj }, 
+        data: { id: courseId, entity: obj },
     }).done((result) => {
         Swal.fire({
             icon: 'success',
@@ -289,57 +271,47 @@ function UpdateEmp() {
     });
 
 }
-function getDetailEmp(employeeId) {
-    console.log(employeeId)
+function getDetailCourse(courseId) {
+    console.log(courseId)
     $.ajax({
-        url: "/Employees/GetEmp/" + employeeId,
+        url: "/Courses/GetIdCourse/" + courseId,
         type: "GET",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
-            console.log(result[0].hireDate);
-            var tanggal = result[0].birthDate.substr(0, 10);
-            $('#employeeId').val(result[0].employeeId);
-            $('#firstName').val(result[0].firstName);
-            $('#lastName').val(result[0].lastName);
-            $('#email').val(result[0].email);
-            $('#phone').val(result[0].phone);
-            $('#gender').val(result[0].gender);
-            $('#address').val(result[0].address);
-            $('#birthDate').val(tanggal);
-            $('#password').val(result[0].password);
-            $('#tanggal').val(result[0].hireDate);
-            $('#role_id').val(result[0].roleId);
-            $('#modalData').modal('show');
-            $('#btnUpdateEmployee').hide();
-            $('#btnAddEmployee').hide();
-            $('#hireDate1').hide();
-            $('#hireDate2').show();
-            $('#hideRow').hide();
-            $('#firstName').prop('disabled', true);;
-            $('#lastName').prop('disabled', true);;
-            $('#phone').prop('disabled', true);;
-            $('#gender').prop('disabled', true);;
-            $('#birthDate').prop('disabled', true);;
-            $('#tanggal').prop('disabled', true);;
-            $('#address').prop('disabled', true);;
-            $('#password').prop('disabled', true);;
-            $('#email').prop('disabled', true);;
+            console.log(result);
+         /*   var tanggal = result[0].birthDate.substr(0, 10);*/
+            $('#courseId').val(result[0].courseId);
+            $('#courseName').val(result[0].courseName);
+            $('#courseDesc').val(result[0].courseDesc);
+            $('#courseFee').val(result[0].courseFee);
+            $('#topicId').val(result[0].topicId);
+            $('#employeeId').val(result[0].trainerId);
+            $('#courseImg').val(result[0].courseImg);
+            $('#modalCourse').modal('show');
+            $('#btnUpdateCourse').hide();
+            $('#btnAddCourse').hide();
+            $('#courseName').prop('disabled', true);;
+            $('#courseDesc').prop('disabled', true);;
+            $('#courseFee').prop('disabled', true);;
+            $('#topicId').prop('disabled', true);;
+            $('#employeeId').prop('disabled', true);;
+            $('#courseImg').prop('disabled', true);;
         },
         error: function (errormessage) {
             /*alert(errormessage.responseText);*/
-            swal({
+            swal.fire({
                 title: "FAILED",
                 text: "Data tidak ditemukan!",
                 icon: "error"
             }).then(function () {
-                window.location = "https://localhost:44344/auth/Employee";
+                window.location = "https://localhost:44344/auth/Course";
             });
         }
     });
     return false;
 }
-function DeleleEmp(id) {
+function DeleteCourse(id) {
     console.log(id);
     Swal.fire({
         title: 'Are you sure want to delete this Employee?',
@@ -352,10 +324,8 @@ function DeleleEmp(id) {
         .then((willDelete) => {
             if (willDelete) {
                 $.ajax({
-                    url: "/Employees/Delete/" + id,
+                    url: "/Courses/Delete/" + id,
                     type: "Delete",
-                    /*  contentType: "application/json;charset=UTF-8",
-                      dataType: "json",*/
                     success: function (result) {
                         mytable.ajax.reload();
                         return Swal.fire(
@@ -363,10 +333,9 @@ function DeleleEmp(id) {
                             'Employee Data Deleted!',
                             'success',
                         ).then(function () {
-                            window.location = "https://localhost:44344/auth/Employee";
+                            window.location = "https://localhost:44344/auth/Course";
                         });
                     },
-
                     error: function (errormessage) {
                         alert(errormessage.responseText);
                         return Swal.fire({
@@ -384,13 +353,24 @@ function DeleleEmp(id) {
 
 
 $.ajax({
-    url: "https://localhost:44307/API/Roles",
+    url: "https://localhost:44307/API/Employees",
     success: function (result) {
-        var optionRole = `<option value="" >---Choose Role---</option>`;
+        var optionRole = `<option value="" >---Choose Trainer---</option>`;
         $.each(result, function (key, val) {
             optionRole += `
-                            <option value="${val.roleId}">${val.roleName}</option>`;
+                            <option value="${val.employeeId}">${val.firstName + " " +val.lastName}</option>`;
         });
-        $('#role_id').html(optionRole);
+        $('#employeeId').html(optionRole);
+    }
+});
+$.ajax({
+    url: "https://localhost:44307/API/Topics",
+    success: function (result) {
+        var optionRole = `<option value="" >---Choose Topic---</option>`;
+        $.each(result, function (key, val) {
+            optionRole += `
+                            <option value="${val.topicId}">${val.topicName}</option>`;
+        });
+        $('#topicId').html(optionRole);
     }
 });
