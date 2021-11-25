@@ -11,11 +11,12 @@ namespace TrainingRegistrationAPI.ViewModel
         [Required]
         public int ModulId { get; set; }
         [Required]
-        public string ModulTitle { get; set; }
+        public string ModulTittle { get; set; }
         [Required]
         public string ModulDesc { get; set; }
         [Required]
         public string ModulContent { get; set; }
         public int CourseId { get; set; }
+        public string CourseName { get; set; }
     }
 }
