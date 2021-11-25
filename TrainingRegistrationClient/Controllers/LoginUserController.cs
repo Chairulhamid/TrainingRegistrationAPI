@@ -56,11 +56,11 @@ namespace TrainingRegistrationClient.Controllers
             {
                 if (pesan == "0")
                 {
-                    return RedirectToAction("LoginPage", "Home");
+                    return RedirectToAction("LoginPageError", "Home");
                 }
                 else
                 {
-                    return RedirectToAction("LoginPage", "Home");
+                    return RedirectToAction("LoginPageError", "Home");
                 }
             }
 
@@ -69,6 +69,26 @@ namespace TrainingRegistrationClient.Controllers
             /*HttpContext.Session.SetString("ProfilePicture", "assets/img/theme/user.png");*/
 
             return RedirectToAction("Dashboard", "User");
+        }
+
+        /*[Authorize]*/
+        /*[HttpPut("ResetPassword/")]*/
+        /*public IActionResult ResetPassword(LoginUserVM entity)
+        {
+            var result = repository.Put(entity);
+            if (result == 0)
+            {
+              return RedirectToAction("LoginPageError", "Home");
+                
+            }
+            Json(result);
+            return RedirectToAction("LoginPage", "Home");
+        }*/
+
+        public JsonResult ResetPassword(LoginUserVM entity)
+        {
+            var result = repository.Put(entity);
+            return Json(result);
         }
 
         /*[Authorize]*/

@@ -383,6 +383,25 @@ function DeleteUser(id) {
         });
 }
 
+function ResetPassword() {
+    var accountId = $('#accountId').val();
+    var obj = new Object();
+    obj.Email = $('#email').val();
+    obj.Password = $('#password').val();
+    console.log(obj);
+    $.ajax({
+        url: "/Users/ResetPassword",
+        type: "PUT",
+        data: { id: accountId, entity: obj },
+    }).done((result) => {
+        window.location.replace("https://localhost:44344/Home/LoginPage");
+        
+    }).fail((error) => {
+        window.location.replace("https://localhost:44344/Home/ResetPassPage");
+        
+    });
+
+}
 
 $.ajax({
     url: "https://localhost:44307/API/Roles",
