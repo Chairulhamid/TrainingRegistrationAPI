@@ -248,7 +248,7 @@ function UpdateCourse() {
     obj.CourseFee = $('#courseFee').val();
     obj.CourseImg = $('#courseImg').val();
     obj.TopicId = $('#topicId').val();
-    obj.TrainerId = $('#employeeId').val();
+    obj.EmployeeId = $('#employeeId').val();
     console.log(obj);
     $.ajax({
         url: "/Courses/Put/" + courseId,
@@ -260,8 +260,8 @@ function UpdateCourse() {
             title: 'Success!',
             text: 'Data has been updated!'
         });
-        $('#tableEmployee').DataTable().ajax.reload();
-        $("#modalData").modal("hide");
+        $('#tableCourse').DataTable().ajax.reload();
+        $("#modalCourse").modal("hide");
     }).fail((error) => {
         Swal.fire({
             icon: 'error',
