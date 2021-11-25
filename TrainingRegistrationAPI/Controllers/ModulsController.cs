@@ -56,5 +56,33 @@ namespace TrainingRegistrationAPI.Controllers.Base
             }
             return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
         }
+
+        [HttpGet("GetModul")]
+        public ActionResult GetModul()
+        {
+            var result = modulRepository.GetModul();
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
+        }
+
+
+        [Route("GetModul/{key}")]
+        [HttpGet]
+        public ActionResult GetModul(int key)
+        {
+            var check = modulRepository.GetId(key);
+            if (check == 0)
+            {
+                return NotFound(new { status = HttpStatusCode.NotFound, result = "", message = "Data Not Found " });
+            }
+            else
+            {
+                var result = modulRepository.GetModul(key);
+                return Ok(result);
+            }
+        }
     }
 }
