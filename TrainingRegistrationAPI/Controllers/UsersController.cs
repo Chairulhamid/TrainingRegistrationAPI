@@ -143,5 +143,19 @@ namespace TrainingRegistrationAPI.Controller
             return NotFound(new JWTokenVM { Token = "", Messages = "1" });
         }
 
+        [HttpPut("ResetPassword")]
+        public ActionResult ResetPassword (LoginUserVM loginUserVM)
+        {
+            var result = userRepository.ResetPassword(loginUserVM);
+            if (result == 0)
+            {
+                return NotFound(new { status = HttpStatusCode.NotFound, message = "Email tidak terdaftar" });
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
+
     }
 }

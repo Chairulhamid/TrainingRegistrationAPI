@@ -26,6 +26,13 @@ namespace TrainingRegistrationClient.Controllers
         {
             return View();
         }
+        public IActionResult LoginPageError()
+        {
+            return View();
+        }public IActionResult ResetPassPage()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
