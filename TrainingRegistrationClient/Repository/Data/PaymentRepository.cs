@@ -33,5 +33,55 @@ namespace TrainingRegistrationClient.Repository.Data
             var result = httpClient.PostAsync(address.link + request + "RegisterPay", content).Result;
             return result.StatusCode;
         }
+        ///AMBIL DATA PAY YANG SUDAH DI BAYAR/ TOLAK
+        public async Task<List<PaymentStatusVM>> GetPayALL()
+        {
+
+            List<PaymentStatusVM> entities = new List<PaymentStatusVM>();
+
+            using (var response = await httpClient.GetAsync(request + "GetPayALL/"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<PaymentStatusVM>>(apiResponse);
+            }
+            return entities;
+        }
+        ///AMBIL DATA PAY YANG SUDAH DI BAYAR/ TOLAK BERDASARKAN ID
+        public async Task<List<PaymentStatusVM>> GetIdALLStatus(int UserId)
+        {
+            List<PaymentStatusVM> entities = new List<PaymentStatusVM>();
+
+            using (var response = await httpClient.GetAsync(request + "GetIdALLStatus/" + UserId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<PaymentStatusVM>>(apiResponse);
+            }
+            return entities;
+        }
+        ///AMBIL DATA PAY YANG BELLUM DI BAYAR/ TOLAK 
+        public async Task<List<PaymentStatusVM>> GetPayStatus()
+        {
+
+            List<PaymentStatusVM> entities = new List<PaymentStatusVM>();
+
+            using (var response = await httpClient.GetAsync(request + "GetPayStatus/"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<PaymentStatusVM>>(apiResponse);
+            }
+            return entities;
+        }
+        ///AMBIL DATA PAY YANG BELUM DI BAYAR/ TOLAK BERDASARKAN ID
+        public async Task<List<PaymentStatusVM>> GetIdPayStatus(int UserId)
+        {
+            List<PaymentStatusVM> entities = new List<PaymentStatusVM>();
+
+            using (var response = await httpClient.GetAsync(request + "GetIdPayStatus/" + UserId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<PaymentStatusVM>>(apiResponse);
+            }
+            return entities;
+        }
     }
 }

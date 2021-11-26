@@ -107,7 +107,12 @@ namespace TrainingRegistrationAPI.Repository.Data
                               rgt.RegisteredCourseId equals pt.RegisteredCourseId
                               select new PaymentStatusVM
                               {
+                                  RegisteredCourseId = rgt.RegisteredCourseId,
+                                  PaymentId = pt.PaymentId,
+                                  TotalPayment = pt.TotalPayment,
                                   UserId = us.UserId,
+                                  CourseId = cr.CourseId,
+                                  BankAccount = pt.BankAccount,
                                   FirstName = us.FirstName,
                                   LastName = us.LastName,
                                   Email = us.Email,
@@ -131,13 +136,18 @@ namespace TrainingRegistrationAPI.Repository.Data
                               rgt.RegisteredCourseId equals pt.RegisteredCourseId
                               select new PaymentStatusVM
                               {
+                                  RegisteredCourseId = rgt.RegisteredCourseId,
+                                  PaymentId = pt.PaymentId,
+                                  TotalPayment = pt.TotalPayment,
                                   UserId = us.UserId,
+                                  CourseId = cr.CourseId,
+                                  BankAccount = pt.BankAccount,
                                   FirstName = us.FirstName,
                                   LastName = us.LastName,
                                   Email = us.Email,
                                   CourseName = cr.CourseName,
                                   CourseFee = cr.CourseFee,
-                                  PaymentDate = pt.PaymentDate,  
+                                  PaymentDate = pt.PaymentDate,
                                   Status = pt.Status,
                               }).Where(u => u.Status == 0).Where (p => p.UserId== UserId) .ToList();
             return getPatment;

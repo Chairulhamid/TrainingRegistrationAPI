@@ -10,6 +10,7 @@ using TrainingRegistrationClient.Repository.Data;
 
 namespace TrainingRegistrationClient.Controllers
 {
+    /*[Authorize]*/
     public class PaymentsController : BaseController<Payment, PaymentRepository, int>
     {
         private readonly PaymentRepository repository;
@@ -17,6 +18,38 @@ namespace TrainingRegistrationClient.Controllers
         {
             this.repository = repository;
         }
+        //AMBIL SEMUA DATA PAY SUDAH DI BAYAR/ TOLAK
+
+        /*[HttpGet("GetEmployees/{NIK}")]*/
+        public async Task<JsonResult> GetPayALL()
+        {
+            var result = await repository.GetPayALL();
+            return Json(result);
+        }
+        //AMBIL SEMUA DATA PAY SUDAH DI BAYAR/ TOLAK BY ID
+        public async Task<JsonResult> GetIdALLStatus(int UserId)
+        {
+            var result = await repository.GetIdALLStatus(UserId);
+            return Json(result);
+        }
+
+        //AMBIL SEMUA DATA PAY BELUM DI BAYAR/ TOLAK
+
+        /*[HttpGet("GetEmployees/{NIK}")]*/
+        public async Task<JsonResult> GetPayStatus()
+        {
+            var result = await repository.GetPayStatus();
+            return Json(result);
+        }
+
+        //AMBIL SEMUA DATA PAY SUDAH DI BAYAR/ TOLAK BY ID
+        public async Task<JsonResult> GetIdPayStatus(int UserId)
+        {
+            var result = await repository.GetIdPayStatus(UserId);
+            return Json(result);
+        }
+
+        //REGISTER PAY
         public JsonResult RegisterPay(PaymentVM entity)
         {
             var result = repository.Post(entity);
