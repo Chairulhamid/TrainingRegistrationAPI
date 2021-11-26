@@ -24,6 +24,10 @@ namespace TrainingRegistrationClient.Controllers
         {
             return View();
         }
+        public IActionResult CourseNew()
+        {
+            return View();
+        }
         public IActionResult Modul()
         {
             return View();
