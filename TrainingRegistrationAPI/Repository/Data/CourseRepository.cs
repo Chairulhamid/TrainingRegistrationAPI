@@ -52,7 +52,8 @@ namespace TrainingRegistrationAPI.Repository.Data
 
                     return getTopic;
                 }*/
-        //GET STATUS == APPROVED
+
+        //GET ALL STATUS == APPROVED <<INI  UNTUK DI HALAMAN USER YANG BAGIAN AKAN DI JUAL>>
         public IEnumerable<CourseVM> GetAprovedCourse()
         {
             var result = (from t in myContext.Topics
