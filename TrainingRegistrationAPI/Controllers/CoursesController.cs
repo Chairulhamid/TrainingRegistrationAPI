@@ -47,21 +47,66 @@ namespace TrainingRegistrationAPI.Controllers
 
             }
         }
-            [HttpGet("GetIdCourse/{CourseId}")]
-            public ActionResult GetIdCourse(int courseId)
+        //GET ALL STATUS == APPROVED <<INI  UNTUK DI HALAMAN USER YANG BAGIAN AKAN DI JUAL>>
+        [HttpGet("GetAprovedCourse")]
+        public ActionResult GetAprovedCourse()
+        {
+            var result = courseRepository.GetAprovedCourse();
+            if (result != null)
             {
-                var result = courseRepository.GetIdCourse(courseId);
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
+        }
+        //GET STATUS == WAITING
+        [HttpGet("GetWaitingCourse")]
+        public ActionResult GetWaitingCourse()
+        {
+            var result = courseRepository.GetWaitingCourse();
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
+        }
+        //GET STATUS != WAITING
+        [HttpGet("GetActCourse")]
+        public ActionResult GetActCourse()
+        {
+            var result = courseRepository.GetActCourse();
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
+        }
+        //GET STATUS == WAITING BY ID
+        [HttpGet("GetWaitIdCourse/{CourseId}")]
+            public ActionResult GetWaitIdCourse(int courseId)
+            {
+                var result = courseRepository.GetWaitIdCourse(courseId);
                 if (result != null)
                 {
                     return Ok(result);
                 }
                 return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
             }
-
-        [HttpGet("GetCourse")]
-        public ActionResult GetCourse()
+        //GET != WAITING BY ID <<INI HANYA UNTUK TABEL DI ADMIN>>
+        [HttpGet("GetActIdCourse/{CourseId}")]
+        public ActionResult GetActIdCourse(int courseId)
         {
-            var result = courseRepository.GetCourse();
+            var result = courseRepository.GetActIdCourse(courseId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
+        }
+        //GET == APPROVED BY ID <<INI  UNTUK AKAN DITAMPILKAN DI HALAMAN USER>>
+        [HttpGet("GetApvdIdCourse/{CourseId}")]
+        public ActionResult GetApvdIdCourse(int courseId)
+        {
+            var result = courseRepository.GetApvdIdCourse(courseId);
             if (result != null)
             {
                 return Ok(result);
@@ -69,7 +114,8 @@ namespace TrainingRegistrationAPI.Controllers
             return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
         }
 
-        [Route("GetCourse/{key}")]
+
+    /*    [Route("GetCourse/{key}")]
         [HttpGet]
         public ActionResult GetCourse(int key)
         {
@@ -83,7 +129,7 @@ namespace TrainingRegistrationAPI.Controllers
                 var result = courseRepository.GetCourse(key);
                 return Ok(result);
             }
-        }
+        }*/
     }
 }
 //test

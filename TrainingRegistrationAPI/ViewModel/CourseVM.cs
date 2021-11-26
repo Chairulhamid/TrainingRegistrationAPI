@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using TrainingRegistrationAPI.Models;
 
 namespace TrainingRegistrationAPI.ViewModel
 {
@@ -23,6 +24,7 @@ namespace TrainingRegistrationAPI.ViewModel
         public int TrainerId { get; set; }
         public string TopicName { get; set; }
         public string TrainerName { get; set; }
+        public StatusCourse StatusCourse { get; set; }
 
     }
 }
