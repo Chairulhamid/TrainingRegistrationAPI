@@ -27,6 +27,7 @@ namespace TrainingRegistrationAPI.ViewModel
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
         public DateTime HireDate { get; set; }
+        public string CV { get; set; }
         public int AccountId { get; set; }
         [Required]
         public string Password { get; set; }

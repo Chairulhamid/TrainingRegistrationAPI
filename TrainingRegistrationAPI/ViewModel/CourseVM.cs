@@ -18,7 +18,7 @@ namespace TrainingRegistrationAPI.ViewModel
         [Required]
         public string CourseFee { get; set; }
         [Required]
-        public IFormFile CourseImg { get; set; }
+        public String CourseImg { get; set; }
         public int TopicId { get; set; }
         public int TrainerId { get; set; }
         public string TopicName { get; set; }

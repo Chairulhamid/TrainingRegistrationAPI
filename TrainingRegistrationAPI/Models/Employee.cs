@@ -29,6 +29,7 @@ namespace TrainingRegistrationAPI.Models
         public Gender Gender { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime HireDate { get; set; }
+        public string CV { get; set; }
         public int AccountId { get; set; }
         [JsonIgnore]
         public virtual Account Account { get; set; }

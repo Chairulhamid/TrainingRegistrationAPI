@@ -42,6 +42,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   Address = e.Address,
                                   Password = acc.Password,
                                   HireDate = e.HireDate,
+                                  CV = e.CV,
                                   RoleId = r.RoleId,
                                   AccountId = acc.AccountId
                               }).ToList();
@@ -71,6 +72,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   Address = e.Address,
                                   Password = acc.Password,
                                   HireDate = e.HireDate,
+                                  CV = e.CV,
                                   RoleId = r.RoleId
                               }).Where(u => u.EmployeeId == EmployeeId).ToList();
 
@@ -106,6 +108,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             employee.BirthDate = registerEmpVM.BirthDate;
             employee.Address = registerEmpVM.Address;
             employee.HireDate = registerEmpVM.HireDate;
+            employee.CV = registerEmpVM.CV;
 
             myContext.Employees.Add(employee);
             myContext.SaveChanges();
