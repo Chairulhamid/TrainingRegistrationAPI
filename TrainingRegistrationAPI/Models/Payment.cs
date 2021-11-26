@@ -27,6 +27,7 @@ namespace TrainingRegistrationAPI.Models
     public enum Status
     {
         NotPaid,
-        Completed
+        Declined,
+        Verified
     }
 }
