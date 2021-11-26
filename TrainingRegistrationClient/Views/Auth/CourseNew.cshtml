@@ -1,0 +1,133 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutAdmin";
+}
+<div class="text-center">
+<h4>Data Course</h4>
+</div>
+
+<!-- Button trigger modal -->
+<button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCourse">
+    Add Course
+</button>
+
+
+<!-- Tabel Topic-->
+<div class="card shadow mb-4" style="margin-top:10px;">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"></h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover display nowrap dataTable dtr-inline table table-bordered table-striped text-center table-secondary table-hover" id="tableCourseNew">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Course Name</th>
+                        <th>Topic</th>
+                        <th>Fee</th>
+                        <th>Image</th>
+                        <th>Trainer</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+            <div class="modal" id="modalCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ModalCourse</h5>
+                            <button type="button" onclick="window.location.reload()" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="formValidation" name="nameModal" method="post">
+                                <div class="col" hidden>
+                                    <input type="text" class="form-control" id="courseId" name="courseId" placeholder="">
+                                </div>
+                                <div class="row mb-2" id="hideRow">
+                                    <div class="col">
+                                        <label>Course Name</label>
+                                        <div class="">
+                                            <input name="courseName" type="text" class="form-control" id="courseName" placeholder="Course Name" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2" id="hideRow">
+                                    <div class="col">
+                                        <label>Course Description</label>
+                                        <div class="">
+                                            <input name="courseDesc" type="text" class="form-control" id="courseDesc" placeholder="Course Desc" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-2 control-label text-right">Course Fee</label>
+                                        <div class="col-sm-12">
+                                            <input name="courseFee" type="text" class="form-control" id="courseFee" placeholder="Course Fee" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2" id="hideRow">
+                                    <div class="col">
+                                        <label>Topic Name</label>
+                                        <select class="form-control" id="topicId">
+                                        </select>
+                                        @* <input type="number" class="form-control" id="role_id" name="role_id" placeholder="Role Id....">*@
+                                    </div>
+                                </div>
+                                <div class="row mb-2" id="hideRow">
+                                    <div class="col">
+                                        <label>Trainer Name</label>
+                                        <select class="form-control" id="employeeId">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-2 control-label text-right">Course Img</label>
+                                        <div class="col-sm-12">
+                                            <input name="courseImg" type="text" class="form-control" id="courseImg" placeholder="Course Image" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label>Status</label>
+                                    <div id="status" required value="status">
+                                        <button id="btnUpdateStatusCourse" onclick="UpdateCourseNew();" type="submit" class="btn btn-success" value="1">
+                                            <i class="fa fa-check"></i> Approved
+                                        </button>
+
+                                        <button id="btnUpdateStatusCourse" onclick="UpdateCourseNew();" type="submit" class="btn btn-danger" value="2">
+                                            <i class="fa fa-times"></i> Declined
+                                        </button>
+                                    </div>
+                                    @*<select class="form-control" id="status" required value="status">
+                                        <option value="-">-- Select Status --</option>
+                                        <option value="0">Waiting For Approval</option>
+                                        <option value="1">Approved</option>
+                                        <option value="2">Declined</option>
+                                    </select>*@
+                                </div>
+                            </form>
+                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Close</button>
+                                <button id="btnAddCourse" onlcick="Validaition()" type="submit" class="btn btn-primary">Add</button>
+                                @*<button id="btnUpdateCourse" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateCourse();">Update</button>*@
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+
+
