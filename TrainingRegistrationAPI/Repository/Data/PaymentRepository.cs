@@ -68,7 +68,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             return getPatment;
         }
         //GET ALL BY ID
-        public IEnumerable<PaymentStatusVM> GetIdALLStatus( int UserId)
+        public IEnumerable<PaymentStatusVM> GetIdALLStatus(int UserId)
         {
             var getPatment = (from us in myContext.Users
                               join rgt in myContext.RegisteredCourses on
@@ -124,7 +124,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             return getPatment;
         }
         //GET NOT PAID BY ID
-        public IEnumerable<PaymentStatusVM> GetIdPayStatus(int UserId)
+        public IEnumerable<PaymentStatusVM> GetIdPayStatus(int paymentId)
         {
         
           var getPatment = (from us in myContext.Users
@@ -149,7 +149,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   CourseFee = cr.CourseFee,
                                   PaymentDate = pt.PaymentDate,
                                   Status = pt.Status,
-                              }).Where(u => u.Status == 0).Where (p => p.UserId== UserId) .ToList();
+                              }).Where(u => u.Status == 0).Where (p => p.PaymentId == paymentId) .ToList();
             return getPatment;
         }
 
