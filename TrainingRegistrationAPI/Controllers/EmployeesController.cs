@@ -120,7 +120,9 @@ namespace TrainingRegistrationAPI.Controllers
                 };
                 foreach (var item in data.Role)
                 {
-                    claims.Add(new Claim("roles", item.ToString()));
+                    claims.Add(new Claim("roles", item.ToString())); 
+                    claims.Add(new Claim(ClaimTypes.Name, employeeRepository.GetName(loginEmpVM.Email)));
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, employeeRepository.GetId(loginEmpVM.Email)));
                 }
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:key"]));
                 var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

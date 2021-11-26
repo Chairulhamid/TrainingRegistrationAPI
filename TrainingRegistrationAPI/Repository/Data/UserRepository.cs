@@ -161,5 +161,16 @@ namespace TrainingRegistrationAPI.Repository.Data
             }
         }
 
+        public string GetId(string email)
+        {
+            var checkEmail = myContext.Users.Where(e => e.Email == email).FirstOrDefault();
+            return checkEmail.UserId.ToString();
+        }
+        public string GetName(string email)
+        {
+            var checkName = myContext.Users.Where(e => e.Email == email).FirstOrDefault();
+            return checkName.FirstName + " " + checkName.LastName;
+        }
+
     }
 }

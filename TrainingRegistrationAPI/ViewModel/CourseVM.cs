@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace TrainingRegistrationAPI.ViewModel
         [Required]
         public string CourseFee { get; set; }
         [Required]
-        public string CourseImg { get; set; }
+        public IFormFile CourseImg { get; set; }
         public int TopicId { get; set; }
         public int TrainerId { get; set; }
         public string TopicName { get; set; }
