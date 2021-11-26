@@ -109,6 +109,7 @@
                 trainerName: {
                     required: true
                 },
+            }
         });
         $('#btnAddCourse').click(function (e) {
             e.preventDefault();
@@ -262,7 +263,7 @@ function getDetailCourse(courseId) {
 function DeleteCourse(id) {
     console.log(id);
     Swal.fire({
-        title: 'Are you sure want to delete this Employee?',
+        title: 'Are you sure want to delete this Course?',
         text: "you won't be able to revert this!",
         showCancelButton: true,
         confirmButtonColor: '#d33',
@@ -278,7 +279,7 @@ function DeleteCourse(id) {
                         mytable.ajax.reload();
                         return Swal.fire(
                             'Delete Successfull',
-                            'Employee Data Deleted!',
+                            'Course Data Deleted!',
                             'success',
                         ).then(function () {
                             window.location = "https://localhost:44344/auth/Course";

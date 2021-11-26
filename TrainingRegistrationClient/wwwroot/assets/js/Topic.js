@@ -106,7 +106,7 @@ function InsertTopic() {
     });
 };
 
-function Delete(id) {
+function DeleteTopic(id) {
     console.log(id);
     Swal.fire({
         title: 'Are you sure want to delete this Topic?',
@@ -127,7 +127,9 @@ function Delete(id) {
                     'Delete Successful',
                     'Topic Deleted!',
                     'success',
-                )
+                ).then(function () {
+                    window.location = "https://localhost:44344/auth";
+                });
             }).fail((error) => {
                 return Swal.fire({
                     icon: 'error',
