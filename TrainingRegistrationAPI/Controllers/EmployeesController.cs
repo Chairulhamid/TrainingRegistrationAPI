@@ -89,7 +89,7 @@ namespace TrainingRegistrationAPI.Controllers
             var result = employeeRepository.LoginEmp(loginEmpVM);
             if (result == 2)
             {
-                return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data gagal dimasukkan: Email yang Anda masukkan belum sudah terdaftar!" });
+                return NotFound(new JWTokenVM { Token = "", Messages = "0" });
             }
             else if (result == 3)
             {
@@ -139,7 +139,21 @@ namespace TrainingRegistrationAPI.Controllers
                     Messages = "Login Berhasil!!"
                 });
             }
-            return Ok(new { status = HttpStatusCode.OK, result = result, message = "Login Gagal, Password yang anda masukan Salah" });
+            return NotFound(new JWTokenVM { Token = "", Messages = "1" });
+        }
+
+        [HttpPut("ResetPassword")]
+        public ActionResult ResetPassword(LoginEmpVM loginEmpVM)
+        {
+            var result = employeeRepository.ResetPassword(loginEmpVM);
+            if (result == 0)
+            {
+                return NotFound(new { status = HttpStatusCode.NotFound, message = "Email tidak terdaftar" });
+            }
+            else
+            {
+                return Ok(result);
+            }
         }
     }
 }

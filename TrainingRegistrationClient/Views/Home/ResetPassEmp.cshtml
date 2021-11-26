@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Reset Password";
+    Layout = "_LayoutLogin";
+}
+
+<!--element start here-->
+<div class="container">
+    <div class="img">
+        <img src="/img/pc.svg" />
+    </div>
+    <div class="login-container">
+        <form method="post" class="user" action="/LoginUser/ResetPassword">
+            <h1>Reset Password</h1>
+            <p> Enter email to reset your password.</p>
+            <div class="input-div" one>
+                <div hidden>
+                    @*<input type="text" class="form-control" id="userId" name="userId" placeholder="">*@
+                    <input type="text" class="form-control" id="accountId" name="accountId" placeholder="">
+                </div>
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <h5>Your Registered Email</h5>
+                    <input class="input" name="email" id="email" type="text" / required>
+                    <div class="invalid-feedback">
+                        Please insert your registered Email
+                    </div>
+                </div>
+            </div>
+            <div class="input-div" two>
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div>
+                    <h5>New Password</h5>
+                    <input class="input" name="password" id="password" type="password" validate />
+                    <div class="invalid-feedback">
+                        Please insert your Password
+                    </div>
+                </div>
+            </div>
+            <input type="submit" class="btn" value="Reset Password" />
+        </form>
+    </div>
+</div>
+<footer>
+    Copyright © 2021 - All rights Reserved -
+</footer>
+
