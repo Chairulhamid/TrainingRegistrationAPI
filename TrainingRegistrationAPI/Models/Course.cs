@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,6 +18,8 @@ namespace TrainingRegistrationAPI.Models
         public string CourseDesc { get; set; }
         public string CourseFee { get; set; }
         public string CourseImg { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public StatusCourse StatusCourse { get; set; }
         public int TopicId { get; set; }
         public int EmployeeId { get; set; }
         [JsonIgnore]
@@ -28,4 +31,12 @@ namespace TrainingRegistrationAPI.Models
         [JsonIgnore]
         public virtual Topic Topic { get; set; }
     }
+
+    public enum StatusCourse
+    {
+        WaitingForApproval,
+        Approved,
+        Declined
+    }
+
 }
