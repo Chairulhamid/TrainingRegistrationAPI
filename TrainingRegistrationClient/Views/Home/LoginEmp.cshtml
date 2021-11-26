@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Login Employee";
+    Layout = "_LayoutLogin";
+}
+
+<div class="container">
+    <div class="img">
+        <img src="/img/pc.svg" />
+    </div>
+    <div class="login-container">
+        <form method="post" class="user" action="/LoginEmp/Auth">
+            <img class="avator" src="https://freesvg.org/img/publicdomainq-0006514oahggv.png">
+            <h2>Join us</h2>
+            <div class="input-div" one>
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <h5>Email</h5>
+                    <input class="input" name="email" id="EmailEmp" type="text" />
+
+                </div>
+            </div>
+            <div class="input-div" two>
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div>
+                    <h5>password</h5>
+                    <input class="input" name="password" id="PasswordEmp" type="password" validate />
+                </div>
+            </div>
+            <a asp-controller="Home" asp-action="ResetPassEmp">Forgot password ?</a>
+            <input type="submit" class="btn" value="Login" />
+        </form>
+    </div>
+</div>
+<footer>
+    Copyright © 2021 - All rights Reserved -
+</footer>

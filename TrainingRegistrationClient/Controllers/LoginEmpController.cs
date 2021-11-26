@@ -55,11 +55,11 @@ namespace TrainingRegistrationClient.Controllers
             {
                 if (pesan == "0")
                 {
-                    return RedirectToAction("ErrorEmail", "Logins");
+                    return RedirectToAction("LoginPageError", "Home");
                 }
                 else
                 {
-                    return RedirectToAction("ErrorPassword", "Logins");
+                    return RedirectToAction("LoginPageError", "Home");
                 }
             }
 
@@ -67,7 +67,7 @@ namespace TrainingRegistrationClient.Controllers
             /*HttpContext.Session.SetString("Name", jwtHandler.GetName(token));*/
             /*HttpContext.Session.SetString("ProfilePicture", "assets/img/theme/user.png");*/
 
-            return RedirectToAction("Dashboard", "Home");
+            return RedirectToAction("Index", "Auth");
         }
 
         [Authorize]
@@ -75,7 +75,7 @@ namespace TrainingRegistrationClient.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("LoginEmp", "Home");
         }
 
     }

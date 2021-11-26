@@ -139,6 +139,31 @@ namespace TrainingRegistrationAPI.Repository.Data
                 return 4;
             }
         }
+
+        public int ResetPassword(LoginEmpVM loginEmpVM)
+        {
+            var checkEmail = myContext.Employees.Where(p => p.Email == loginEmpVM.Email).FirstOrDefault();
+            if (checkEmail == null)
+            {
+                return 0;
+            }
+            else
+            {
+                var findEmpPassword = (from e in myContext.Employees
+                                        join a in myContext.Accounts on e.AccountId equals a.AccountId
+                                        where e.Email == loginEmpVM.Email
+                                        select new
+                                        {
+                                            Employee = a
+                                        });
+                foreach (var x in findEmpPassword)
+                {
+                    x.Employee.Password = BCrypt.Net.BCrypt.HashPassword(loginEmpVM.Password);
+                }
+                var result = myContext.SaveChanges();
+                return result;
+            }
+        }
     }
 }
 
