@@ -18,8 +18,13 @@ namespace TrainingRegistrationClient.Controllers
         {
             this.repository = repository;
         }
-        //AMBIL SEMUA DATA PAY SUDAH DI BAYAR/ TOLAK
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        //AMBIL SEMUA DATA PAY SUDAH DI BAYAR/ TOLAK
         /*[HttpGet("GetEmployees/{NIK}")]*/
         public async Task<JsonResult> GetPayALL()
         {
@@ -60,10 +65,6 @@ namespace TrainingRegistrationClient.Controllers
         {
             var result = repository.Post(entity);
             return Json(result);
-        }
-        public IActionResult Index()
-        {
-            return View();
         }
     }
 }

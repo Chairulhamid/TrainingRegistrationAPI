@@ -144,7 +144,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" asp-controller="Auth" asp-action="Payment">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Payments</span>
                 </a>
@@ -464,7 +464,7 @@
     <script src="~/assets/js/User.js" asp-append-version="true"></script>
     <script src="~/assets/js/Course.js" asp-append-version="true"></script>
     <script src="~/assets/js/Modul.js" asp-append-version="true"></script>
-
+    <script src="~/assets/js/Payment.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -1,0 +1,190 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="text-center">
+    <h4>Data Payment</h4>
+</div>
+
+<div class="text-left">
+    <h5 style="margin-top: 10px;">Unverified Payments</h5>
+</div>
+<!-- Tabel Topic-->
+<div class="card shadow mb-4" style="margin-top:10px;">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"></h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover display nowrap dataTable dtr-inline table table-bordered table-striped text-center table-secondary table-hover" id="tablePaymentNotPaid">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Payment ID</th>
+                        <th>User ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Course Name</th>
+                        <th>Total Payment</th>
+                        <th>Bank Account</th>
+                        <th>Payment Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="text-left">
+    <h5 style="margin-top: 10px;">Data Payment</h5>
+</div>
+<!-- Tabel Topic-->
+<div class="card shadow mb-4" style="margin-top:10px;">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"></h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover display nowrap dataTable dtr-inline table table-bordered table-striped text-center table-secondary table-hover" id="tablePayment1">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Payment ID</th>
+                        <th>User ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Course Name</th>
+                        <th>Total Payment</th>
+                        <th>Bank Account</th>
+                        <th>Payment Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ModalCourse</h5>
+                <button type="button" onclick="window.location.reload()" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="formValidation" name="nameModal" method="post">
+                    <div class="col" hidden>
+                        <input type="text" class="form-control" id="courseId" name="courseId" placeholder="">
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Payment ID</label>
+                            <div class="">
+                                <input name="paymentId" type="text" class="form-control" id="paymentId" placeholder="Payment ID" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>User ID</label>
+                            <div class="">
+                                <input name="userId" type="text" class="form-control" id="userId" placeholder="Course Desc" value="">
+                            </div>
+                        </div>
+                    </div>                  
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>First Name</label>
+                            <div class="">
+                                <input name="lastName" type="text" class="form-control" id="firstName" placeholder="First Name" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Last Name</label>
+                            <div class="">
+                                <input name="firstName" type="text" class="form-control" id="lastName" placeholder="Last Name" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Email</label>
+                            <div class="">
+                                <input name="email" type="text" class="form-control" id="email" placeholder="Email" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Course Name</label>
+                            <div class="">
+                                <input name="courseName" type="text" class="form-control" id="courseName" placeholder="Email" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Course Fee</label>
+                            <div class="">
+                                <input name="courseFee" type="text" class="form-control" id="courseFee" placeholder="Email" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Bank Payment</label>
+                            <div class="">
+                                <input name="bankPayment" type="text" class="form-control" id="bankPayment" placeholder="Email" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Total Payment</label>
+                            <div class="">
+                                <input name="totalPayment" type="text" class="form-control" id="totalPayment" placeholder="Email" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Payment Date</label>
+                            <div class="">
+                                <input name="paymentDate" type="text" class="form-control" id="paymentDate" placeholder="Email" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Status</label>
+                            <div class="">
+                                <input name="status" type="text" class="form-control" id="status" placeholder="Email" value="">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Close</button>
+                <button id="btnAddCourse" onlcick="Validaition()" type="submit" class="btn btn-primary">Add</button>
+                <button id="btnUpdateCourse" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateCourse();">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
