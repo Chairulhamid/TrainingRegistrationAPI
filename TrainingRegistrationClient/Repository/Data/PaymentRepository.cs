@@ -58,6 +58,18 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
+        ///AMBIL Lesson course YANG SUDAH DI BAYAR/ TOLAK BERDASARKAN ID
+        public async Task<List<TrainingCourseVM>> GetLessonCourse(int UserId)
+        {
+            List<TrainingCourseVM> entities = new List<TrainingCourseVM>();
+
+            using (var response = await httpClient.GetAsync(request + "GetLessonCourse/" + UserId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<TrainingCourseVM>>(apiResponse);
+            }
+            return entities;
+        }
         ///AMBIL DATA PAY YANG BELLUM DI BAYAR/ TOLAK 
         public async Task<List<PaymentStatusVM>> GetPayStatus()
         {

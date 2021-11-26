@@ -32,6 +32,12 @@ namespace TrainingRegistrationClient.Controllers
             var result = await repository.GetIdALLStatus(UserId);
             return Json(result);
         }
+        //AMBIL SEMUA DATA Lesson Course SUDAH DI BAYAR/ TOLAK BY ID
+        public async Task<JsonResult> GetLessonCourse(int UserId)
+        {
+            var result = await repository.GetLessonCourse(UserId);
+            return Json(result);
+        }
 
         //AMBIL SEMUA DATA PAY BELUM DI BAYAR/ TOLAK
 
