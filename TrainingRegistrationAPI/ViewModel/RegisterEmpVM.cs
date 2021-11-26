@@ -15,7 +15,8 @@ namespace TrainingRegistrationAPI.ViewModel
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-      /*  public string FullName { get; set; }*/
+        public string CV { get; set; }
+        /*  public string FullName { get; set; }*/
         [Required]
         [EmailAddress]
         public string Email { get; set; }

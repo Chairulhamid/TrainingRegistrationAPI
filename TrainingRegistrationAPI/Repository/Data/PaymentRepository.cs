@@ -22,7 +22,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             int rPertama = rnd.Next(1, 99);   
             int rKedua = rnd.Next(100);  
             Payment payment= new Payment();
-        //REGISTERED COURSE
+             //REGISTERED COURSE
             RegisteredCourse registeredCourse= new RegisteredCourse();
             registeredCourse.UserId= paymentVM.UserId;
             registeredCourse.CourseId= paymentVM.CourseId;
@@ -39,24 +39,99 @@ namespace TrainingRegistrationAPI.Repository.Data
             var result = myContext.SaveChanges();
             return result;
         }
-/*        public static string GetRandomPassword(int length)
+        //GET PAY ALL
+        public IEnumerable<PaymentStatusVM> GetPayALL()
         {
-            const string chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-            StringBuilder sb = new StringBuilder();
-            Random rnd = new Random();
-
-            for (int i = 0; i < length; i++)
-            {
-                int index = rnd.Next(chars.Length);
-                sb.Append(chars[index]);
-            }
-
-            return sb.ToString();
-        }*/
-        /* public int DataPayment(Payment payment)
-         {
-
-         }*/
+            var getPatment = (from us in myContext.Users
+                              join rgt in myContext.RegisteredCourses on
+                              us.UserId equals rgt.UserId
+                              join cr in myContext.Courses on
+                              rgt.CourseId equals cr.CourseId
+                              join pt in myContext.Payments on
+                              rgt.RegisteredCourseId equals pt.RegisteredCourseId
+                              select new PaymentStatusVM
+                              {
+                                  UserId = us.UserId,
+                                  FirstName = us.FirstName,
+                                  LastName = us.LastName,
+                                  Email = us.Email,
+                                  CourseName = cr.CourseName,
+                                  CourseFee = cr.CourseFee,
+                                  PaymentDate = pt.PaymentDate,
+                                  Status = pt.Status,
+                              }).Where(p => p.Status != 0).ToList();
+            return getPatment;
+        }
+        //GET ALL BY ID
+        public IEnumerable<PaymentStatusVM> GetIdALLStatus( int UserId)
+        {
+            var getPatment = (from us in myContext.Users
+                              join rgt in myContext.RegisteredCourses on
+                              us.UserId equals rgt.UserId
+                              join cr in myContext.Courses on
+                              rgt.CourseId equals cr.CourseId
+                              join pt in myContext.Payments on
+                              rgt.RegisteredCourseId equals pt.RegisteredCourseId
+                              select new PaymentStatusVM
+                              {
+                                  UserId = us.UserId,
+                                  RegisteredCourseId = pt.RegisteredCourseId,
+                                  FirstName = us.FirstName,
+                                  LastName = us.LastName,
+                                  Email = us.Email,
+                                  CourseName = cr.CourseName,
+                                  CourseFee = cr.CourseFee,
+                                  PaymentDate = pt.PaymentDate,
+                                  Status = pt.Status,
+                              }).Where(p => p.Status != 0).Where(p => p.UserId == UserId).ToList();
+            return getPatment;
+        }
+        //GET PAY ALL STATUS NOT PAID
+        public IEnumerable<PaymentStatusVM> GetPayStatus()
+        {
+            var getPatment = (from us in myContext.Users
+                              join rgt in myContext.RegisteredCourses on
+                              us.UserId equals rgt.UserId
+                              join cr in myContext.Courses on
+                              rgt.CourseId equals cr.CourseId
+                              join pt in myContext.Payments on
+                              rgt.RegisteredCourseId equals pt.RegisteredCourseId
+                              select new PaymentStatusVM
+                              {
+                                  UserId = us.UserId,
+                                  FirstName = us.FirstName,
+                                  LastName = us.LastName,
+                                  Email = us.Email,
+                                  CourseName = cr.CourseName,
+                                  CourseFee = cr.CourseFee,
+                                  PaymentDate = pt.PaymentDate,
+                                  Status = pt.Status,
+                              }).Where(u => u.Status == 0  ).ToList();
+            return getPatment;
+        }
+        //GET NOT PAID BY ID
+        public IEnumerable<PaymentStatusVM> GetIdPayStatus(int UserId)
+        {
+        
+          var getPatment = (from us in myContext.Users
+                              join rgt in myContext.RegisteredCourses on
+                              us.UserId equals rgt.UserId
+                              join cr in myContext.Courses on
+                              rgt.CourseId equals cr.CourseId
+                              join pt in myContext.Payments on
+                              rgt.RegisteredCourseId equals pt.RegisteredCourseId
+                              select new PaymentStatusVM
+                              {
+                                  UserId = us.UserId,
+                                  FirstName = us.FirstName,
+                                  LastName = us.LastName,
+                                  Email = us.Email,
+                                  CourseName = cr.CourseName,
+                                  CourseFee = cr.CourseFee,
+                                  PaymentDate = pt.PaymentDate,  
+                                  Status = pt.Status,
+                              }).Where(u => u.Status == 0).Where (p => p.UserId== UserId) .ToList();
+            return getPatment;
+        }
     }
 }

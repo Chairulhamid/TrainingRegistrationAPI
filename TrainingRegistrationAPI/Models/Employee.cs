@@ -22,6 +22,7 @@ namespace TrainingRegistrationAPI.Models
         [Required]
         public string Email { get; set; }
         public string Address { get; set; }
+        public string CV { get; set; }
         [Required]
         public string Phone { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]

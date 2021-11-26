@@ -9,9 +9,9 @@ using TrainingRegistrationAPI.Models;
 
 namespace TrainingRegistrationAPI.ViewModel
 {
-    public class PaymentVM
+    public class PaymentStatusVM
     {
-           [Required]
+        [Required]
         public int RegisteredCourseId { get; set; }
         public int UserId { get; set; }
         public int CourseId { get; set; }
@@ -19,16 +19,12 @@ namespace TrainingRegistrationAPI.ViewModel
         public int PaymentId { get; set; }
         public DateTime PaymentDate { get; set; }
         public string BankAccount { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string CourseName { get; set; }
         public int TotalPayment { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public Status Status { get; set; }
     }
-  /*  public enum Status
-    {
-
-         NotPaid,
-        Declined,
-        Verified
-    }*/
-  }
-
+}
