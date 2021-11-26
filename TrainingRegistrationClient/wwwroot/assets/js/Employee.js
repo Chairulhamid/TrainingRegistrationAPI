@@ -80,7 +80,7 @@
             {
                 "data": "cv",
                 'render': function (data, type, row, meta) {
-                    return `<a href="https://www.google.co.id/" target="_blank">Test</a>`;
+                    return `<a href="https://www.google.co.id/" target="_blank">${row.cv}</a>`;
                 }
             },
           /*  { "data": "hireDate" },*/
