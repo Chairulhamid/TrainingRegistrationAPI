@@ -42,7 +42,64 @@ namespace TrainingRegistrationAPI.Controllers
             {
                 return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data gagal ditambahkan!!" });
             }
+        }
+        //GET STATUS ALL
+        /*[Authorize(Roles = "Admin")]*/
+        //[EnableCors("AllowOrigin")]
+        [Route("GetPayALL")]
+        [HttpGet]
+        public ActionResult<PaymentStatusVM> GetPayALL()
+        {
+            var result = paymentRepository.GetPayALL();
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
 
+        }
+        //GET STATUS ALL BY ID
+        /*[Authorize(Roles = "Admin")]*/
+        //[EnableCors("AllowOrigin")]
+        [Route("GetIdALLStatus")]
+        [HttpGet]
+        public ActionResult<PaymentStatusVM> GetIdALLStatus(int UserId)
+        {
+            var result = paymentRepository.GetIdALLStatus(UserId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
+        }
+        //GET STATUS ALL NOT PAID
+        /*[Authorize(Roles = "Admin")]*/
+        //[EnableCors("AllowOrigin")]
+        [Route("GetPayStatus")]
+        [HttpGet]
+        public ActionResult<PaymentStatusVM> GetPayStatus()
+        {
+            var result = paymentRepository.GetPayStatus();
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
+
+        }
+        //GET STATUS NOT PAID BY ID
+        /*[Authorize(Roles = "Admin")]*/
+        //[EnableCors("AllowOrigin")]
+        [Route("GetIdPayStatus")]
+        [HttpGet]
+        public ActionResult<PaymentStatusVM> GetIdPayStatus(int UserId)
+        {
+            var result = paymentRepository.GetIdPayStatus(UserId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
         }
     }
 }
