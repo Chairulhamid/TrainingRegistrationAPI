@@ -77,6 +77,12 @@
                 }
             },
             { "data": "birthDate" },
+            {
+                "data": "cv",
+                'render': function (data, type, row, meta) {
+                    return `<a href="https://www.google.co.id/" target="_blank">Test</a>`;
+                }
+            },
           /*  { "data": "hireDate" },*/
             {
                 "data": "",
@@ -184,6 +190,7 @@ function InsertDataEmp() {
     obj.BirthDate = $('#birthDate').val();
     obj.password = $('#password').val();
     obj.HireDate = $('#hireDate').val();
+    obj.CV = $('#cv').val();
     obj.RoleId = $('#role_id').val();
     console.log(obj);
     $.ajax({
@@ -227,6 +234,7 @@ function getEmp(employeeId) {
             $('#address').val(result[0].address);
             $('#birthDate').val(tanggal);
             $('#password').val(result[0].password);
+            $('#cv').val(result[0].cv);
             $('#tanggal').val(result[0].hireDate);
             $('#role_id').val(result[0].roleId);
             $('#modalData').modal('show');
@@ -262,6 +270,7 @@ function UpdateEmp() {
     obj.Address = $('#address').val();
     obj.BirthDate = $('#birthDate').val();
     obj.HireDate = $('#tanggal').val();
+    obj.CV = $('#cv').val();
     console.log(obj);
     $.ajax({
         url: "/Employees/Put/" + employeeId,
@@ -304,6 +313,7 @@ function getDetailEmp(employeeId) {
             $('#birthDate').val(tanggal);
             $('#password').val(result[0].password);
             $('#tanggal').val(result[0].hireDate);
+            $('#cv').val(result[0].cv);
             $('#role_id').val(result[0].roleId);
             $('#modalData').modal('show');
             $('#btnUpdateEmployee').hide();
