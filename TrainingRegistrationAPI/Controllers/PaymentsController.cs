@@ -58,7 +58,7 @@ namespace TrainingRegistrationAPI.Controllers
             return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
 
         }
-        //GET STATUS ALL BY ID
+        //GET PAY PAID BY ID
         /*[Authorize(Roles = "Admin")]*/
         //[EnableCors("AllowOrigin")]
         [Route("GetIdALLStatus/{UserId}")]
@@ -95,6 +95,20 @@ namespace TrainingRegistrationAPI.Controllers
         public ActionResult<PaymentStatusVM> GetIdPayStatus(int UserId)
         {
             var result = paymentRepository.GetIdPayStatus(UserId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
+        }
+        //GET LessonCOurse BY ID
+        /*[Authorize(Roles = "Admin")]*/
+        //[EnableCors("AllowOrigin")]
+        [Route("GetLessonCourse/{UserId}")]
+        [HttpGet]
+        public ActionResult<PaymentVM> GetLessonCourse(int UserId)
+        {
+            var result = paymentRepository.GetLessonCourse(UserId);
             if (result != null)
             {
                 return Ok(result);

@@ -152,5 +152,38 @@ namespace TrainingRegistrationAPI.Repository.Data
                               }).Where(u => u.Status == 0).Where (p => p.UserId== UserId) .ToList();
             return getPatment;
         }
+
+        //MATERI COURSE FOR USER
+        public IEnumerable<TrainingCourseVM> GetLessonCourse(int UserId)
+        {
+            var getLessonCourse = (from us in myContext.Users
+                              join rgt in myContext.RegisteredCourses on
+                              us.UserId equals rgt.UserId
+                              join pt in myContext.Payments on
+                              rgt.RegisteredCourseId equals pt.RegisteredCourseId
+                              join cr in myContext.Courses on
+                              rgt.CourseId equals cr.CourseId
+                              join ml in myContext.Moduls on
+                               cr.CourseId equals ml.CourseId
+                                   select new TrainingCourseVM
+                              {
+                                  FirstName = us.FirstName,
+                                  LastName = us.LastName,
+                                  Status = pt.Status,
+                                  CourseName = cr.CourseName,
+                                  CourseDesc = cr.CourseDesc,
+                                  CourseImg = cr.CourseImg,
+                                  ModulTittle = ml.ModulTittle,
+                                  ModulDesc = ml.ModulDesc,
+                                  ModulContent = ml.ModulContent,
+                                  RegisteredCourseId = rgt.RegisteredCourseId,
+                                  PaymentId = pt.PaymentId,
+                                  UserId = us.UserId,
+                                  CourseId = cr.CourseId,
+                               /*   ModulId = ml.ModulId,*/
+                              }).Where(u => u.Status ==Status.Verified).Where(p => p.UserId == UserId).ToList();
+            return getLessonCourse;
+        }
+      
     }
 }
