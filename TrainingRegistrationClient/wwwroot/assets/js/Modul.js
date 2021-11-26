@@ -146,7 +146,7 @@ function DeleteModul(id) {
                 mytable.ajax.reload();
                 return Swal.fire(
                     'Delete Successfull',
-                    'Employee Data Deleted!',
+                    'Modul Data Deleted!',
                     'success',
                 )
             }).fail((error) => {
