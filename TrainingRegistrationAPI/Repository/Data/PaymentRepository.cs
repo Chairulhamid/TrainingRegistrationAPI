@@ -51,7 +51,12 @@ namespace TrainingRegistrationAPI.Repository.Data
                               rgt.RegisteredCourseId equals pt.RegisteredCourseId
                               select new PaymentStatusVM
                               {
+                                  RegisteredCourseId = rgt.RegisteredCourseId,
+                                  PaymentId = pt.PaymentId,
+                                  TotalPayment = pt.TotalPayment,
                                   UserId = us.UserId,
+                                  CourseId = cr.CourseId,
+                                  BankAccount = pt.BankAccount,
                                   FirstName = us.FirstName,
                                   LastName = us.LastName,
                                   Email = us.Email,
@@ -74,8 +79,12 @@ namespace TrainingRegistrationAPI.Repository.Data
                               rgt.RegisteredCourseId equals pt.RegisteredCourseId
                               select new PaymentStatusVM
                               {
+                                  RegisteredCourseId = rgt.RegisteredCourseId,
+                                  PaymentId = pt.PaymentId,
+                                  TotalPayment = pt.TotalPayment,
                                   UserId = us.UserId,
-                                  RegisteredCourseId = pt.RegisteredCourseId,
+                                  CourseId = cr.CourseId,
+                                  BankAccount = pt.BankAccount,
                                   FirstName = us.FirstName,
                                   LastName = us.LastName,
                                   Email = us.Email,
@@ -83,7 +92,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   CourseFee = cr.CourseFee,
                                   PaymentDate = pt.PaymentDate,
                                   Status = pt.Status,
-                              }).Where(p => p.Status != 0).Where(p => p.UserId == UserId).ToList();
+                              }).Where(u => u.Status != 0).Where(p => p.UserId == UserId).ToList();
             return getPatment;
         }
         //GET PAY ALL STATUS NOT PAID

@@ -61,9 +61,9 @@ namespace TrainingRegistrationAPI.Controllers
         //GET STATUS ALL BY ID
         /*[Authorize(Roles = "Admin")]*/
         //[EnableCors("AllowOrigin")]
-        [Route("GetIdALLStatus")]
+        [Route("GetIdALLStatus/{UserId}")]
         [HttpGet]
-        public ActionResult<PaymentStatusVM> GetIdALLStatus(int UserId)
+        public ActionResult<PaymentVM> GetIdALLStatus(int UserId)
         {
             var result = paymentRepository.GetIdALLStatus(UserId);
             if (result != null)
@@ -90,7 +90,7 @@ namespace TrainingRegistrationAPI.Controllers
         //GET STATUS NOT PAID BY ID
         /*[Authorize(Roles = "Admin")]*/
         //[EnableCors("AllowOrigin")]
-        [Route("GetIdPayStatus")]
+        [Route("GetIdPayStatus/{UserId}")]
         [HttpGet]
         public ActionResult<PaymentStatusVM> GetIdPayStatus(int UserId)
         {
