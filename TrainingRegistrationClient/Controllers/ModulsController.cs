@@ -33,8 +33,6 @@ namespace TrainingRegistrationClient.Controllers
             var result = await repository.GetIdModul(id);
             return Json(result);
         }
-
-
         public JsonResult RegisterModul(ModulVM entity)
         {
             var result = repository.Post(entity);
