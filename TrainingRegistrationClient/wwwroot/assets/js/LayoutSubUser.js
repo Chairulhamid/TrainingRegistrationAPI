@@ -87,8 +87,12 @@ function getDCourse(courseId) {
         } //End of AJAX error function  
     });
 }
+function Random() {
+  
+}
 function getPayCourse(courseId) {
     console.log(courseId)
+            var acak =5;
     $.ajax({
         type: "GET",
         url: "https://localhost:44307/API/Courses/GetApvdIdCourse/" + courseId,
@@ -96,57 +100,8 @@ function getPayCourse(courseId) {
         dataType: "json",
         success: function (data) {
             console.log(data[0].courseFee);
-        /*    $("#DIV").html('');
-            var rows = '';
-            $.each(data, function (i, item) {
-                rows = `
-                        <div class="row">
-                                            <div class="col-lg-8">
-                                                <img id="courseImg" src="${item.courseImg}" class="img-fluid" alt="">
-
-                                                <h3 id="courseName">${item.courseName}</h3>
-                                                <p id="courseDesc">${item.courseDesc}</pid>
-                                            </div>
-                                            <div class="col-lg-4" id="materiDetail">
-                                                <div class="content">
-                                                    <div class="text-center">
-                                                        <h4>Unlimite</h4>
-                                                        <hr />
-                                                    </div>
-                                                    <div class="course-info d-flex justify-content-between align-items-center">
-                                                        <h5>Trainer</h5>
-                                                        <p id="trainer">${item.trainerName}</p>
-                                                    </div>
-                                                    <div class="course-info d-flex justify-content-between align-items-center">
-                                                        <h5>Course Fee</h5>
-
-                                                        <p id="courseFee">Rp. ${item.courseFee}</p>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <a href="PayCourse/${item.courseId}" class="more-btn">Buy Now<i class="bx bx-chevron-right"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                            `;
-            });
-            $('#gambar').append(rows);*/
-         /*   $("#trainer").html(data[0].trainerName);
-                $("#courseFee").html(data[0].courseFee);*/
             $("#courseName").html(data[0].courseName);
-            $("#payment").html(data[0].courseFee);
-            $("#payment1").html(data[0].courseDesc);
-             /*   $("#courseDesc").html(data[0].courseDesc);*/
-            /*onsole.log(data)
-                $("#DIV").html('');
-            var rows = '';
-            $.each(data, function (i, item) {
-                rows = `
-                           
-                            `;
-                $('#materiDetail').html();
-            });*/ //End of foreach Loop   
-            /*   console.log(data);*/
+            $("#payment").html(data[0].courseFee + acak);
         }, //End of AJAX Success function  
 
         failure: function (data) {
