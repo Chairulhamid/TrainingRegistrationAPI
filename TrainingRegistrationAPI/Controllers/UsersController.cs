@@ -122,7 +122,7 @@ namespace TrainingRegistrationAPI.Controller
                 foreach (var item in data.Role)
                 {
                     claims.Add(new Claim("roles", item.ToString()));
-                    claims.Add(new Claim(ClaimTypes.Name, userRepository.GetName(loginUserVM.Email)));
+                    claims.Add(new Claim(ClaimTypes.Name, userRepository.GetId(loginUserVM.Email)));
                     claims.Add(new Claim(ClaimTypes.NameIdentifier, userRepository.GetId(loginUserVM.Email)));
                 }
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:key"]));
