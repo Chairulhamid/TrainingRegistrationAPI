@@ -411,6 +411,6 @@ $.ajax({
             optionRole += `
                             <option value="${val.roleId}">${val.roleName}</option>`;
         });
-        $('#role_id').html(optionRole);
+        $('#role_id').html( );
     }
 });
