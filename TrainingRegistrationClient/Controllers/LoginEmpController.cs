@@ -68,6 +68,7 @@ namespace TrainingRegistrationClient.Controllers
             /*HttpContext.Session.SetString("ProfilePicture", "assets/img/theme/user.png");*/
 
             return RedirectToAction("Index", "Auth");
+
         }
 
         [Authorize]

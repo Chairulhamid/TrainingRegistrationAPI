@@ -170,10 +170,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 300px;
-    height: 400px;
+    height: 300px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
     border-radius: 5px;
-    background: #0e0e0f;
+    background: #2d3e50;
     overflow: hidden
 }
 
@@ -184,8 +184,9 @@
 
 .product .imgbox img {
     display: block;
-    width: 80%;
-    margin: 20px auto 0
+    width: 95%;
+    margin: 20px auto 0;
+    border-radius:5px
 }
 
 .product .specifies {
@@ -221,7 +222,7 @@
     right: 25px;
     font-weight: bold;
     color: #000;
-    font-size: 30px
+    font-size: 20px
 }
 
 .product label {

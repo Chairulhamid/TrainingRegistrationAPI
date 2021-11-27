@@ -33,7 +33,8 @@ namespace TrainingRegistrationClient.Repository.Data
             var result = httpClient.PostAsync(address.link + request + "RegisterCourse", content).Result;
             return result.StatusCode;
         }
-        //GET ALL STATUS == APPROVED SAJA <<INI  UNTUK DI HALAMAN USER YANG BAGIAN AKAN DI JUAL>>
+
+        //GET ALL STATUS == APPROVED SAJA <<INI  UNTUK DI HALAMAN USER YANG BAGIAN AKAN DI JUAL
         public async Task<List<CourseVM>> GetAprovedCourse()
         {
 
@@ -46,6 +47,7 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
+
         //GET STATUS == WAITING - HALMAN ADMIN
         public async Task<List<CourseVM>> GetWaitingCourse()
         {
@@ -59,6 +61,7 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
+
         //GET STATUS != WAITING - DI ADMIN, DATA YANG DIAPPROVE MAUPUN DITOLAK
         public async Task<List<CourseVM>> GetActCourse()
         {
@@ -72,6 +75,7 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
+
         //GET STATUS == WAITING BY ID - DATA YANG AKAN DI APPROVE BERDASARKAN ID
         public async Task<List<CourseVM>> GetWaitIdCourse(int id)
         {
@@ -108,20 +112,5 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
-       /* public async Task<List<CourseVM>> GetCourse()
-        {
-            List<CourseVM> entities = new List<CourseVM>();
-
-            using (var response = await httpClient.GetAsync(request + "GetCourse/"))
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                entities = JsonConvert.DeserializeObject<List<CourseVM>>(apiResponse);
-            }
-            return entities;
-        }*/
-
-    
-
-
     }
 }
