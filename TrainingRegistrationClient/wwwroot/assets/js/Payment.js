@@ -157,7 +157,7 @@ $(document).ready(function () {
 function getDetailPayment(paymentId) {
     console.log(paymentId)
     $.ajax({
-        url: "/Payments/GetIdPayStatus/" + paymentId,
+        url: "/Payments/GetPayStatusId/" + paymentId,
         type: "GET",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
@@ -186,6 +186,7 @@ function getDetailPayment(paymentId) {
             $('#bankAccount').prop('disabled', true);;
             $('#totalPayment').prop('disabled', true);;
             $('#paymentDate').prop('disabled', true);;
+            $('#status').prop('disabled', true);;
         },
         error: function (errormessage) {
             /*alert(errormessage.responseText);*/
@@ -193,9 +194,7 @@ function getDetailPayment(paymentId) {
                 title: "Failed",
                 text: "Data not found",
                 icon: "error"
-            }).then(function () {
-                window.location = "https://localhost:44344/auth/payment";
-            });
+            })
         }
     });
     return false;
