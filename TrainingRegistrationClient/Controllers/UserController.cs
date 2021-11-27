@@ -43,9 +43,12 @@ namespace TrainingRegistrationClient.Controllers
         {
             return View();
         }
-        public IActionResult DetailCourse()
+        [Route("user/DetailCourse/{Id}")]
+        public IActionResult DetailCourse(string Id)
         {
+            ViewData["Id"] = Id;
             return View();
+
         }
         public IActionResult Privacy()
         {

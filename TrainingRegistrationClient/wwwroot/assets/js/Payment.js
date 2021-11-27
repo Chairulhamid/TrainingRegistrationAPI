@@ -163,7 +163,7 @@ function getDetailPayment(paymentId) {
         dataType: "json",
         success: function (result) {
             console.log(result);
-            var tanggal = result[0].paymentDate.substr(0, 10);
+            /*var tanggal = result[0].paymentDate.substr(0, 10);*/
             $('#paymentId').val(result[0].paymentId);
             $('#userId').val(result[0].userId);
             $('#firstName').val(result[0].firstName);
