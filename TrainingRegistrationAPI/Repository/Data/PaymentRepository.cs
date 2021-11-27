@@ -18,9 +18,6 @@ namespace TrainingRegistrationAPI.Repository.Data
         //REGISTER
         public int RegisterPay(PaymentVM paymentVM)
         {
-            Random rnd = new Random();
-            int rPertama = rnd.Next(1, 99);   
-            int rKedua = rnd.Next(100);  
             Payment payment= new Payment();
              //REGISTERED COURSE
             RegisteredCourse registeredCourse= new RegisteredCourse();
@@ -33,7 +30,7 @@ namespace TrainingRegistrationAPI.Repository.Data
             payment.RegisteredCourseId = registeredCourse.RegisteredCourseId;
             payment.PaymentDate = paymentVM.PaymentDate;
             payment.BankAccount = paymentVM.BankAccount ;
-            payment.TotalPayment = paymentVM.TotalPayment + rPertama + rKedua;
+            payment.TotalPayment = paymentVM.TotalPayment ;
             payment.Status = 0 ;
             myContext.Payments.Add(payment);
             var result = myContext.SaveChanges();
