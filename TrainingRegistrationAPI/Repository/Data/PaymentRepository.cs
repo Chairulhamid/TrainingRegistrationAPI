@@ -120,7 +120,36 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   CourseFee = cr.CourseFee,
                                   PaymentDate = pt.PaymentDate,
                                   Status = pt.Status,
-                              }).Where(u => u.Status == 0  ).ToList();
+                              }).Where(u => u.Status == 0 ).ToList();
+            return getPatment;
+        }
+
+        public IEnumerable<PaymentStatusVM> GetPayStatusId(int id)
+        {
+            var getPatment = (from u in myContext.Users
+                              join rc in myContext.RegisteredCourses on
+                              u.UserId equals rc.UserId
+                              join c in myContext.Courses on
+                              rc.CourseId equals c.CourseId
+                              join p in myContext.Payments on
+                              rc.RegisteredCourseId equals p.RegisteredCourseId
+                              where p.PaymentId == id
+                              select new PaymentStatusVM
+                              {
+                                  RegisteredCourseId = rc.RegisteredCourseId,
+                                  PaymentId = p.PaymentId,
+                                  TotalPayment = p.TotalPayment,
+                                  UserId = u.UserId,
+                                  CourseId = c.CourseId,
+                                  BankAccount = p.BankAccount,
+                                  FirstName = u.FirstName,
+                                  LastName = u.LastName,
+                                  Email = u.Email,
+                                  CourseName = c.CourseName,
+                                  CourseFee = c.CourseFee,
+                                  PaymentDate = p.PaymentDate,
+                                  Status = p.Status
+                              }).ToArray();
             return getPatment;
         }
         //GET NOT PAID BY ID
@@ -149,7 +178,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   CourseFee = cr.CourseFee,
                                   PaymentDate = pt.PaymentDate,
                                   Status = pt.Status,
-                              }).Where(u => u.Status == 0).Where (p => p.PaymentId == paymentId) .ToList();
+                              }).Where(p => p.PaymentId == paymentId).Where(u => u.Status == 0).ToList();
             return getPatment;
         }
 

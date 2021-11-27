@@ -103,16 +103,12 @@
                                 <input name="userId" type="text" class="form-control" id="userId" placeholder="Course Desc" value="">
                             </div>
                         </div>
-                    </div>                  
-                    <div class="row mb-2" id="hideRow">
                         <div class="col">
                             <label>First Name</label>
                             <div class="">
                                 <input name="lastName" type="text" class="form-control" id="firstName" placeholder="First Name" value="">
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-2" id="hideRow">
                         <div class="col">
                             <label>Last Name</label>
                             <div class="">
@@ -135,24 +131,12 @@
                                 <input name="courseName" type="text" class="form-control" id="courseName" placeholder="Email" value="">
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-2" id="hideRow">
                         <div class="col">
                             <label>Course Fee</label>
                             <div class="">
                                 <input name="courseFee" type="text" class="form-control" id="courseFee" placeholder="Email" value="">
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-2" id="hideRow">
-                        <div class="col">
-                            <label>Bank Payment</label>
-                            <div class="">
-                                <input name="bankPayment" type="text" class="form-control" id="bankPayment" placeholder="Email" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-2" id="hideRow">
                         <div class="col">
                             <label>Total Payment</label>
                             <div class="">
@@ -161,6 +145,12 @@
                         </div>
                     </div>
                     <div class="row mb-2" id="hideRow">
+                        <div class="col">
+                            <label>Bank Account</label>
+                            <div class="">
+                                <input name="Bank Account" type="text" class="form-control" id="bankPayment" placeholder="Bank Account" value="">
+                            </div>
+                        </div>
                         <div class="col">
                             <label>Payment Date</label>
                             <div class="">
@@ -177,10 +167,11 @@
                         </div>
                     </div>
                 </form>
+                <button id="btnDeclineStatus" type="button" style="background: red;" class="btn btn-primary" onclick="();">Decline</button>
+                <button id="btnVerifyStatus" type="button" class="btn btn-primary" onclick="();">Accept</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Close</button>
-                <button id="btnAddCourse" onlcick="Validaition()" type="submit" class="btn btn-primary">Add</button>
                 <button id="btnUpdateCourse" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateCourse();">Update</button>
             </div>
         </div>

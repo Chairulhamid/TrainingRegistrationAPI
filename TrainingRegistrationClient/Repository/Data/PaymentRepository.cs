@@ -84,11 +84,23 @@ namespace TrainingRegistrationClient.Repository.Data
             return entities;
         }
         ///AMBIL DATA PAY YANG BELUM DI BAYAR/ TOLAK BERDASARKAN ID
-        public async Task<List<PaymentStatusVM>> GetIdPayStatus(int UserId)
+        public async Task<List<PaymentStatusVM>> GetIdPayStatus(int paymentId)
         {
             List<PaymentStatusVM> entities = new List<PaymentStatusVM>();
 
-            using (var response = await httpClient.GetAsync(request + "GetIdPayStatus/" + UserId))
+            using (var response = await httpClient.GetAsync(request + "GetIdPayStatus/" + paymentId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<PaymentStatusVM>>(apiResponse);
+            }
+            return entities;
+        }
+
+        public async Task<List<PaymentStatusVM>> GetPayStatusId(int id)
+        {
+            List<PaymentStatusVM> entities = new List<PaymentStatusVM>();
+
+            using (var response = await httpClient.GetAsync(request + "GetPayStatusId/" + id))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 entities = JsonConvert.DeserializeObject<List<PaymentStatusVM>>(apiResponse);

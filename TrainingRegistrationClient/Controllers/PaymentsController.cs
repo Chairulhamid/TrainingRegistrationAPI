@@ -53,10 +53,16 @@ namespace TrainingRegistrationClient.Controllers
             return Json(result);
         }
 
-        //AMBIL SEMUA DATA PAY SUDAH DI BAYAR/ TOLAK BY ID
-        public async Task<JsonResult> GetIdPayStatus(int UserId)
+        public async Task<JsonResult> GetPayStatusId(int id)
         {
-            var result = await repository.GetIdPayStatus(UserId);
+            var result = await repository.GetPayStatusId(id);
+            return Json(result);
+        }
+
+        //AMBIL SEMUA DATA PAY SUDAH DI BAYAR/ TOLAK BY ID
+        public async Task<JsonResult> GetIdPayStatus(int paymentId)
+        {
+            var result = await repository.GetIdPayStatus(paymentId);
             return Json(result);
         }
 
