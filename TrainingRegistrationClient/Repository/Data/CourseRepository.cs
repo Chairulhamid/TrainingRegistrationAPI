@@ -33,7 +33,7 @@ namespace TrainingRegistrationClient.Repository.Data
             var result = httpClient.PostAsync(address.link + request + "RegisterCourse", content).Result;
             return result.StatusCode;
         }
-        //GET ALL STATUS == APPROVED <<INI  UNTUK DI HALAMAN USER YANG BAGIAN AKAN DI JUAL>>
+        //GET ALL STATUS == APPROVED / DITOLAK <<INI  UNTUK DI HALAMAN USER YANG BAGIAN AKAN DI JUAL>>
         public async Task<List<CourseVM>> GetAprovedCourse()
         {
 
@@ -46,7 +46,7 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
-        //GET STATUS == WAITING
+        //GET STATUS == WAITING <<ADMIN>>
         public async Task<List<CourseVM>> GetWaitingCourse()
         {
 
@@ -59,7 +59,7 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
-        //GET STATUS != WAITING
+        //GET STATUS != WAITING <<ADMIN>>
         public async Task<List<CourseVM>> GetActCourse()
         {
 
@@ -72,7 +72,7 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
-        //GET STATUS == WAITING BY ID
+        //GET STATUS == WAITING BY ID <<ADMIN>>
         public async Task<List<CourseVM>> GetWaitIdCourse(int id)
         {
             List<CourseVM> entities = new List<CourseVM>();
@@ -108,6 +108,5 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
-      
     }
 }
