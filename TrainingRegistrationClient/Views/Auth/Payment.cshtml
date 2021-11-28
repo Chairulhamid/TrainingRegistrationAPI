@@ -88,7 +88,7 @@
                     <div class="col" hidden>
                         <input type="text" class="form-control" id="courseId" name="courseId" placeholder="">
                     </div>
-                    <div class="row mb-2" id="hideRow">
+                    <div class="row mb-2">
                         <div class="col">
                             <label>Payment ID</label>
                             <div class="">
@@ -148,7 +148,7 @@
                         <div class="col">
                             <label>Bank Account</label>
                             <div class="">
-                                <input name="Bank Account" type="text" class="form-control" id="bankPayment" placeholder="Bank Account" value="">
+                                <input name="Bank Account" type="text" class="form-control" id="bankAccount" placeholder="Bank Account" value="">
                             </div>
                         </div>
                         <div class="col">
@@ -167,8 +167,8 @@
                         </div>
                     </div>
                 </form>
-                <button id="btnDeclineStatus" type="button" style="background: red;" class="btn btn-primary" onclick="();">Decline</button>
-                <button id="btnVerifyStatus" type="button" class="btn btn-primary" onclick="();">Accept</button>
+                <button id="btnDeclineStatus" type="button" style="background: red;" class="btn btn-primary" onclick="Decline();">Decline</button>
+                <button id="btnVerifyStatus" type="button" class="btn btn-primary" onclick="ChangeStatus();">Accept</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Close</button>
