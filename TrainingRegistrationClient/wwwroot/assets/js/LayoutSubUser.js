@@ -31,8 +31,8 @@ function getDCourse(courseId) {
             $("#DIV").html('');
             var rows = '';
             $.each(data, function (i, item) {
-                 rows = `
-                        <div class="row">
+                rows = `
+                                        <div class="row">
                                             <div class="col-lg-8">
                                                 <img id="courseImg" src="${item.courseImg}" class="img-fluid" alt="">
 
@@ -54,12 +54,12 @@ function getDCourse(courseId) {
 
                                                         <p id="courseFee">Rp. ${item.courseFee}</p>
                                                     </div>
-                                                    <div class="text-center">
-                                                        <a href="PayCourse/${item.courseId}" class="more-btn">Buy Now<i class="bx bx-chevron-right"></i></a>
-                                                    </div>
+                                                    <div class="text-center" >
+                                                        <a href="PayCourse/${item.courseId}" class="more-btn" id="match" method="checkLogin();">Buy Now<i class="bx bx-chevron-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
+                             
                             `;
             });
             $('#gambar').append(rows);
@@ -121,3 +121,4 @@ function getPayCourse(courseId) {
         } //End of AJAX error function  
     });
 }
+

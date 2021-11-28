@@ -26,7 +26,12 @@ namespace TrainingRegistrationClient.Controllers
         {
             return View();
         }
+
         public IActionResult LoginEmp()
+        {
+            return View();
+        }
+        public IActionResult RegistEmp()
         {
             return View();
         }
