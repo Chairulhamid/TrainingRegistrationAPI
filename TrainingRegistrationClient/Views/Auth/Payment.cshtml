@@ -86,7 +86,7 @@
             <div class="modal-body">
                 <form action="" id="formValidation" name="nameModal" method="post">
                     <div class="col" hidden>
-                        <input type="text" class="form-control" id="courseId" name="courseId" placeholder="">
+                        <input type="text" class="form-control" id="registeredCourseId" name="registeredCourseId" placeholder="">
                     </div>
                     <div class="row mb-2">
                         <div class="col">
@@ -167,10 +167,17 @@
                         </div>
                     </div>
                 </form>
-                <button id="btnDeclineStatus" type="button" style="background: red;" class="btn btn-primary" onclick="Decline();">Decline</button>
-                <button id="btnVerifyStatus" type="button" class="btn btn-primary" onclick="ChangeStatus();">Accept</button>
             </div>
             <div class="modal-footer">
+                @*<button id="btnVerifyStatus" type="button" class="btn btn-success" onclick="ChangeStatus();"> <i class="fa fa-check"> Accept</button>
+        <button id="btnDeclineStatus" type="button" style="background: red;" class="btn btn-danger" onclick="Decline();"> <i class="fa fa-times">Decline</button>*@
+                <button type="button" class="btn btn-success" id="paymentAcc"  onclick="ChangeStatus()" ;>
+                    <i class="fa fa-check"></i> Accept
+                </button>
+
+                <button type="button" class="btn btn-danger" id="paymentDc"  onclick="Decline()" ;>
+                    <i class="fa fa-times"></i> Decline
+                </button>
                 <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Close</button>
                 <button id="btnUpdateCourse" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateCourse();">Update</button>
             </div>
