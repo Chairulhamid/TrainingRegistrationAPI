@@ -15,7 +15,7 @@
 $(document).ready(function () {
     $.ajax({
         type: "GET",
-        url: "https://localhost:44307/API/Courses",
+        url: "https://localhost:44307/API/Courses/GetAprovedCourse",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
