@@ -51,6 +51,8 @@ namespace TrainingRegistrationClient
                                                              .AllowAnyMethod());
             });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddAuthentication(auth =>
             {
                 auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
