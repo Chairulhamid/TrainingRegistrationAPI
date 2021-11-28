@@ -133,8 +133,8 @@ function getDetailWaitCourse(courseId) {
             $('#courseName').val(result[0].courseName);
             $('#courseDesc').val(result[0].courseDesc);
             $('#courseFee').val(result[0].courseFee);
-            $('#topicId').val(result[0].topicName);
-            $('#employeeId').val(result[0].trainerName);
+            $('#topicId').val(result[0].topicId);
+            $('#employeeId').val(result[0].trainerId);
             $('#courseImg').val(result[0].courseImg);
             $('#statusCourse').val(result[0].statusCourse);
             $('#modalCourse').modal('show');
@@ -265,7 +265,7 @@ function getCourse(courseId) {
     });
     return false;
 }
-function UpdateCourse() {
+function UpdateCourse1() {
     var courseId = $('#courseId').val();
     var obj = new Object();
     obj.CourseId = $('#courseId').val();
@@ -274,7 +274,41 @@ function UpdateCourse() {
     obj.CourseFee = $('#courseFee').val();
     obj.CourseImg = $('#courseImg').val();
     obj.TopicId = $('#topicId').val();
-    obj.EmployeeId = $('#employeeId').val();
+    obj.TrainerId = $('#employeeId').val();
+    obj.StatusCourse = $('#statusCourse1').val();
+    console.log(obj);
+    $.ajax({
+        url: "/Courses/Put/" + courseId,
+        type: "PUT",
+        data: { id: courseId, entity: obj },
+    }).done((result) => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Data has been updated!'
+        });
+        $('#tableCourse').DataTable().ajax.reload();
+        $("#modalCourse").modal("hide");
+    }).fail((error) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops..',
+            text: 'Failed to update data'
+        });
+    });
+
+}
+function UpdateCourse2() {
+    var courseId = $('#courseId').val();
+    var obj = new Object();
+    obj.CourseId = $('#courseId').val();
+    obj.CourseName = $('#courseName').val();
+    obj.CourseDesc = $('#courseDesc').val();
+    obj.CourseFee = $('#courseFee').val();
+    obj.CourseImg = $('#courseImg').val();
+    obj.TopicId = $('#topicId').val();
+    obj.TrainerId = $('#employeeId').val();
+    obj.StatusCourse = $('#statusCourse2').val();
     console.log(obj);
     $.ajax({
         url: "/Courses/Put/" + courseId,

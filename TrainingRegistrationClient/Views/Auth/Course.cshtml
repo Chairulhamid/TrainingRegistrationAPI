@@ -121,11 +121,11 @@
                             @* <input type="number" class="form-control" id="role_id" name="role_id" placeholder="Role Id....">*@
                         </div>
                     </div>
-                    <div class="form-group" id="hideRow">
+                    <div class="form-group">
                         <div class="row">
                             <label class="col-sm-2 control-label text-right">Trainer Name</label>
                             <div class="col-sm-12">
-                                <input name="employeeId" type="text" class="form-control" id="employeeId" placeholder="Topic Name" value="">
+                                <input name="employeeId" type="text" class="form-control" id="employeeId" placeholder="Trainer Name" value="">
                             </div>
                             @* <input type="number" class="form-control" id="role_id" name="role_id" placeholder="Role Id....">*@
                         </div>
@@ -149,16 +149,16 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success">
+                <button type="button" class="btn btn-success" id="statusCourse1" value="1" onclick="UpdateCourse1()";>
                     <i class="fa fa-check"></i> Approve
                 </button>
 
-                <button type="submit" class="btn btn-danger">
+                <button type="button" class="btn btn-danger" id="statusCourse2" value="2" onclick="UpdateCourse2()";>
                     <i class="fa fa-times"></i> Decline
                 </button>
                 <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Close</button>
                 <button id="btnAddCourse" onlcick="Validaition()" type="submit" class="btn btn-primary">Add</button>
-                <button id="btnUpdateCourse" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateCourse();">Update</button>
+                @*<button id="btnUpdateCourse" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateCourse();">Update</button>*@
             </div>
         </div>
     </div>
