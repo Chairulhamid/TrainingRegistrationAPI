@@ -18,118 +18,89 @@
 
         </div>
     </section><!-- End Breadcrumbs -->
+    @if (@User.Identity.Name != null)
+    {
+        <section id="appointment" class="appointment section-bg">
+            <div class="container">
 
-    <section id="appointment" class="appointment section-bg">
-        <div class="container">
-
-            <div class="section-title">
-                <h2>Magnam dolores commodi suscipit</h2>
-            </div>
+                <div class="section-title">
+                    <h2>Magnam dolores commodi suscipit</h2>
+                </div>
 
                 <form action="" method="post" role="form" class="php-email-form">
                     <div class="row justify-content-center">
-                        @if (@User.Identity.Name != null)
-                        {
-                            <div class="col-lg-4" id="materiDetail">
-                                <div class="content">
-                                    <div class="course-info d-flex justify-content-between align-items-center">
-                                        <h5>Name</h5>
-                                        <p id="Name">@User.Identity.Name</p>
-                                    </div>
-                                    <div class="course-info d-flex justify-content-between align-items-center">
-                                        <h5>Name Course</h5>
-                                        <p id="courseName"></p>
-                                    </div>
-                                    <div class="course-info d-flex justify-content-between align-items-center">
-                                        <h5>Date</h5>
-                                        <p id="date"> </p>
-                                    </div>
-                                    <div class="course-info d-flex justify-content-between align-items-center">
-                                        <h5>Bank Transfer</h5>
-                                    </div>
-                                    <div class="align-items-center  d-flex  " style="margin-left:50px;">
-                                        <input class="check-input" type="radio" name="flexRadioDefault" id="bri" value="bri">
-                                        <label class="form-check-label" for="bri">
-                                            BRI
-                                        </label>
-                                    </div>
-                                    <div class="align-items-center  d-flex " style="margin-left:50px;">
-                                        <input class="check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            MANDIRI
-                                        </label>
-                                    </div>
-                                    <div class="course-info d-flex justify-content-between align-items-center">
-                                        <h5>Total Payment</h5>
-                                        <h3 id="payment"></h3>
-                                    </div>
-
+                        <div class="col-lg-4" id="materiDetail">
+                            <div class="content">
+                                <div class="course-info d-flex justify-content-between align-items-center">
+                                    <h5>Name</h5>
+                                    <p id="Name">sdasasdasd</p>
                                 </div>
-                                <div class="text-center"><button type="submit">Buy Now</button></div>
-                            </div>
-                        }
-                        else
-                        {
-                    <div class="col-lg-4" id="materiDetail">
-                        <div class="content">
-                            <div class="course-info d-flex justify-content-between align-items-center">
-                                <h5>Name</h5>
-                                <p id="Name">@User.Identity.Name</p>
-                            </div>
-                            <div class="course-info d-flex justify-content-between align-items-center">
-                                <h5>Name Course</h5>
-                                <p id="courseName"></p>
-                            </div>
-                            <div class="course-info d-flex justify-content-between align-items-center">
-                                <h5>Date</h5>
-                                <p id="date"> </p>
-                            </div>
-                            <div class="course-info d-flex justify-content-between align-items-center">
-                                <h5>Bank Transfer</h5>
-                            </div>
-                            <div class="align-items-center  d-flex  " style="margin-left:50px;">
-                                <input class="check-input" type="radio" name="flexRadioDefault" id="bri" value="bri">
-                                <label class="form-check-label" for="bri">
-                                    BRI
-                                </label>
-                            </div>
-                            <div class="align-items-center  d-flex " style="margin-left:50px;">
-                                <input class="check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    MANDIRI
-                                </label>
-                            </div>
-                            <div class="course-info d-flex justify-content-between align-items-center">
-                                <h5>Total Payment</h5>
-                                <h3 id="payment"></h3>
-                            </div>
+                                <div class="course-info d-flex justify-content-between align-items-center">
+                                    <h5>Name Course</h5>
+                                    <p id="courseName"></p>
+                                </div>
+                                <div class="course-info d-flex justify-content-between align-items-center">
+                                    <h5>Date</h5>
+                                    <p id="date"> </p>
+                                </div>
+                                <div class="course-info d-flex justify-content-between align-items-center">
+                                    <h5>Bank Transfer</h5>
+                                </div>
+                                <div class="align-items-center  d-flex  " style="margin-left:50px;">
+                                    <input class="check-input" type="radio" name="flexRadioDefault" id="bri" value="bri">
+                                    <label class="form-check-label" for="bri">
+                                        BRI
+                                    </label>
+                                </div>
+                                <div class="align-items-center  d-flex " style="margin-left:50px;">
+                                    <input class="check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        MANDIRI
+                                    </label>
+                                </div>
+                                <div class="course-info d-flex justify-content-between align-items-center">
+                                    <h5>Total Payment</h5>
+                                    <h3 id="payment"></h3>
+                                </div>
 
+
+                            </div>
+                            <div class="text-center"><button type="submit">Buy Now</button></div>
                         </div>
-                        <div class="text-center"><button type="submit" onclick="location.href='https://localhost:44344/Home/LoginPage'">Buy Now</button></div>
-                    </div>
-                        }
                     </div>
                 </form>
-
             </div>
-    </section><!-- End Appointment Section -->
-    <!-- ======= Appointment Section ======= -->
-    <section id="appointment" class="appointment">
-        <div class="container">
+        </section><!-- End Appointment Section -->
+        <!-- ======= Appointment Section ======= -->
 
-            <div class="section-title">
-                <h2>How To buy</h2>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <h4>Step Cara Membayar</h4>
-                    <p>Belajar lebih terarah dengan learning path dan code review</p>
-                    
+        <section id="appointment" class="appointment">
+            <div class="container">
 
+                <div class="section-title">
+                    <h2>How To buy</h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h4>Step Cara Membayar</h4>
+                        <p>Belajar lebih terarah dengan learning path dan code review</p>
+
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </section><!-- End Appointment Section -->
+        </section><!-- End Appointment Section -->
+    }
+    else
+    {
+        <section id="course-details" class="course-details why-us">
+            <div class="container" data-aos="fade-up">
+                <div class="text-center">
+                    <h2>You are not logged in!!</h2>
+                    <h2>Please Login First, Click the  Button <a href="https://localhost:44344/Home/LoginPage">Login</a>!!</h2>
+                </div>
+            </div>
+        </section><!-- End Cource Details Section -->
+    }
     <!-- ======= Appointment Section ======= -->
 </main><!-- End #main -->
 
