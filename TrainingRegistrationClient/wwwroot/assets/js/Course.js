@@ -26,15 +26,14 @@ $(document).ready(function () {
             {
                 "data": "",
                 "render": function (data, type, row, meta) {
-                    return row['statusCourse'];
+                    return `<p class="bg-info text-white">${row.statusCourse}</p>`;
                 }
             },
             {
                 "data": "",
                 'render': function (data, type, row, meta) {
-                    return `<td scope=" row">  <a class="btn btn-warning btn-sm text-light" data-url=""  onclick="getDetailWaitCourse('${row.courseId}')" title="Detail"><i class="fa fa-info-circle"></i> </a></td>
-                                    <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getCourse('${row.courseId}')"  title="Update"><i class="far fa-edit"></i></a></td>
-                                  <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="DeleteCourse('${row.courseId}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
+                    return `<td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getDetailWaitCourse('${row.courseId}')" title="Detail"><i class="fa fa-info-circle"></i> </a></td>
+                        `;
                 }
             }
         ]
@@ -104,14 +103,20 @@ $(document).ready(function () {
             {
                 "data": "",
                 "render": function (data, type, row, meta) {
-                    return row['statusCourse'];
+                    if (row['statusCourse'] == "Approved") {
+                   /*     return row['phone'].replace('0', '+62');*/
+                    return `<p class="bg-primary text-white">${row.statusCourse}</p>`;
+                    } else {
+                      
+                    return `<p class="bg-warning text-white">${row.statusCourse}</p>`;
+                    }
                 }
             },
             {
                 "data": "",
                 'render': function (data, type, row, meta) {
-                    return `<td scope=" row">  <a class="btn btn-warning btn-sm text-light" data-url=""  onclick="getDetailCourse('${row.courseId}')" title="Detail"><i class="fa fa-info-circle"></i> </a></td>
-                                    <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getCourse('${row.courseId}')"  title="Update"><i class="far fa-edit"></i></a></td>
+                    return `
+                               
                                   <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="DeleteCourse('${row.courseId}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
                 }
             }
@@ -274,7 +279,7 @@ function UpdateCourse1() {
     obj.CourseFee = $('#courseFee').val();
     obj.CourseImg = $('#courseImg').val();
     obj.TopicId = $('#topicId').val();
-    obj.TrainerId = $('#employeeId').val();
+    obj.employeeId = $('#employeeId').val();
     obj.StatusCourse = $('#statusCourse1').val();
     console.log(obj);
     $.ajax({
@@ -286,9 +291,9 @@ function UpdateCourse1() {
             icon: 'success',
             title: 'Success!',
             text: 'Data has been updated!'
+        }).then(function () {
+            window.location = "https://localhost:44344/auth/Course";
         });
-        $('#tableCourse').DataTable().ajax.reload();
-        $("#modalCourse").modal("hide");
     }).fail((error) => {
         Swal.fire({
             icon: 'error',
@@ -307,7 +312,7 @@ function UpdateCourse2() {
     obj.CourseFee = $('#courseFee').val();
     obj.CourseImg = $('#courseImg').val();
     obj.TopicId = $('#topicId').val();
-    obj.TrainerId = $('#employeeId').val();
+    obj.employeeId = $('#employeeId').val();
     obj.StatusCourse = $('#statusCourse2').val();
     console.log(obj);
     $.ajax({
@@ -319,9 +324,9 @@ function UpdateCourse2() {
             icon: 'success',
             title: 'Success!',
             text: 'Data has been updated!'
+        }).then(function () {
+            window.location = "https://localhost:44344/auth/Course";
         });
-        $('#tableCourse').DataTable().ajax.reload();
-        $("#modalCourse").modal("hide");
     }).fail((error) => {
         Swal.fire({
             icon: 'error',
