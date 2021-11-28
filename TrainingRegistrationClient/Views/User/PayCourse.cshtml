@@ -11,7 +11,7 @@
 
             <ol>
                 <li><a href="index.html">Home</a></li>
-                <li>Testimonial Page</li>
+                <li>Detail Course</li>
                 <li>Buy</li>
             </ol>
 
@@ -26,13 +26,55 @@
                 <h2>Magnam dolores commodi suscipit</h2>
             </div>
 
-            <form action="" method="post" role="form" class="php-email-form">
-                <div class="row justify-content-center">
+                <form action="" method="post" role="form" class="php-email-form">
+                    <div class="row justify-content-center">
+                        @if (@User.Identity.Name != null)
+                        {
+                            <div class="col-lg-4" id="materiDetail">
+                                <div class="content">
+                                    <div class="course-info d-flex justify-content-between align-items-center">
+                                        <h5>Name</h5>
+                                        <p id="Name">@User.Identity.Name</p>
+                                    </div>
+                                    <div class="course-info d-flex justify-content-between align-items-center">
+                                        <h5>Name Course</h5>
+                                        <p id="courseName"></p>
+                                    </div>
+                                    <div class="course-info d-flex justify-content-between align-items-center">
+                                        <h5>Date</h5>
+                                        <p id="date"> </p>
+                                    </div>
+                                    <div class="course-info d-flex justify-content-between align-items-center">
+                                        <h5>Bank Transfer</h5>
+                                    </div>
+                                    <div class="align-items-center  d-flex  " style="margin-left:50px;">
+                                        <input class="check-input" type="radio" name="flexRadioDefault" id="bri" value="bri">
+                                        <label class="form-check-label" for="bri">
+                                            BRI
+                                        </label>
+                                    </div>
+                                    <div class="align-items-center  d-flex " style="margin-left:50px;">
+                                        <input class="check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            MANDIRI
+                                        </label>
+                                    </div>
+                                    <div class="course-info d-flex justify-content-between align-items-center">
+                                        <h5>Total Payment</h5>
+                                        <h3 id="payment"></h3>
+                                    </div>
+
+                                </div>
+                                <div class="text-center"><button type="submit">Buy Now</button></div>
+                            </div>
+                        }
+                        else
+                        {
                     <div class="col-lg-4" id="materiDetail">
                         <div class="content">
                             <div class="course-info d-flex justify-content-between align-items-center">
                                 <h5>Name</h5>
-                                <p id="Name">sdasasdasd</p>
+                                <p id="Name">@User.Identity.Name</p>
                             </div>
                             <div class="course-info d-flex justify-content-between align-items-center">
                                 <h5>Name Course</h5>
@@ -51,7 +93,7 @@
                                     BRI
                                 </label>
                             </div>
-                            <div class="align-items-center  d-flex "style="margin-left:50px;">
+                            <div class="align-items-center  d-flex " style="margin-left:50px;">
                                 <input class="check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     MANDIRI
@@ -63,12 +105,13 @@
                             </div>
 
                         </div>
-                        <div class="text-center"><button type="submit">Buy Now</button></div>
-                        </div>
+                        <div class="text-center"><button type="submit" onclick="location.href='https://localhost:44344/Home/LoginPage'">Buy Now</button></div>
                     </div>
-            </form>
+                        }
+                    </div>
+                </form>
 
-        </div>
+            </div>
     </section><!-- End Appointment Section -->
     <!-- ======= Appointment Section ======= -->
     <section id="appointment" class="appointment">
