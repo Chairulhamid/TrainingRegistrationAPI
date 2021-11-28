@@ -36,5 +36,6 @@ namespace TrainingRegistrationClient.Controllers
         {
             return View();
         }
+      
     }
 }

@@ -33,7 +33,8 @@ namespace TrainingRegistrationClient.Repository.Data
             var result = httpClient.PostAsync(address.link + request + "RegisterCourse", content).Result;
             return result.StatusCode;
         }
-        //GET ALL STATUS == APPROVED / DITOLAK <<INI  UNTUK DI HALAMAN USER YANG BAGIAN AKAN DI JUAL>>
+
+        //GET ALL STATUS == APPROVED SAJA <<INI  UNTUK DI HALAMAN USER YANG BAGIAN AKAN DI JUAL
         public async Task<List<CourseVM>> GetAprovedCourse()
         {
 
@@ -46,7 +47,8 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
-        //GET STATUS == WAITING <<ADMIN>>
+
+        //GET STATUS == WAITING - HALMAN ADMIN
         public async Task<List<CourseVM>> GetWaitingCourse()
         {
 
@@ -59,7 +61,8 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
-        //GET STATUS != WAITING <<ADMIN>>
+
+        //GET STATUS != WAITING - DI ADMIN, DATA YANG DIAPPROVE MAUPUN DITOLAK
         public async Task<List<CourseVM>> GetActCourse()
         {
 
@@ -72,7 +75,8 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
-        //GET STATUS == WAITING BY ID <<ADMIN>>
+
+        //GET STATUS == WAITING BY ID - DATA YANG AKAN DI APPROVE BERDASARKAN ID
         public async Task<List<CourseVM>> GetWaitIdCourse(int id)
         {
             List<CourseVM> entities = new List<CourseVM>();
@@ -84,7 +88,7 @@ namespace TrainingRegistrationClient.Repository.Data
             }
             return entities;
         }
-        //GET != WAITING BY ID <<INI HANYA UNTUK TABEL DI ADMIN>>
+        //GET != WAITING BY ID - SUDAH DI APPROVE ATAUPUN DITOLAK <<INI HANYA UNTUK TABEL DI ADMIN>>
         public async Task<List<CourseVM>> GetActIdCourse(int id)
         {
             List<CourseVM> entities = new List<CourseVM>();

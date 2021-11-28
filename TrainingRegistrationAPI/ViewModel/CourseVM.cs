@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,6 +26,7 @@ namespace TrainingRegistrationAPI.ViewModel
         public int TrainerId { get; set; }
         public string TopicName { get; set; }
         public string TrainerName { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
         public StatusCourse StatusCourse { get; set; }
 
     }
