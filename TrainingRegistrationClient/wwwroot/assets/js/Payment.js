@@ -156,6 +156,7 @@ $(document).ready(function () {
 
 function getDetailPayment(paymentId) {
     console.log(paymentId)
+
     $.ajax({
         url: "/Payments/GetPayStatusId/" + paymentId,
         type: "GET",
@@ -186,7 +187,9 @@ function getDetailPayment(paymentId) {
             $('#bankAccount').prop('disabled', true);;
             $('#totalPayment').prop('disabled', true);;
             $('#paymentDate').prop('disabled', true);;
-            $('#status').prop('disabled', true);;
+            //$('#status').prop('disabled', true);;
+
+        
         },
         error: function (errormessage) {
             /*alert(errormessage.responseText);*/
@@ -199,3 +202,42 @@ function getDetailPayment(paymentId) {
     });
     return false;
 }
+
+function ChangeStatus() {
+    var paymentId = $('#paymentId').val();
+    var obj = new Object();
+    obj.paymentId = $('#paymentId').val();
+    obj.userId = $('#userId').val();
+    obj.FirstName = $('#firstName').val();
+    obj.LastName = $('#lastName').val();
+    obj.Email = $('#email').val();
+    obj.CourseName = $('#courseName').val();
+    obj.CourseFee = $('#courseFee').val();
+    obj.TotalPayment = $('#totalPayment').val();
+    obj.BankAccount = $('#bankAccount').val();
+    obj.PaymentDate = $('#paymentDate').val();
+    obj.status = $('#status').val();;
+    console.log(obj);
+    $.ajax({
+        url: "/Payments/PUT/" + paymentId,
+        type: "PUT",
+        data: { id: paymentId, entity: obj },
+        contentType: "application/json; charset=utf-8"
+    }).done((result) => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Data has been updated!'
+        });
+        mytable.ajax.reload();
+        $("#modalPayment").modal("hide");
+    }).fail((error) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops..',
+            text: 'Failed to update data'
+        });
+    });
+
+}
+
