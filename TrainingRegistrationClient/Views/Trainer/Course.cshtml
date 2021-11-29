@@ -106,7 +106,7 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-2 control-label text-right">Course Fee</label>
+                            <label class="col">Course Fee</label>
                             <div class="col-sm-12">
                                 <input name="courseFee" type="text" class="form-control" id="courseFee" placeholder="Course Fee" value="">
                             </div>
@@ -122,16 +122,15 @@
                     </div>
                     <div class="form-group" >
                         <div class="row" id="grupNameT">
-                            <label class="col-sm-2 control-label text-right">Trainer Name</label>
                             <div class="col-sm-12">
-                                <input name="employeeId" type="text" class="form-control" id="employeeId" placeholder="" value="@HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")">
+                                <input hidden name="employeeId" type="text" class="form-control" id="employeeId" placeholder="" value="@HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")">
                             </div>
                             @* <input type="number" class="form-control" id="role_id" name="role_id" placeholder="Role Id....">*@
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-2 control-label text-right">Course Img</label>
+                            <label class="col">Course Img</label>
                             <div class="col-sm-12">
                                 <input name="courseImg" type="text" class="form-control" id="courseImg" placeholder="Course Image" value="">
                             </div>

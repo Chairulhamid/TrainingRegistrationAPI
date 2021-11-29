@@ -442,10 +442,12 @@ $.ajax({
 //////////////////////////////////////////////////////////////////
 /*COURSE TRAINER*/
 //////////////////////////////////////////////////////////////////
+
+
 $(document).ready(function () {
     myTable = $('#tableCourseTrainer').DataTable({
         'ajax': {
-            'url': "https://localhost:44307/API/Courses/GetWaitingCourse",
+            'url': "https://localhost:44307/API/Courses/GetWaitingCourse/",
             'dataSrc': "",
         },
 
