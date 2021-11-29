@@ -50,7 +50,9 @@ namespace TrainingRegistrationClient.Controllers
             var jwtToken = await repository.Auth(loginEmp);
             var token = jwtToken.Token;
             var pesan = jwtToken.Messages;
+            var empId = jwtToken.EmpId;
 
+     
             if (token == "")
             {
                 if (pesan == "0")
@@ -64,10 +66,11 @@ namespace TrainingRegistrationClient.Controllers
             }
 
             HttpContext.Session.SetString("JWToken", token);
+            HttpContext.Session.SetInt32("SessionId", empId);
             /*HttpContext.Session.SetString("Name", jwtHandler.GetName(token));*/
             /*HttpContext.Session.SetString("ProfilePicture", "assets/img/theme/user.png");*/
 
-            return RedirectToAction("Index", "Auth");
+            return RedirectToAction("Index", "Trainer");
 
         }
 

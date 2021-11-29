@@ -218,8 +218,9 @@ function Update() {
 }
 
 $.ajax({
-    url: "https://localhost:44307/API/Courses/getcourse",
+    url: "https://localhost:44307/API/Courses/GetAprovedCourse",
     success: function (result) {
+        console.log(result)
         var optionRole = `<option value="" >Choose a Course</option>`;
         $.each(result, function (key, val) {
             optionRole += `
@@ -228,7 +229,7 @@ $.ajax({
         $('#courseId').html(optionRole);
     }
 });
-$.ajax({
+/*$.ajax({
     url: "https://localhost:44307/API/Courses/getcourse",
     success: function (result) {
         var optionRole = `<option value="" >Choose a Course</option>`;
@@ -238,4 +239,4 @@ $.ajax({
         });
         $('#courseId1').html(optionRole);
     }
-});
+});*/

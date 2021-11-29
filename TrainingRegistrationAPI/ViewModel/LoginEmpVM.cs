@@ -16,8 +16,9 @@ namespace TrainingRegistrationAPI.ViewModel
         [Required]
         public string Password { get; set; }
         public string[] Role { get; set; }
+        public int EmpId { get; set; }
 
-    /*    public string RoleName { get; set; }*/
+        /*    public string RoleName { get; set; }*/
     }
     
 }
