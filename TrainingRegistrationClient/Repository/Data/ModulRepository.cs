@@ -58,5 +58,17 @@ namespace TrainingRegistrationClient.Repository.Data
             var result = httpClient.PostAsync(address.link + request + "RegisterModul", content).Result;
             return result.StatusCode;
         }
+
+        public async Task<List<ModulCourseVM>> GetModulCourse(int EmployeeId)
+        {
+            List<ModulCourseVM> entities = new List<ModulCourseVM>();
+
+            using (var response = await httpClient.GetAsync(request + "GetModulCourse/" + EmployeeId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<ModulCourseVM>>(apiResponse);
+            }
+            return entities;
+        }
     }
 }

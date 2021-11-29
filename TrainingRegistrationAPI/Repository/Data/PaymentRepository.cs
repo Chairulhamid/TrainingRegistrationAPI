@@ -153,7 +153,7 @@ namespace TrainingRegistrationAPI.Repository.Data
         public IEnumerable<PaymentStatusVM> GetIdPayStatus(int paymentId)
         {
         
-          var getPatment = (from us in myContext.Users
+          var getPayment = (from us in myContext.Users
                               join rgt in myContext.RegisteredCourses on
                               us.UserId equals rgt.UserId
                               join cr in myContext.Courses on
@@ -176,7 +176,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   PaymentDate = pt.PaymentDate,
                                   Status = pt.Status,
                               }).Where(p => p.PaymentId == paymentId).Where(u => u.Status == 0).ToList();
-            return getPatment;
+            return getPayment;
         }
 
         //MATERI COURSE FOR USER
