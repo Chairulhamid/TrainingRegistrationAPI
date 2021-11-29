@@ -77,7 +77,7 @@
                             <ul>
                                 <li><a href="#">Profile</a></li>
                                 <li><a href="#">Settings</a></li>
-                                <li><a href="#">My Courses</a></li>
+                                <li><a href="user/MyCourse/@HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")">My Courses</a></li>
                                 <li>
                                     <a asp-area="" asp-controller="LoginUser" asp-action="Logout">Logout</a>
                                     <!--<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

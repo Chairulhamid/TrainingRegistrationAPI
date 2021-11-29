@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    Layout = "_LayoutSubUser";
+    Layout = "_LayoutUserCourse";
 }
+
 @using Microsoft.AspNetCore.Http;
 
 @inject IHttpContextAccessor HttpContextAccessor
@@ -129,5 +130,7 @@
     <script>
         var dataID = @ViewData["Id"];
         console.log(dataID);
+        var userID = @HttpContextAccessor.HttpContext.Session.GetInt32("SessionId");
+        console.log(userID);
     </script>
 }

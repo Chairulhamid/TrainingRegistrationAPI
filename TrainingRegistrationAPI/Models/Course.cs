@@ -17,6 +17,8 @@ namespace TrainingRegistrationAPI.Models
         public string CourseName { get; set; }
         public string CourseDesc { get; set; }
         public string CourseFee { get; set; }
+
+        [Display(Name = "Course Image")]
         public string CourseImg { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public StatusCourse StatusCourse { get; set; }

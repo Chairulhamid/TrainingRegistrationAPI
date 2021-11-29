@@ -141,6 +141,7 @@ namespace TrainingRegistrationAPI.Controller
                     Token = idToken,
                     Messages = "Login Berhasil!!",
                     UserId = userRepository.GetUserId(loginUserVM)
+                    //UserCourse = userRepository.GetUserCourses(userCourseVM)
                 });
                 
             }
