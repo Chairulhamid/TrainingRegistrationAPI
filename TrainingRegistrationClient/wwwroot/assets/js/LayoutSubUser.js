@@ -190,7 +190,7 @@ function BuyNow(userId, courseId) {
             text: 'Register Successful!'
 
         }).then(function () {
-            window.location = "https://localhost:44344/user/DetailCourse/PayCourse/PayCourseSuccess/" + courseId;
+            window.location = "https://localhost:44344/user/PaymentPage/" + userId;
         }).fail((error) => {
             Swal.fire({
                 icon: 'error',
@@ -217,7 +217,7 @@ function getPayCoursePayment(userId) {
                                  <td>${val.status}</td>
                             </tr>`
             });
-            $('#tablePayment').html(listPayment);
+            $('#tablePayments').html(listPayment);
         }
     })
 }
