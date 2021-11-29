@@ -183,6 +183,24 @@ namespace TrainingRegistrationAPI.Repository.Data
                           }).Where(p => p.StatusCourse == StatusCourse.Approved).Where(u => u.CourseId == key).ToList();
             return result;
         }
+        public IEnumerable<LearnCourseVM> GetLearnCourse(int key)
+        {
+            var result = (from c in myContext.Courses
+                          join m in myContext.Moduls on c.CourseId equals m.CourseId
+                          where c.CourseId == key
+                          select new LearnCourseVM()
+                          {
+                              CourseId = c.CourseId,
+                              CourseName = c.CourseName,
+                              CourseDesc = c.CourseDesc,
+                              CourseImg = c.CourseImg,
+                              ModulId = m.ModulId,
+                              ModulTittle = m.ModulTittle,
+                              ModulDesc = m.ModulDesc,
+                              ModulContent = m.ModulContent,
+                          }).Where(u => u.CourseId == key).ToList();
+            return result;
+        }
 
         public int GetId(int id)
         {

@@ -43,6 +43,12 @@ namespace TrainingRegistrationClient.Controllers
         {
             return View();
         }
+        [Route("user/MyCourse/LearnCourse/{Id}")]
+        public IActionResult LearnCourse(string Id)
+        {
+            ViewData["Id"] = Id;
+            return View();
+        }
         [Route("user/DetailCourse/{Id}")]
         public IActionResult DetailCourse(string Id)
         {
@@ -50,10 +56,10 @@ namespace TrainingRegistrationClient.Controllers
             return View();
         }
 
-        [Route("user/MyCourse/{Id}")]
-        public IActionResult MyCourse(string Id)
+        [Route("user/MyCourse/{courseId}")]
+        public IActionResult MyCourse(string courseId)
         {
-            ViewData["Id"] = Id;
+            ViewData["Id"] = courseId;
             return View();
         }
 

@@ -205,6 +205,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   RegisteredCourseId = rgt.RegisteredCourseId,
                                   PaymentId = pt.PaymentId,
                                   UserId = us.UserId,
+                                  ModulId = ml.ModulId,
                                   CourseId = cr.CourseId,
                                /*   ModulId = ml.ModulId,*/
                               }).Where(u => u.Status ==Status.Verified).Where(p => p.UserId == UserId).ToList();

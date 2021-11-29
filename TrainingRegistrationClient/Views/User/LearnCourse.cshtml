@@ -1,8 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    Layout = "_LayoutUserCourse";
+    Layout = "_LayoutSubUser";
 }
-
 @using Microsoft.AspNetCore.Http;
 
 @inject IHttpContextAccessor HttpContextAccessor
@@ -10,31 +9,32 @@
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
+    <div class="breadcrumbs" data-aos="fade-in">
         <div class="container">
-
-            <ol>
-                <li><a href="index.html">Home</a></li>
-                <li>Course Page</li>
-            </ol>
-            <h2>My Course Page</h2>
-
+            <h2>Lesson</h2>
         </div>
-    </section><!-- End Breadcrumbs -->
-
-    <section id="trainers" class="trainers">
+    </div><!-- End Breadcrumbs -->
+    <!-- ======= Cource Details Section ======= -->
+    <section id="course-details" class="course-details">
         <div class="container" data-aos="fade-up">
 
-            <div class="row" data-aos="zoom-in" data-aos-delay="100" id="myCourse">
-                
+            <div class="row">
+                <div class="col-lg-12">
+                    <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
+                    <h3>Et enim incidunt fuga tempora</h3>
+                    <p>
+                        Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus quam autem. Atque nostrum voluptatum laudantium a doloremque enim et ut dicta. Nostrum ducimus est iure minima totam doloribus nisi ullam deserunt. Corporis aut officiis sit nihil est. Labore aut sapiente aperiam.
+                        Qui voluptas qui vero ipsum ea voluptatem. Omnis et est. Voluptatem officia voluptatem adipisci et iusto provident doloremque consequatur. Quia et porro est. Et qui corrupti laudantium ipsa.
+                        Eum quasi saepe aperiam qui delectus quaerat in. Vitae mollitia ipsa quam. Ipsa aut qui numquam eum iste est dolorum. Rem voluptas ut sit ut.
+                    </p>
+                </div>
 
             </div>
 
         </div>
-    </section><!-- End Trainers Section -->
-    <!-- ======= Cource Details Section ======= -->
+    </section><!-- End Cource Details Section -->
     <!-- ======= Cource Details Tabs Section ======= -->
-    <!--<section id="cource-details-tabs" class="cource-details-tabs">
+    <section id="cource-details-tabs" class="cource-details-tabs">
         <div class="container" data-aos="fade-up">
 
             <div class="row">
@@ -63,12 +63,12 @@
                         <div class="tab-pane active show" id="tab-1">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Architecto ut aperiam autem id</h3>
+                                    <h3>Materi</h3>
                                     <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
                                     <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="/assets/img/hero-img.png" alt="" class="img-fluid">
+                                    <img src="assets/img/course-details-tab-1.png" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                     <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio nesciunt eaque beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="/assets/img/hero-img.png" alt="" class="img-fluid">
+                                    <img src="assets/img/course-details-tab-2.png" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                     <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="/assets/img/hero-img.png" alt="" class="img-fluid">
+                                    <img src="assets/img/course-details-tab-3.png" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                                     <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed qui veritatis aperiam quia a laborum inventore</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="/assets/img/hero-img.png" alt="" class="img-fluid">
+                                    <img src="assets/img/course-details-tab-4.png" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -116,57 +116,20 @@
                                     <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="/assets/img/hero-img.png" alt="" class="img-fluid">
+                                    <img src="assets/img/course-details-tab-5.png" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-    </section>-->
-    <!-- End Cource Details Tabs Section -->
-    <!-- ======= Popular Courses Section ======= -->
-    <!--<section id="popular-courses" class="courses">
-        <div class="container" data-aos="fade-up" >
-            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+    </section><!-- End Cource Details Tabs Section -->
 
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" id="" >-->
-    @*<div class="course-item">
-            <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
-            <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4>Web Development</h4>
-                    <p class="price">$169</p>
-                </div>
-
-                <h3><a href="course-details.html">Website Design</a></h3>
-                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                    <div class="trainer-profile d-flex align-items-center">
-                        <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                        <span>Antonio</span>
-                    </div>
-                    <div class="trainer-rank d-flex align-items-center">
-                        <i class="bx bx-user"></i>&nbsp;50
-                        &nbsp;&nbsp;
-                        <i class="bx bx-heart"></i>&nbsp;65
-                    </div>
-                </div>
-            </div>
-        </div>*@
-    <!--</div>--> <!-- End Course Item-->
-    <!--</div>
-        </div>
-    </section>-->
-    <!-- End Popular Courses Section -->
 </main><!-- End #main -->
 @section Scripts {
     <script>
-        var dataID = @ViewData["Id"];
-        console.log(dataID);
-        var userID = @HttpContextAccessor.HttpContext.Session.GetInt32("SessionId");
-        console.log(userID);
+        var dataData = @ViewData["Id"];
+        console.log(dataData);
     </script>
 }

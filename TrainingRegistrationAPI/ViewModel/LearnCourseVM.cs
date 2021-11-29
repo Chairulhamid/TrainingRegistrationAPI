@@ -9,23 +9,16 @@ using TrainingRegistrationAPI.Models;
 
 namespace TrainingRegistrationAPI.ViewModel
 {
-    public class TrainingCourseVM
+    public class LearnCourseVM
     {
         [Required]
-        public int UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        [JsonConverter(typeof(StringEnumConverter))]
-        public Status Status { get; set; }
+        public int CourseId { get; set; }
+        public int ModulId { get; set; }
         public string CourseName { get; set; }
         public string CourseDesc { get; set; }
         public string CourseImg { get; set; }
         public string ModulTittle { get; set; }
         public string ModulDesc { get; set; }
         public string ModulContent { get; set; }
-        public int RegisteredCourseId { get; set; }
-        public int CourseId { get; set; }
-        public int ModulId { get; set; }
-        public int PaymentId { get; set; }
     }
 }
