@@ -39,6 +39,8 @@
     <script>
         var dataID = @ViewData["Id"];
         console.log(dataID);
+        var dataLearn = @ViewData["Id"];
+        console.log(dataLearn);
         var userID = @HttpContextAccessor.HttpContext.Session.GetInt32("SessionId");
         console.log(userID);
     </script>

@@ -10,7 +10,8 @@
     }
 });*/
 $(document).ready(function () {
- /*   getMyCourse(userID);*/
+    /*   getMyCourse(userID);*/
+    //dataId tidak masuk
     getDCourse(dataID);
     getPayCourse(dataID);
     getPayCoursePayment(userId);

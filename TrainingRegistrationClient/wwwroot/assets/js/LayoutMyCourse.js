@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    getMyCourse(userID);
+    getMyCourse(dataID);
     getLearnCourse(dataLearn);
 });
 function getMyCourse(SessionId) {
@@ -109,8 +109,8 @@ function getMyCourse(SessionId) {
             alert(data.responseText);
         } //End of AJAX error function  
     });
-}
-*/
+}*/
+
 /*$(document).ready(function () {
     $.ajax({
         type: "GET",
