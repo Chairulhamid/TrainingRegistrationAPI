@@ -39,5 +39,11 @@ namespace TrainingRegistrationClient.Controllers
             return Json(result);
         }
 
+        public async Task<JsonResult> GetModulCourse(int EmployeeId)
+        {
+            var result = await repository.GetModulCourse(EmployeeId);
+            return Json(result);
+        }
+
     }
 }

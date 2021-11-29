@@ -149,11 +149,72 @@ namespace TrainingRegistrationAPI.Repository.Data
                               }).ToArray();
             return getPatment;
         }
+
+        //show payment status for user where status is notpaid
+        public IEnumerable<PaymentStatusVM> GetPayStatusUserId(int id)
+        {
+            var getPatment = (from u in myContext.Users
+                              join rc in myContext.RegisteredCourses on
+                              u.UserId equals rc.UserId
+                              join c in myContext.Courses on
+                              rc.CourseId equals c.CourseId
+                              join p in myContext.Payments on
+                              rc.RegisteredCourseId equals p.RegisteredCourseId
+                              where u.UserId == id && p.Status == 0
+                              select new PaymentStatusVM
+                              {
+                                  RegisteredCourseId = rc.RegisteredCourseId,
+                                  PaymentId = p.PaymentId,
+                                  TotalPayment = p.TotalPayment,
+                                  UserId = u.UserId,
+                                  CourseId = c.CourseId,
+                                  BankAccount = p.BankAccount,
+                                  FirstName = u.FirstName,
+                                  LastName = u.LastName,
+                                  Email = u.Email,
+                                  CourseName = c.CourseName,
+                                  CourseFee = c.CourseFee,
+                                  PaymentDate = p.PaymentDate,
+                                  Status = p.Status
+                              }).ToArray();
+            return getPatment;
+        }
+
+        //show payment status for user where status is verified
+        public IEnumerable<PaymentStatusVM> GetPayStatusUserIdVerified(int id)
+        {
+            var getPatment = (from u in myContext.Users
+                              join rc in myContext.RegisteredCourses on
+                              u.UserId equals rc.UserId
+                              join c in myContext.Courses on
+                              rc.CourseId equals c.CourseId
+                              join p in myContext.Payments on
+                              rc.RegisteredCourseId equals p.RegisteredCourseId
+                              where u.UserId == id && p.Status == Status.Verified
+                              select new PaymentStatusVM
+                              {
+                                  RegisteredCourseId = rc.RegisteredCourseId,
+                                  PaymentId = p.PaymentId,
+                                  TotalPayment = p.TotalPayment,
+                                  UserId = u.UserId,
+                                  CourseId = c.CourseId,
+                                  BankAccount = p.BankAccount,
+                                  FirstName = u.FirstName,
+                                  LastName = u.LastName,
+                                  Email = u.Email,
+                                  CourseName = c.CourseName,
+                                  CourseFee = c.CourseFee,
+                                  PaymentDate = p.PaymentDate,
+                                  Status = p.Status
+                              }).ToArray();
+            return getPatment;
+        }
+
         //GET NOT PAID BY ID
         public IEnumerable<PaymentStatusVM> GetIdPayStatus(int paymentId)
         {
         
-          var getPatment = (from us in myContext.Users
+          var getPayment = (from us in myContext.Users
                               join rgt in myContext.RegisteredCourses on
                               us.UserId equals rgt.UserId
                               join cr in myContext.Courses on
@@ -176,7 +237,7 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   PaymentDate = pt.PaymentDate,
                                   Status = pt.Status,
                               }).Where(p => p.PaymentId == paymentId).Where(u => u.Status == 0).ToList();
-            return getPatment;
+            return getPayment;
         }
 
         //MATERI COURSE FOR USER
