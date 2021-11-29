@@ -12,5 +12,6 @@ namespace TrainingRegistrationAPI.Repository.Data
         public AccountRoleRepository(MyContext myContext) : base(myContext)
         {
         }
+
     }
 }

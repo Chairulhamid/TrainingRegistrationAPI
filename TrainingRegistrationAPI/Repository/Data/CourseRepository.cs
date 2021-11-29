@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -209,6 +210,18 @@ namespace TrainingRegistrationAPI.Repository.Data
                 return 1;
             }
             return 0;
+        }
+
+        public IEnumerable GetStatusCourse()
+        {
+            var result = from Course in myContext.Courses
+                         group Course by Course.StatusCourse into x
+                         select new
+                         {
+                             StatusCourse = x.Key,
+                             value = x.Count()
+                         };
+            return result;
         }
 
 

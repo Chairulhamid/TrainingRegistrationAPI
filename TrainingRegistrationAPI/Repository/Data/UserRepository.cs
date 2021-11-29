@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -223,6 +224,17 @@ namespace TrainingRegistrationAPI.Repository.Data
         {
             var checkName = myContext.Users.Where(e => e.Email == email).FirstOrDefault();
             return checkName.FirstName + " " + checkName.LastName;
+        }
+        public object[] GetUser()
+        {
+            var label1 = (from user in myContext.Users
+                          select new
+                          {
+                              value = myContext.Users.Count()
+                          }).First();
+            List<Object> result = new List<Object>();     
+            result.Add(label1);
+            return result.ToArray();
         }
 
     }

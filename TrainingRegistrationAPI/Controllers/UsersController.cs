@@ -161,6 +161,21 @@ namespace TrainingRegistrationAPI.Controller
                 return Ok(result);
             }
         }
+        [Route("CountUser")]
+        [HttpGet]
+        public ActionResult<RegisterUserVM> GetUser()
+        {
+
+            var getSalary = userRepository.GetUser();
+            if (getSalary != null)
+            {
+                return Ok(new { status = HttpStatusCode.OK, result = getSalary, message = "Data berhasil ditampilkan" });
+            }
+            else
+            {
+                return NotFound(new { status = HttpStatusCode.NotFound, result = getSalary, message = "Tidak ada data di sini" });
+            }
+        }
 
     }
 }
