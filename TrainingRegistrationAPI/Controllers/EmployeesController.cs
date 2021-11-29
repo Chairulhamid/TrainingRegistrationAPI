@@ -109,7 +109,7 @@ namespace TrainingRegistrationAPI.Controllers
                 {
                     listRole.Add(item.Role);
                 }
-                var data = new LoginUserVM()
+                var data = new LoginEmpVM()
                 {
                     Email = loginEmpVM.Email,
                     Role = listRole.ToArray()
@@ -138,7 +138,8 @@ namespace TrainingRegistrationAPI.Controllers
                 return Ok(new JWTokenVM
                 {
                     Token = idToken,
-                    Messages = "Login Berhasil!!"
+                    Messages = "Login Berhasil!!",
+                     EmpId = employeeRepository.GetEmpId(loginEmpVM)
                 });
             }
             return NotFound(new JWTokenVM { Token = "", Messages = "1" });

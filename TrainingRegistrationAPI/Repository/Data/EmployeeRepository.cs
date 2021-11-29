@@ -20,6 +20,11 @@ namespace TrainingRegistrationAPI.Repository.Data
         {
             this.myContext = myContext;
         }
+        public int GetEmpId(LoginEmpVM loginEmpVM)
+        {
+            var id = (from u in myContext.Employees where u.Email == loginEmpVM.Email select u.EmployeeId).FirstOrDefault();
+            return id;
+        }
 
         public IEnumerable<RegisterEmpVM> GetProfile()
         {

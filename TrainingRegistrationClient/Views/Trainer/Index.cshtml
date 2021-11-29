@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutPanelEmp";
+}
+<div class="m-3">
+    <h3>Hallo <span class="text-primary">@User.Identity.Name </span> , </h3>
+    <h5 class="text-dark ml-5">Welcome To Trainer Page</h5>
+</div>
+<!-- ======= About Section ======= -->
+<section id="about" class="about" style="border: 2px solid #9195a2;padding:15px">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row">
+            <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                <h3 class="text-center">Buat Kursus yang Menarik.</h3>
+                <p class="fst-italic">
+                    Baik pengajar dengan pengalaman bertahun-tahun maupun pengajar pemula, Anda bisa membuat kursus yang menarik. Kami telah menghimpun sumber daya dan tips untuk membantu Anda meningkatkan keahlian membuat kursus, tanpa melihat berapa lama pengalaman Anda.
+                </p>
+            </div>
+        </div>
+            <a style="background: #37517e;" href="https://localhost:44344/Trainer/Course"  type="button" name="submit" class="btn btn-sm btn-block  mt-3 text-white">Buat Kursus Anda</a>
+
+    </div>
+</section><!-- End About Section -->
