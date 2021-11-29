@@ -113,17 +113,6 @@ namespace TrainingRegistrationAPI.Controllers
             }
             return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
         }
-        //GET == COURSE BY ID <<INI  UNTUK AKAN DITAMPILKAN DI HALAMAN LEARN>>
-        [HttpGet("GetLearnCourse/{CourseId}")]
-        public ActionResult GetLearnCourse(int courseId)
-        {
-            var result = courseRepository.GetLearnCourse(courseId);
-            if (result != null)
-            {
-                return Ok(result);
-            }
-            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
-        }
 
 
     /*    [Route("GetCourse/{key}")]

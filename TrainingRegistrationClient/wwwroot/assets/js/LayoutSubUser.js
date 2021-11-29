@@ -10,11 +10,7 @@
     }
 });*/
 $(document).ready(function () {
-    getDCourse(dataCourse);
- /*   getPayCourse(dataID);*/
-});
-$(document).ready(function () {
-  /*  getDCourse(dataCourse);*/
+    getDCourse(dataID);
     getPayCourse(dataID);
 });
 

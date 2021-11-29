@@ -125,7 +125,9 @@
         $("#date").html(today);
     </script>
     <script>
+        var dataID = @ViewData["Id"];
         var userId = @HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")
+            console.log(dataID);
         console.log(userId)
     </script>
 }
