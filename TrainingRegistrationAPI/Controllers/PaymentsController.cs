@@ -100,6 +100,35 @@ namespace TrainingRegistrationAPI.Controllers
             return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
 
         }
+
+        //get payment status for a user where status is unpaid
+        [Route("GetPayStatusUserId/{id}")]
+        [HttpGet]
+        public ActionResult<PaymentStatusVM> GetPayStatusUserId(int id)
+        {
+            var result = paymentRepository.GetPayStatusUserId(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
+
+        }
+
+        //get payment status for a user where status is verified
+        [Route("GetPayStatusUserIdVerified/{id}")]
+        [HttpGet]
+        public ActionResult<PaymentStatusVM> GetPayStatusUserIdVerified(int id)
+        {
+            var result = paymentRepository.GetPayStatusUserIdVerified(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
+
+        }
+
         //GET STATUS NOT PAID BY ID
         /*[Authorize(Roles = "Admin")]*/
         //[EnableCors("AllowOrigin")]

@@ -12,6 +12,8 @@
 $(document).ready(function () {
     getDCourse(dataID);
     getPayCourse(dataID);
+    getPayCoursePayment(userId);
+    getPayCoursePaymentVerified(userId)
 });
 
 function getDCourse(courseId) {
@@ -82,6 +84,7 @@ function getDCourse(courseId) {
         } //End of AJAX error function  
     });
 }
+
 function maketextnumber(n) {
     for (var r = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], e = n, t = new Array, a = 0; a <= e - 1; a++) {
         t[a] = r[parseInt(Math.random() * r.length)];
@@ -154,3 +157,94 @@ function BuyNow(userId, courseId) {
         });
     });
 }
+function getPayCoursePayment(userId) {
+    console.log(userId)
+    $.ajax({
+        url: "https://localhost:44307/API/Payments/GetPayStatusUserId/" + userId,
+        success: function (result) {
+            console.log(result);
+            var listPayment = ""
+            $.each(result, function (key, val) {
+                listPayment += `<tr>
+                                <td>${val.paymentId}</td>
+                                 <td>${val.courseName}</td>
+                                <td>${val.courseFee}</td>
+                                 <td>${val.totalPayment}</td>
+                                <td>${val.bankAccount}</td>
+                                 <td>${val.status}</td>
+                            </tr>`
+            });
+            $('#tablePayment').html(listPayment);
+        }
+    })
+}
+
+function getPayCoursePaymentVerified(userId) {
+    console.log(userId)
+    $.ajax({
+        url: "https://localhost:44307/API/Payments/GetPayStatusUserIdVerified/" + userId,
+        success: function (result) {
+            console.log(result);
+            var listPayment1 = ""
+            $.each(result, function (key, val) {
+                listPayment1 += `<tr>
+                                <td>${val.paymentId}</td>
+                                 <td>${val.courseName}</td>
+                                <td>${val.courseFee}</td>
+                                 <td>${val.totalPayment}</td>
+                                <td>${val.bankAccount}</td>
+                                 <td>${val.status}</td>
+                            </tr>`
+            });
+            $('#tablePaymentVerified').html(listPayment1);
+        }
+    })
+}
+
+/*function getPayCoursePayment(userId) {
+    console.log(userId)
+    $.ajax({
+        type: "GET",
+        url: "https://localhost:44307/API/Payments/GetPayStatusUserId/" + userId,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            $("#courseName1").html(data[0].courseName);
+            $("#payment1").html(data[0].totalPayment);
+            $("#bankAccount1").html(data[0].bankAccount);
+
+        }, //End of AJAX Success function  
+
+        failure: function (data) {
+            alert(data.responseText);
+        }, //End of AJAX failure function  
+        error: function (data) {
+            alert(data.responseText);
+        } //End of AJAX error function  
+    });
+}*/
+
+/*function getPayCoursePayment(userId) {
+    console.log(userId)
+    $.ajax({
+        type: "GET",
+        url: "https://localhost:44307/API/Payments/GetPayStatusUserId/" + userId,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            $("#DIV").html('');
+            var rows = '';
+            $.each(data, function (i, item) {
+                rows = ``;
+            });
+        }, //End of AJAX Success function  
+
+        failure: function (data) {
+            alert(data.responseText);
+        }, //End of AJAX failure function  
+        error: function (data) {
+            alert(data.responseText);
+        } //End of AJAX error function  
+    });
+}*/
