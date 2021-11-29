@@ -113,7 +113,26 @@ namespace TrainingRegistrationAPI.Repository.Data
             return getModulCourse;
         }
 
-        
+        public IEnumerable<ModulCourseVM> GetCourseModul(int courseId)
+        {
+            var getModulCourse = (from m in myContext.Moduls
+                                  join c in myContext.Courses on m.CourseId equals c.CourseId
+                                  where m.CourseId == courseId && c.StatusCourse == StatusCourse.Approved
+                                  select new ModulCourseVM
+                                  {
+                                      CourseName = c.CourseName,
+                                      CourseDesc = c.CourseDesc,
+                                      CourseImg = c.CourseImg,
+                                      ModulTittle = m.ModulTittle,
+                                      ModulDesc = m.ModulDesc,
+                                      ModulContent = m.ModulContent,
+                                      CourseId = c.CourseId,
+                                      ModulId = m.ModulId,
+                                  }).ToList();
+            return getModulCourse;
+        }
+
+
 
     }
 }
