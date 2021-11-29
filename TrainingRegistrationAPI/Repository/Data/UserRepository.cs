@@ -49,8 +49,55 @@ namespace TrainingRegistrationAPI.Repository.Data
         public int GetUserId(LoginUserVM loginVM)
         {
             var id = (from u in myContext.Users where u.Email == loginVM.Email select u.UserId).FirstOrDefault();
+            /*if (id != 0)
+            {
+                var userCourses = (from u in myContext.Users
+                                   join rc in myContext.RegisteredCourses on
+                                   u.UserId equals rc.UserId
+                                   join c in myContext.Courses on
+                                   rc.CourseId equals c.CourseId
+                                   join p in myContext.Payments on
+                                   rc.RegisteredCourseId equals p.RegisteredCourseId
+                                   select new LoginUserVM
+                                   {
+                                       UserId = u.UserId,
+                                       Email = u.Email,
+                                       RegisteredCourseId = rc.RegisteredCourseId,
+                                       CourseId = rc.CourseId,
+                                       CourseName = c.CourseName,
+                                       CourseDesc = c.CourseDesc,
+                                       CourseImg = c.CourseImg,
+                                       PaymentId = p.PaymentId,
+                                       Status = p.Status
+                                   }).ToList();
+                return userCourses;
+            }*/
             return id;
         }
+
+        /*public IEnumerable<UserCourseVM> GetUserCourses(UserCourseVM userCourseVM)
+        {
+            var userCourses = (from u in myContext.Users
+                               join rc in myContext.RegisteredCourses on
+                               u.UserId equals rc.UserId
+                               join c in myContext.Courses on
+                               rc.CourseId equals c.CourseId
+                               join p in myContext.Payments on
+                               rc.RegisteredCourseId equals p.RegisteredCourseId
+                               select new UserCourseVM
+                               {
+                                   UserId = u.UserId,
+                                   Email =  u.Email,
+                                   RegisteredCourseId = rc.RegisteredCourseId,
+                                   CourseId = rc.CourseId,
+                                   CourseName =  c.CourseName,
+                                   CourseDesc = c.CourseDesc,
+                                   CourseImg = c.CourseImg,
+                                   PaymentId =  p.PaymentId,
+                                   Status = p.Status
+                               }).Where(u => u.Email == userCourseVM.Email).FirstOrDefault();
+            return userCourses;
+        }*/
 
         public IEnumerable<RegisterUserVM> GetIdProfile(int UserId)
         {

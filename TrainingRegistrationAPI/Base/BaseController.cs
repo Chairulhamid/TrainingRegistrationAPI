@@ -20,6 +20,17 @@ namespace TrainingRegistrationAPI.Controller.Base
         {
             this.repository = repository;
         }
+
+        public abstract class HttpPostedFileBase
+        {
+            public string FileName { get; set; }
+
+            public void SaveAs(object p)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         [HttpGet]
         public ActionResult<Entity> Get()
         {

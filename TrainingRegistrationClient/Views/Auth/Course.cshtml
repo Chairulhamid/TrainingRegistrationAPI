@@ -1,4 +1,6 @@
-﻿@{
+﻿@model TrainingRegistrationAPI.Models.Course
+
+@{
     ViewData["Title"] = "Home Page";
     Layout = "_LayoutAdmin";
 }
@@ -14,7 +16,6 @@
 <!--<button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCourse">
     Add Course
 </button>-->
-
 <!-- Tabel Course-->
 <div class="card shadow mb-4" style="margin-top:10px;">
     <div class="card-header py-3">
@@ -135,7 +136,7 @@
                         <div class="row">
                             <label class="col-sm-2 control-label text-right">Course Img</label>
                             <div class="col-sm-12">
-                                <input name="courseImg" type="text" class="form-control" id="courseImg" placeholder="Course Image" value="">
+                                <input name="courseImg" type="text" class="form-control upload" id="courseImg" placeholder="Course Image" value="file">
                             </div>
                         </div>
                     </div>
@@ -150,11 +151,11 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="statusCourse1" value="1" onclick="UpdateCourse1()";>
+                <button type="button" class="btn btn-success" id="statusCourse1" value="1" onclick="UpdateCourse1()" ;>
                     <i class="fa fa-check"></i> Approve
                 </button>
 
-                <button type="button" class="btn btn-danger" id="statusCourse2" value="2" onclick="UpdateCourse2()";>
+                <button type="button" class="btn btn-danger" id="statusCourse2" value="2" onclick="UpdateCourse2()" ;>
                     <i class="fa fa-times"></i> Decline
                 </button>
                 <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Close</button>

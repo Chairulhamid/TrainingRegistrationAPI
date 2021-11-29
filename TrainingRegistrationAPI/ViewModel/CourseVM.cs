@@ -20,7 +20,9 @@ namespace TrainingRegistrationAPI.ViewModel
         public string CourseDesc { get; set; }
         [Required]
         public string CourseFee { get; set; }
+
         [Required]
+        [Display(Name = "Course Image")]
         public String CourseImg { get; set; }
         public int TopicId { get; set; }
         public int TrainerId { get; set; }

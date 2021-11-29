@@ -1,17 +1,4 @@
 ﻿
-/*$.ajax({
-    url: "https://localhost:44307/API/Roles",
-    success: function (result) {
-        var optionRole = `<option value="" >---Choose Role---</option>`;
-        $.each(result, function (key, val) {
-            optionRole += `
-                            <option value="${val.roleId}">${val.roleName}</option>`;
-        });
-        $('#role_id').html( );
-    }
-});
-
-*/
 $(document).ready(function () {
     $.ajax({
         type: "GET",
@@ -50,5 +37,6 @@ $(document).ready(function () {
         } //End of AJAX error function  
     });
 });
+
 
 
