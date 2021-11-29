@@ -95,6 +95,28 @@ namespace TrainingRegistrationAPI.Repository.Data
                          }).Where(p => p.StatusCourse == 0).ToList();
             return result;
         }
+
+        public IEnumerable<CourseVM> GetWaitingCourse(int id)
+        {
+            var result = (from t in myContext.Topics
+                          join c in myContext.Courses on t.TopicId equals c.TopicId
+                          join e in myContext.Employees on c.EmployeeId equals e.EmployeeId
+                          where e.EmployeeId == id
+                          select new CourseVM()
+                          {
+                              CourseId = c.CourseId,
+                              CourseName = c.CourseName,
+                              CourseDesc = c.CourseDesc,
+                              CourseFee = c.CourseFee,
+                              CourseImg = c.CourseImg,
+                              StatusCourse = c.StatusCourse,
+                              TopicId = c.TopicId,
+                              TrainerId = c.EmployeeId,
+                              TopicName = t.TopicName,
+                              TrainerName = e.FirstName + ' ' + e.LastName,
+                          }).Where(p => p.StatusCourse == 0).ToList();
+            return result;
+        }
         //GET STATUS != WAITING
         public IEnumerable<CourseVM> GetActCourse()
         {

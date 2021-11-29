@@ -69,6 +69,18 @@ namespace TrainingRegistrationAPI.Controllers
             }
             return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
         }
+
+        [HttpGet("GetWaitingCourse/{id}")]
+        public ActionResult GetWaitingCourse(int id)
+        {
+            var result = courseRepository.GetWaitingCourse(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
+        }
+
         //GET STATUS != WAITING
         [HttpGet("GetActCourse")]
         public ActionResult GetActCourse()
