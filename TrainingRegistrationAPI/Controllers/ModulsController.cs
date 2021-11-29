@@ -84,5 +84,21 @@ namespace TrainingRegistrationAPI.Controllers.Base
                 return Ok(result);
             }
         }
+
+        //GET ModulCourse BY ID
+        /*[Authorize(Roles = "Admin")]*/
+        //[EnableCors("AllowOrigin")]
+        [Route("GetModulCourse/{EmployeeId}")]
+        [HttpGet]
+        public ActionResult<ModulCourseVM> GetModulCourse(int EmployeeId)
+        {
+            var result = modulRepository.GetModulCourse(EmployeeId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
+        }
+
     }
 }
