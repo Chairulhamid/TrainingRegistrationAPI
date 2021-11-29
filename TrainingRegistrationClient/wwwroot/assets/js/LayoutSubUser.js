@@ -1,9 +1,4 @@
-﻿
-
-
-
-
-/*$.ajax({
+﻿/*$.ajax({
     url: "https://localhost:44307/API/Roles",
     success: function (result) {
         var optionRole = `<option value="" >---Choose Role---</option>`;
@@ -97,6 +92,7 @@ function maketextnumber(n) {
 }
 var hasil = (maketextnumber(3), randomtextnumber);
 
+
 function getPayCourse(courseId) {
     console.log(courseId)
     $.ajax({
@@ -111,6 +107,7 @@ function getPayCourse(courseId) {
             const rupiah = 'Rp ' + convert.join('.').split('').reverse().join('').substr(0,3)
             $("#courseName").html(data[0].courseName);
             $("#payment").html(rupiah + hasil);
+           
         }, //End of AJAX Success function  
 
         failure: function (data) {
@@ -122,3 +119,38 @@ function getPayCourse(courseId) {
     });
 }
 
+function BuyNow(userId, courseId) {
+    console.log(userId, courseId)
+    var obj = new Object();
+    var payment = document.getElementById("payment").innerHTML;
+    var result = payment.substring(3);
+    var total = parseInt(result);
+    obj.UserId = userId;
+    //obj.UserId = $('#userId').val();
+    obj.CourseId = courseId;
+    obj.PaymentDate = $('#date').val();
+    obj.BankAccount = $('#bankAccount').val();
+    obj.TotalPayment = total;
+    console.log(obj)
+    $.ajax({
+        url: "/Payments/RegisterPay",
+        'type': 'POST',
+        'data': { entity: obj }, //objek kalian
+        'dataType': 'json',
+    }).done((result) => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Register Successful!'
+
+        }).then(function () {
+            window.location = "https://localhost:44344/user/DetailCourse/PayCourse/PayCourseSuccess/" + courseId;
+        }).fail((error) => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops..',
+                text: 'Failed to Register'
+            });
+        });
+    });
+}
