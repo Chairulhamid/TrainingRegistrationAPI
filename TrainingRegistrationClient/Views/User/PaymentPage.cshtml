@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutSubUser";
+}
+@using Microsoft.AspNetCore.Http;
+
+@inject IHttpContextAccessor HttpContextAccessor
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    @if (@User.Identity.Name != null)
+    {
+        <h4 style="margin-top: 85px;">Payments Status</h4>
+        <section id="payment" class="appointment section-bg" style="margin-top:15px;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Payment Id</th>
+                        <th scope="col">Course Name</th>
+                        <th scope="col">Course Fee</th>
+                        <th scope="col">Total Payment</th>
+                        <th scope="col">Bank Account Number</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="tablePayment">
+                </tbody>
+            </table>
+        </section>
+
+        <section id="payment" class="appointment section-bg" style="margin-top:15px;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Payment Id</th>
+                        <th scope="col">Course Name</th>
+                        <th scope="col">Course Fee</th>
+                        <th scope="col">Total Payment</th>
+                        <th scope="col">Bank Account Number</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="tablePaymentVerified">
+                </tbody>
+            </table>
+        </section><!-- End Appointment Section -->
+        <!-- ======= Appointment Section ======= -->
+
+        <section id="appointment" class="appointment">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>How To buy</h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h4>Step Cara Membayar</h4>
+
+                        <ol>
+                            <li>Ambil nomor antrian transaksi Teller dan isi slip setoran</li>
+                            <li>Serahkan slip dan jumlah setoran kepada Teller Bank</li>
+                            <li>Teller bank akan melakukan validasi transaksi
+                            <li>Simpan slip setoran hasil validasi sebagai bukti pembayaran</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Appointment Section -->
+    }
+    else
+    {
+        <section id="course-details" class="course-details why-us">
+            <div class="container" data-aos="fade-up">
+                <div class="text-center">
+                    <h2>You are not logged in!!</h2>
+                    <h2>Please Login First, Click the  Button <a href="https://localhost:44344/Home/LoginPage">Login</a>!!</h2>
+                </div>
+            </div>
+        </section><!-- End Cource Details Section -->
+    }
+    <!-- ======= Appointment Section ======= -->
+</main><!-- End #main -->
+
+@section Scripts {
+    <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+        $("#date").html(today);
+    </script>
+    <script>
+        var dataID = @ViewData["Id"];
+        var userId = @HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")
+            console.log(dataID);
+        console.log(userId)
+    </script>
+}
