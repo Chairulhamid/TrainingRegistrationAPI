@@ -100,5 +100,17 @@ namespace TrainingRegistrationAPI.Controllers.Base
             return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
         }
 
+        [Route("GetCourseModul/{id}")]
+        [HttpGet]
+        public ActionResult<ModulCourseVM> GetCourseModul(int id)
+        {
+            var result = modulRepository.GetCourseModul(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
+        }
+
     }
 }

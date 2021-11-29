@@ -16,6 +16,7 @@ $(document).ready(function () {
     getPayCourse(dataID);
     getPayCoursePayment(userId);
     getPayCoursePaymentVerified(userId)
+    getCourseModul(dataID);
 });
 
 /*function getMyCourse(userID) {
@@ -243,6 +244,27 @@ function getPayCoursePaymentVerified(userId) {
         }
     })
 }
+
+function getCourseModul(courseId) {
+    console.log(courseId)
+    $.ajax({
+        url: "https://localhost:44307/API/Moduls/GetCourseModul/" + courseId,
+        success: function (result) {
+            console.log(result);
+            var listModul = ""
+            $.each(result, function (key, val) {
+                listModul += `  <ul class="nav nav-tabs flex-column">
+                                <li class="nav-item">
+                                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">${val.modulTittle}</a>
+                                </li>
+                                </ul>`
+            });
+            $('#modulNav').html(listModul);
+        }
+    })
+};
+
+
 
 /*function getPayCoursePayment(userId) {
     console.log(userId)
