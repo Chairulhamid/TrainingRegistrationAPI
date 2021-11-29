@@ -2,7 +2,9 @@
     ViewData["Title"] = "Home Page";
     Layout = "_LayoutSubUser";
 }
+@using Microsoft.AspNetCore.Http;
 
+@inject IHttpContextAccessor HttpContextAccessor
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -26,14 +28,15 @@
                 <div class="section-title">
                     <h2>Magnam dolores commodi suscipit</h2>
                 </div>
-
+                
                 <form action="" method="post" role="form" class="php-email-form">
                     <div class="row justify-content-center">
                         <div class="col-lg-4" id="materiDetail">
                             <div class="content">
+                                <p id="userId" hidden>@HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")</p>
                                 <div class="course-info d-flex justify-content-between align-items-center">
                                     <h5>Name</h5>
-                                    <p id="Name">sdasasdasd</p>
+                                    <p id="Name">@User.Identity.Name</p>
                                 </div>
                                 <div class="course-info d-flex justify-content-between align-items-center">
                                     <h5>Name Course</h5>
@@ -105,16 +108,16 @@
 </main><!-- End #main -->
 
 @section Scripts {
-<script>
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    today = mm + '/' + dd + '/' + yyyy;
-    $("#date").html(today);
-</script>
-<script>
+    <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+        $("#date").html(today);
+    </script>
+    <script>
         var dataID = @ViewData["Id"];
         console.log(dataID);
-</script>
+    </script>
 }
