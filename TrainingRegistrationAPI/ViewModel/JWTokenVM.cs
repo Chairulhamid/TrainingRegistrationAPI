@@ -10,5 +10,6 @@ namespace API.ViewModel
         public string Messages { get; set; } 
         public string Token { get; set; }
         public int UserId { get; set; }
+        public int EmpId { get; set; }
     }
 }
