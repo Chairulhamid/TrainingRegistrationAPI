@@ -25,7 +25,8 @@ namespace TrainingRegistrationAPI.ViewModel
         public string ModulContent { get; set; }
         public int RegisteredCourseId { get; set; }
         public int CourseId { get; set; }
-      /*  public int ModulId { get; set; }*/
+        public int ModulId { get; set; }
         public int PaymentId { get; set; }
+
     }
 }
