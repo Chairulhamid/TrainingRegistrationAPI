@@ -243,34 +243,30 @@ namespace TrainingRegistrationAPI.Repository.Data
         //MATERI COURSE FOR USER
         public IEnumerable<TrainingCourseVM> GetLessonCourse(int UserId)
         {
-            var getLessonCourse = (from us in myContext.Users
-                              join rgt in myContext.RegisteredCourses on
-                              us.UserId equals rgt.UserId
-                              join pt in myContext.Payments on
-                              rgt.RegisteredCourseId equals pt.RegisteredCourseId
-                              join cr in myContext.Courses on
-                              rgt.CourseId equals cr.CourseId
-                              join ml in myContext.Moduls on
-                               cr.CourseId equals ml.CourseId
+            var getLessonCourse = ( from u in myContext.Users 
+                                    join rc in myContext.RegisteredCourses on u.UserId equals rc.UserId
+                                    join c in myContext.Courses on rc.CourseId equals c.CourseId
+                                    join p in myContext.Payments on rc.RegisteredCourseId equals p.RegisteredCourseId
+                                    join m in myContext.Moduls on c.CourseId equals m.CourseId
+                                    where p.Status == Status.Verified && u.UserId == UserId
                                    select new TrainingCourseVM
                               {
-                                  FirstName = us.FirstName,
-                                  LastName = us.LastName,
-                                  Status = pt.Status,
-                                  CourseName = cr.CourseName,
-                                  CourseDesc = cr.CourseDesc,
-                                  CourseImg = cr.CourseImg,
-                                  ModulTittle = ml.ModulTittle,
-                                  ModulDesc = ml.ModulDesc,
-                                  ModulContent = ml.ModulContent,
-                                  RegisteredCourseId = rgt.RegisteredCourseId,
-                                  PaymentId = pt.PaymentId,
-                                  UserId = us.UserId,
-                                  CourseId = cr.CourseId,
-                               /*   ModulId = ml.ModulId,*/
-                              }).Where(u => u.Status ==Status.Verified).Where(p => p.UserId == UserId).ToList();
+                                  FirstName = u.FirstName,
+                                  LastName = u.LastName,
+                                  Status = p.Status,
+                                  CourseName = c.CourseName,
+                                  CourseDesc = c.CourseDesc,
+                                  CourseImg = c.CourseImg,
+                                  ModulTittle = m.ModulTittle,
+                                  ModulDesc = m.ModulDesc,
+                                  ModulContent = m.ModulContent,
+                                  RegisteredCourseId = rc.RegisteredCourseId,
+                                  PaymentId = p.PaymentId,
+                                  UserId = u.UserId,
+                                  CourseId = c.CourseId,
+                                  ModulId = m.ModulId,
+                                   }).ToArray();
             return getLessonCourse;
         }
-      
     }
 }
