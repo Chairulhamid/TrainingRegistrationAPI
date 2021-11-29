@@ -37,7 +37,7 @@
         <div class="container" data-aos="fade-up">
 
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-3" id="modulNav">
                     <ul class="nav nav-tabs flex-column">
                         <li class="nav-item">
                             <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Modi sit est</a>
@@ -128,7 +128,8 @@
 </main><!-- End #main -->
 @section Scripts {
     <script>
-        var dataLearn = @ViewData["Id"];
-        console.log(dataLearn);
+        var dataID = @ViewData["Id"];
+        var userId = @HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")
+        console.log(dataID);
     </script>
 }
