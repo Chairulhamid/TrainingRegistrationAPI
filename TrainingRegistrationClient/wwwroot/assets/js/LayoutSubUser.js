@@ -252,14 +252,26 @@ function getCourseModul(courseId) {
         success: function (result) {
             console.log(result);
             var listModul = ""
+            var listModuldua = ""
             $.each(result, function (key, val) {
-                listModul += `  <ul class="nav nav-tabs flex-column">
+                listModul += `
+                                <ul class="nav nav-tabs flex-column">
                                 <li class="nav-item">
-                                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">${val.modulTittle}</a>
+                                <a class="nav-link active show" data-bs-toggle="tab" href="${key + 1}">${val.modulTittle}</a>
                                 </li>
                                 </ul>`
+                listModuldua += `
+                                <div class="tab-pane active show" id="tab-1">
+                            <div class="row">
+                                <div class="col-lg-8 details order-2 order-lg-1">
+                                     <a class="nav-link active show" data-bs-toggle="tab" href="${val.modulContent}">${val.modulDesc}</a>
+                                </div>
+                                
+                            </div>
+                        </div>`
             });
             $('#modulNav').html(listModul);
+            $('#modulNavdua').html(listModuldua);
         }
     })
 };
