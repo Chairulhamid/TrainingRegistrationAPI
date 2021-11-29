@@ -28,7 +28,7 @@
                 <div class="section-title">
                     <h2>Magnam dolores commodi suscipit</h2>
                 </div>
-                
+
                 <form action="" method="post" role="form" class="php-email-form">
                     <div class="row justify-content-center">
                         <div class="col-lg-4" id="materiDetail">
@@ -47,28 +47,29 @@
                                     <p id="date"></p>
                                 </div>
                                 <div class="course-info d-flex justify-content-between align-items-center">
-                                    <h5>Bank Transfer</h5>
+                                    <h5>Bank Account Number</h5>
+                                    <h4 id="bankAccountNumber"></h4>
                                 </div>
-                                <div class="col">
+                                @*<div class="col">
                                     <select style="margin-bottom:10px;" class="form-control" id="bankAccount" required value="bankAccount">
                                         <optgroup label="Select Bank">
                                             <option value="3703-02-00042">BRI</option>
                                             <option value="006-00-1710201">Mandiri</option>
                                         </optgroup>
                                     </select>
-                                </div>
+                                </div>*@
                                 @*  <div class="align-items-center  d-flex  " style="margin-left:50px;">
-            <input class="check-input" type="radio" name="flexRadioDefault" id="bankAccount" value="3703-02-00042">
-            <label class="form-check-label" for="bankAccount">
-                BRI
-            </label>
-        </div>
-        <div class="align-items-center  d-flex " style="margin-left:50px;">
-            <input class="check-input" type="radio" name="flexRadioDefault" id="bankAccount" value="006-00-1710201"  checked>
-            <label class="form-check-label" for="bankAccount">
-                MANDIRI
-            </label>
-        </div>*@
+                                        <input class="check-input" type="radio" name="flexRadioDefault" id="bankAccount" value="3703-02-00042">
+                                        <label class="form-check-label" for="bankAccount">
+                                            BRI
+                                        </label>
+                                    </div>
+                                    <div class="align-items-center  d-flex " style="margin-left:50px;">
+                                        <input class="check-input" type="radio" name="flexRadioDefault" id="bankAccount" value="006-00-1710201"  checked>
+                                        <label class="form-check-label" for="bankAccount">
+                                            MANDIRI
+                                        </label>
+                                    </div>*@
                                 <div class="course-info d-flex justify-content-between align-items-center">
                                     <h5>Total Payment</h5>
                                     <h3 id="payment"></h3>
@@ -76,7 +77,7 @@
 
 
                             </div>
-                            <div class="text-center"><button onclick="BuyNow(userId, dataID)" type="submit">Buy Now</button></div>
+                           
                         </div>
                     </div>
                 </form>
@@ -93,9 +94,13 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <h4>Step Cara Membayar</h4>
-                        <p>Belajar lebih terarah dengan learning path dan code review</p>
 
-
+                                <ol>
+                                    <li>Ambil nomor antrian transaksi Teller dan isi slip setoran</li>
+                                    <li>Serahkan slip dan jumlah setoran kepada Teller Bank</li>
+                                    <li>Teller bank akan melakukan validasi transaksi
+                                    <li>Simpan slip setoran hasil validasi sebagai bukti pembayaran</li>
+                                </ol>
                     </div>
                 </div>
             </div>

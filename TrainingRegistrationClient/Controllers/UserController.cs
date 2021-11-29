@@ -55,6 +55,12 @@ namespace TrainingRegistrationClient.Controllers
             ViewData["Id"] = Id;
             return View();
         }
+        [Route("user/DetailCourse/PayCourse/PayCourseSuccess/{Id}")]
+        public IActionResult PayCourseSuccess(string Id)
+        {
+            ViewData["Id"] = Id;
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
