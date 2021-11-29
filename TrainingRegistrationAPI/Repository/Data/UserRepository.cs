@@ -46,6 +46,12 @@ namespace TrainingRegistrationAPI.Repository.Data
             return getProfile;
         }
 
+        public int GetUserId(LoginUserVM loginVM)
+        {
+            var id = (from u in myContext.Users where u.Email == loginVM.Email select u.UserId).FirstOrDefault();
+            return id;
+        }
+
         public IEnumerable<RegisterUserVM> GetIdProfile(int UserId)
         {
             var getProfile = (from u in myContext.Users

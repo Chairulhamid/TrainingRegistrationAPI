@@ -139,8 +139,10 @@ namespace TrainingRegistrationAPI.Controller
                 return Ok(new JWTokenVM
                 {
                     Token = idToken,
-                    Messages = "Login Berhasil!!"
+                    Messages = "Login Berhasil!!",
+                    UserId = userRepository.GetUserId(loginUserVM)
                 });
+                
             }
             return NotFound(new JWTokenVM { Token = "", Messages = "1" });
         }
