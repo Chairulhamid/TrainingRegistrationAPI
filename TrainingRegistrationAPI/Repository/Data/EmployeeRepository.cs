@@ -183,7 +183,17 @@ namespace TrainingRegistrationAPI.Repository.Data
             var checkName = myContext.Employees.Where(e => e.Email == email).FirstOrDefault();
             return checkName.FirstName + " " + checkName.LastName;
         }
-
+        public object[] GetEmp()
+        {
+            var label1 = (from emp in myContext.Employees
+                          select new
+                          {
+                              value = myContext.Employees.Count()
+                          }).First();
+            List<Object> result = new List<Object>();
+            result.Add(label1);
+            return result.ToArray();
+        }
     }
 }
 
