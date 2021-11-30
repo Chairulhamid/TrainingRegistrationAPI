@@ -6,20 +6,7 @@
     Layout = "_LayoutEmp";
 }
 
-
-<!-- Modal -->
-@*<div class=" open-modal modal fade" id="modalDataEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Register as Trainer</h4>
-                <button type="button" class="close" onclick="window.location.reload()" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">*@
-
-<h1 class="mt-3">Become a Trainer</h1>
+<h1 class="mt-3 text-center">Become a Trainer</h1>
 <div class="container">
     <form action="" name="nameModal" method="post">
         <div class="row mb-2">
@@ -39,7 +26,7 @@
         <div class="row mb-2">
             <div class="col">
                 <label>Phone</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone....">
+                <input type="number" class="form-control" id="phone" name="phone" placeholder="Phone....">
             </div>
             <div class="col">
                 <label>Birth Date</label>
@@ -88,7 +75,8 @@
     <div>
         <div>
             <button type="button" class=" tombol btn btn-secondary" onclick="location.href='@Url.Action("Index", "User") '" >Close</button>
-            <button id="btnUpdateEmp" type="button" classs="btn btn-primary" onclick="InsertDataEmpIndex();">Register</button>
+            <button type="button" id="btnUpdateEmp" class=" tombol btn btn-primary" onclick="InsertDataEmpIndex();">Register</button>
+    
         </div>
     </div>
 </div>

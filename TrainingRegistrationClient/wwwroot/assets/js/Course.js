@@ -1,11 +1,16 @@
-﻿var myTable = null;
+﻿/////////////////////////////////////////////////////
+/*LAYOUT ADMIN*/
+/////////////////////////////////////////////////////
+
+
+//WAITING APPROVED
+var myTable = null;
 $(document).ready(function () {
     myTable = $('#tableCourseNotApproved').DataTable({
         'ajax': {
             'url': "https://localhost:44307/API/Courses/GetWaitingCourse",
             'dataSrc': "",
         },
-
         'columns': [
             {
                 data: 'no', name: 'id', render: function (data, type, row, meta) {
@@ -21,7 +26,6 @@ $(document).ready(function () {
                     return number;
                 }
             },
-            { "data": "courseImg" },
             { "data": "trainerName" },
             {
                 "data": "",
@@ -40,10 +44,11 @@ $(document).ready(function () {
     });
 });
 
+//TABLE 2 <<APROVED>>
 var myCourse = null;
 $(document).ready(function () {
     myCourse = $('#tableCourse').DataTable({
-        /*  dom: 'Bfrtip',
+      /*    dom: 'Bfrtip',
           buttons: [
               {
                   extend: 'excel',
@@ -82,7 +87,6 @@ $(document).ready(function () {
             'url': "https://localhost:44307/API/Courses/GetActCourse",
             'dataSrc': "",
         },
-
         'columns': [
             {
                 data: 'no', name: 'id', render: function (data, type, row, meta) {
@@ -98,7 +102,6 @@ $(document).ready(function () {
                     return number;
                 }
             },
-            { "data": "courseImg" },
             { "data": "trainerName" },
             {
                 "data": "",
@@ -124,6 +127,7 @@ $(document).ready(function () {
     });
 });
 
+///BUTTON ACTION TO APPROVERD
 function getDetailWaitCourse(courseId) {
     console.log(courseId)
     $.ajax({
@@ -138,13 +142,14 @@ function getDetailWaitCourse(courseId) {
             $('#courseName').val(result[0].courseName);
             $('#courseDesc').val(result[0].courseDesc);
             $('#courseFee').val(result[0].courseFee);
-            $('#topicId').val(result[0].topicId);
+            $('#topicId').val(result[0].topicName);
             $('#employeeId').val(result[0].trainerId);
             $('#courseImg').val(result[0].courseImg);
             $('#statusCourse').val(result[0].statusCourse);
             $('#modalCourse').modal('show');
             $('#btnUpdateCourse').hide();
             $('#btnAddCourse').hide();
+            $('#hideStat').hide();
             $('#courseName').prop('disabled', true);;
             $('#courseDesc').prop('disabled', true);;
             $('#courseFee').prop('disabled', true);;
@@ -154,7 +159,6 @@ function getDetailWaitCourse(courseId) {
             $('#statusCourse').prop('disabled', true);;
         },
         error: function (errormessage) {
-            //*alert(errormessage.responseText);*//*
             swal.fire({
                 title: "FAILED",
                 text: "Data not found!",
@@ -165,8 +169,7 @@ function getDetailWaitCourse(courseId) {
         }
     });
 }
-
-function getDetailCourse(courseId) {
+/*function getDetailCourse(courseId) {
     console.log(courseId)
     $.ajax({
         url: "/Courses/GetActIdCourse/" + courseId,
@@ -175,7 +178,7 @@ function getDetailCourse(courseId) {
         dataType: "json",
         success: function (result) {
             console.log(result);
-         //*   var tanggal = result[0].birthDate.substr(0, 10);*//*
+         *//*//*   var tanggal = result[0].birthDate.substr(0, 10);*//*
             $('#courseId').val(result[0].courseId);
             $('#courseName').val(result[0].courseName);
             $('#courseDesc').val(result[0].courseDesc);
@@ -196,7 +199,7 @@ function getDetailCourse(courseId) {
             $('#statusCourse').prop('disabled', true);;
         },
         error: function (errormessage) {
-           //*alert(errormessage.responseText);*//*
+           *//*//*alert(errormessage.responseText);*//*
                 swal.fire({
                     title: "FAILED",
                     text: "Data not found!",
@@ -208,7 +211,7 @@ function getDetailCourse(courseId) {
     });
     return false;
 }
-
+*/
 function InsertDataCourse() {
     var obj = new Object();
     obj.CourseName = $('#courseName').val();
@@ -239,7 +242,7 @@ function InsertDataCourse() {
     });
 };
 
-function getCourse(courseId) {
+/*function getCourse(courseId) {
     console.log(courseId)
     $.ajax({
         url: "/Courses/GetIdCourse/" + courseId,
@@ -260,7 +263,7 @@ function getCourse(courseId) {
             $('#btnAddCourse').hide();
         },
         error: function (errormessage) {
-            /*alert(errormessage.responseText);*/
+            *//*alert(errormessage.responseText);*//*
             Swal.fire({
                 icon: 'error',
                 title: 'Oops..',
@@ -269,7 +272,7 @@ function getCourse(courseId) {
         }
     });
     return false;
-}
+}*/
 function UpdateCourse1() {
     var courseId = $('#courseId').val();
     var obj = new Object();
@@ -336,7 +339,7 @@ function UpdateCourse2() {
     });
 
 }
-function getDetailCourse(courseId) {
+/*function getDetailCourse(courseId) {
     console.log(courseId)
     $.ajax({
         url: "/Courses/GetIdCourse/" + courseId,
@@ -345,7 +348,7 @@ function getDetailCourse(courseId) {
         dataType: "json",
         success: function (result) {
             console.log(result);
-            /*   var tanggal = result[0].birthDate.substr(0, 10);*/
+            *//*   var tanggal = result[0].birthDate.substr(0, 10);*//*
             $('#courseId').val(result[0].courseId);
             $('#courseName').val(result[0].courseName);
             $('#courseDesc').val(result[0].courseDesc);
@@ -364,7 +367,7 @@ function getDetailCourse(courseId) {
             $('#courseImg').prop('disabled', true);;
         },
         error: function (errormessage) {
-            /*alert(errormessage.responseText);*/
+            *//*alert(errormessage.responseText);*//*
             swal.fire({
                 title: "FAILED",
                 text: "Data not found!",
@@ -375,7 +378,7 @@ function getDetailCourse(courseId) {
         }
     });
     return false;
-}
+}*/
 function DeleteCourse(id) {
     console.log(id);
     Swal.fire({
@@ -416,7 +419,7 @@ function DeleteCourse(id) {
         });
 }
 
-
+//AMBIL DATA EMPLOYEES
 $.ajax({
     url: "https://localhost:44307/API/Employees",
     success: function (result) {
@@ -428,6 +431,8 @@ $.ajax({
         $('#employeeId').html(optionRole);
     }
 });
+
+/*AMBIL DATA TOPIC*/
 $.ajax({
     url: "https://localhost:44307/API/Topics",
     success: function (result) {
