@@ -17,7 +17,7 @@ $(document).ready(function () {
                                     <div class="imgbox"> <img src="${item.courseImg}"> </div>
                                     <div class="specifies">
                                         <h2>${item.courseName} <br> <span> ${item.topicName}</span></h2>
-                                        <div class="price" >Rp. ${item.courseFee}</div> <label>Description</label>
+                                        <div class="price" style="margin-top:115px;">Rp. ${item.courseFee}</div> <label>Description</label>
                                         <p>${item.courseDesc}</p>
                                         <a href="user/DetailCourse/${item.courseId}"    class="btn btn-warning klik_menu" id="buyCourse" >Detail</a>
                                     </div>
