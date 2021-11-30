@@ -57,6 +57,17 @@ namespace TrainingRegistrationAPI.Controllers.Base
             return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
         }
 
+        [HttpGet("GetIdModulContent/{modulId}")]
+        public ActionResult GetIdModulContent(int modulId)
+        {
+            var result = modulRepository.GetIdModulContent(modulId);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Data tidak ditemukan" });
+        }
+
         [HttpGet("GetModul")]
         public ActionResult GetModul()
         {
