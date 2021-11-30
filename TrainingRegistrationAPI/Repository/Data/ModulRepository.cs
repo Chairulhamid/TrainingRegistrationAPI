@@ -43,7 +43,22 @@ namespace TrainingRegistrationAPI.Repository.Data
                                 ModulDesc = m.ModulDesc,
                                 ModulContent = m.ModulContent,
                                 CourseId = m.CourseId,
-                            }).Where(u => u.ModulId == modulId).ToList();
+                            }).ToList();
+            return getTopic;
+        }
+
+        public IEnumerable<ModulVM> GetIdModulContent(int modulId)
+        {
+            var getTopic = (from m in myContext.Moduls
+                            where m.ModulId == modulId
+                            select new ModulVM()
+                            {
+                                ModulId = m.ModulId,
+                                ModulTittle = m.ModulTittle,
+                                ModulDesc = m.ModulDesc,
+                                ModulContent = m.ModulContent,
+                                CourseId = m.CourseId,
+                            }).ToList();
             return getTopic;
         }
 
