@@ -17,11 +17,11 @@
     <section id="course-details" class="course-details">
         <div class="container" data-aos="fade-up">
 
-            <div class="row" style="background-color: #dee1e3">
+            <div class="row" style="background-color: #366bcf;color:white; ">
                 <div class="col-lg-12">
                     <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
                     <h3 id="courseTitle"></h3>
-                    <p id="courseDesc"> 
+                    <p id="courseDesc">
                     </p>
                 </div>
             </div>
@@ -30,13 +30,35 @@
     <!-- ======= Cource Details Tabs Section ======= -->
     <section id="cource-details-tabs" class="cource-details-tabs">
         <div class="container" data-aos="fade-up">
+            <h3>Course Moduls</h3>
+            <div class="row" id="moduls">
 
-            <div class="row">
-                <div class="col-lg-3" id="modulNav">
-                </div>
             </div>
         </div>
     </section><!-- End Cource Details Tabs Section -->
+
+
+    <!-- Modal Modul-->
+    <div class="modal fade" id="modalModul" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 id="test"></h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </main><!-- End #main -->
 @section Scripts {
