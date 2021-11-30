@@ -11,7 +11,7 @@
         <img src="~/assets/img/hero-img.png" />
     </div>
     <div class="login-container">
-        <form method="post" class="user" action="/LoginEmp/Auth">
+        <form method="post" class="user" action="/LoginEmp/LoginAdmin">
             <img class="avator" src="https://freesvg.org/img/publicdomainq-0006514oahggv.png">
             <h2>Login to Your account</h2>
             <div class="input-div" one>
@@ -34,16 +34,16 @@
                 </div>
             </div>
 
-            <a class="nav-link scrollto" href="https://localhost:44344/Home/RegistEmp">Sign Up</a>
+            <!--<a class="nav-link scrollto" href="https://localhost:44344/Home/RegistEmp">Sign Up</a>-->
             @*<a class="nav-link scrollto" data-bs-toggle="modal" data-bs-target="#modalDataEmpployee">Not have an acount ?</a>*@
-            <a asp-controller="Home" asp-action="ResetPassEmp">Forgot password ?</a>
+            <!--<a asp-controller="Home" asp-action="ResetPassEmp">Forgot password ?</a>-->
             <input type="submit" class="btn" value="Login" />
         </form>
     </div>
 </div>
-<footer>
+@*<footer>
     Copyright © 2021 - All rights Reserved -
-</footer>
+</footer>*@
 
 <!-- Modal -->
 <div class=" open-modal modal fade" id="modalDataEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
