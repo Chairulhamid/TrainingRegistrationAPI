@@ -216,7 +216,7 @@ function getPayCoursePayment(userId) {
                                 <td>${val.courseFee}</td>
                                  <td>${val.totalPayment}</td>
                                 <td>${val.bankAccount}</td>
-                                 <td>${val.status}</td>
+                                 <td class="bg-warning">${val.status}</td>
                             </tr>`
             });
             $('#tablePayments').html(listPayment);
@@ -238,7 +238,7 @@ function getPayCoursePaymentVerified(userId) {
                                 <td>${val.courseFee}</td>
                                  <td>${val.totalPayment}</td>
                                 <td>${val.bankAccount}</td>
-                                 <td>${val.status}</td>
+                                 <td class="bg-info">${val.status}</td>
                             </tr>`
             });
             $('#tablePaymentVerified').html(listPayment1);
