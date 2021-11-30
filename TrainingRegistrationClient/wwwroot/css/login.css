@@ -6,7 +6,10 @@
 }
 
 body {
+    background: #213b52;
+    background: linear-gradient(180deg, #213b52 0%, #213c54 35%, #204564 100%);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:ivory;
 }
 
 .container {
@@ -137,7 +140,7 @@ form {
     background: none;
     padding: 0.5rem 0.7rem;
     font-size: 1.2rem;
-    color: #555;
+    color: snow;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -145,7 +148,7 @@ a {
     display: block;
     text-align: center;
     text-decoration: none;
-    color: #999;
+    color: snow;
     font-size: 0.9rem;
     transition: 0.3s;
 }
@@ -163,7 +166,7 @@ a {
     font-size: 1.2rem;
     outline: none;
     border: none;
-    background-image: linear-gradient(to right, #5557ec, #3134db, #1e2097);
+    background-image: linear-gradient(to right, #fdc134, #fdc134, #fdc134);
     cursor: pointer;
     color: #fff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
