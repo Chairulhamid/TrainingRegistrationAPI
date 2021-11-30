@@ -103,13 +103,14 @@ namespace TrainingRegistrationClient.Controllers
 
         }
 
-        [Authorize]
+        //[Authorize]
         /*[HttpGet("Logout/")]*/
-        public IActionResult Logout()
+        public IActionResult LogoutEmp()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("LoginEmp", "Home");
         }
+
 
     }
 }
