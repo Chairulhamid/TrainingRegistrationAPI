@@ -89,7 +89,7 @@ function getDCourse(courseId) {
                 rows = `
                                         <div class="row">
                                             <div class="col-lg-8">
-                                                <img id="courseImg" src="${item.courseImg}" class="img-fluid" alt="">
+                                                <img id="courseImg" style="width:50%" src="${item.courseImg}" class="img-fluid" alt="">
 
                                                 <h3 id="courseName">${item.courseName}</h3>
                                                 <p id="courseDesc">${item.courseDesc}</pid>
@@ -97,8 +97,8 @@ function getDCourse(courseId) {
                                             <div class="col-lg-4" id="materiDetail">
                                                 <div class="content">
                                                     <div class="text-center">
-                                                        <h4>Unlimite</h4>
-                                                        <hr />
+                                                        <h4>Details</h4>
+                                                        <hr/>
                                                     </div>
                                                     <div class="course-info d-flex justify-content-between align-items-center">
                                                         <h5>Trainer</h5>
