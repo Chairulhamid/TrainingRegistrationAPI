@@ -123,7 +123,7 @@ function DeleteTopic(id) {
                     'Topic Deleted!',
                     'success',
                 ).then(function () {
-                    window.location = "https://localhost:44344/auth";
+                    window.location = "https://localhost:44344/auth/Topic";
                 });
             }).fail((error) => {
                 return Swal.fire({
