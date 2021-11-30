@@ -48,7 +48,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link"  asp-controller="Auth" asp-action="Index">
+                <a class="nav-link" asp-controller="Auth" asp-action="Index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -187,24 +187,24 @@
                     </button>
 
                     <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Nav Item - User Information -->
-                    <li>
-                        <a href="#" id="userDropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">
-                            <span style="text-align:center;" class="mr-2 d-none d-lg-inline text-gray-600 small"> @User.Identity.Name</span>
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - User Information -->
+                        <li>
+                            <a href="#" id="userDropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <span style="text-align:center;" class="mr-2 d-none d-lg-inline text-gray-600 small"> @User.Identity.Name</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a style="text-align:center;" class="d-lg-inline" asp-area="" asp-controller="Home" asp-action="Logout"> Logout</a>
                             <i class="bi bi-chevron-down"></i>
-                        </a>
-
-                    </li>
-                    <li>
-                        <a style="text-align:center;" class="d-lg-inline" asp-area="" asp-controller="Home" asp-action="Logout"> Logout</a>
-                        <i class="bi bi-chevron-down"></i>
-                    </li>
+                        </li>
 
 
 
-</nav>
+                </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -262,6 +262,7 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="~/assets/vendor/jquery/jquery.min.js"></script>
     <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -286,6 +287,7 @@
     <script src="~/assets/js/Course.js" asp-append-version="true"></script>
     <script src="~/assets/js/Modul.js" asp-append-version="true"></script>
     <script src="~/assets/js/Payment.js" asp-append-version="true"></script>
+    <script src="~/assets/js/ChartDashboard.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

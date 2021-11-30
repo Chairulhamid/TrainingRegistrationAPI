@@ -7,7 +7,99 @@
     <h3>Hallo <span class="text-primary">@User.Identity.Name </span> , </h3>
     <h5 class="text-dark ml-5">Welcome To Admin Page</h5>
 </div>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <hr />
+
+    <div class="row alig">
+
+        <!-- Tasks Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                <h5>User</h5>
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="userVal"></div>
+                                </div>
+                                <div class="col">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tasks Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                <h5>Employee</h5>
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="employeeVal"></div>
+                                </div>
+                                <div class="col">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*////carrds*@
 
 
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <!-- Content Row -->
+        <div class="row">
 
+            <div class="col-xl-6 col-lg-7">
+                <!-- Area Chart -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Salary Chart</h6>
+                    </div>
+                    <div class="card-body">
+                        <div id="chartPayment"></div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Donut Chart -->
+            <div class="col-xl-6 col-lg-5">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Gender Chart</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div id="chartCourse"></div>
+                        <hr>
+                    </div>
+                </div>
+                <!-- Bar Chart -->
+               
+            </div>
+        </div>
+    </div>
