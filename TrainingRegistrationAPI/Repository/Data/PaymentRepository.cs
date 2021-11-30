@@ -248,7 +248,6 @@ namespace TrainingRegistrationAPI.Repository.Data
                                     join rc in myContext.RegisteredCourses on u.UserId equals rc.UserId
                                     join c in myContext.Courses on rc.CourseId equals c.CourseId
                                     join p in myContext.Payments on rc.RegisteredCourseId equals p.RegisteredCourseId
-                                    join m in myContext.Moduls on c.CourseId equals m.CourseId
                                     where p.Status == Status.Verified && u.UserId == UserId
                                    select new TrainingCourseVM
                               {
@@ -258,15 +257,11 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   CourseName = c.CourseName,
                                   CourseDesc = c.CourseDesc,
                                   CourseImg = c.CourseImg,
-                                  ModulTittle = m.ModulTittle,
-                                  ModulDesc = m.ModulDesc,
-                                  ModulContent = m.ModulContent,
                                   RegisteredCourseId = rc.RegisteredCourseId,
                                   PaymentId = p.PaymentId,
                                   UserId = u.UserId,
                                   CourseId = c.CourseId,
-                                  ModulId = m.ModulId,
-                                   }).ToArray();
+                                   }).ToList();
             return getLessonCourse;
         }
         public IEnumerable GetStatusPayment()

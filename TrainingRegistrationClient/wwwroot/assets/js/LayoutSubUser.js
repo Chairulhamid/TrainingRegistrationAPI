@@ -253,30 +253,34 @@ function getCourseModul(courseId) {
         success: function (result) {
             console.log(result);
             var listModul = ""
-            var listModuldua = ""
+            var i = 1
             $.each(result, function (key, val) {
-                listModul += `
-                                <ul class="nav nav-tabs flex-column">
-                                <li class="nav-item">
-                                <a class="nav-link active show" data-bs-toggle="tab" href="${key + 1}">${val.modulTittle}</a>
-                                </li>
-                                </ul>`
-                listModuldua += `
-                                <div class="tab-pane active show" id="tab-1">
-                            <div class="row">
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                     <a class="nav-link active show" data-bs-toggle="tab" href="${val.modulContent}">${val.modulDesc}</a>
-                                </div>
-                                
-                            </div>
-                        </div>`
+                $("#courseTitle").html(result[0].courseName);
+                $("#courseDesc").html(result[0].courseDesc);
+                listModul += `<div id="accordion">
+                                  <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                      <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                                          ${val.modulTittle}
+                                        </button>
+                                      </h5>
+                                    </div>
+                                    <div id="collapse${i}" class="collapse show" aria-labelledby="heading${i}" data-parent="#accordion">
+                                      <div class="card-body">
+                                        ${val.modulDesc}
+                                      </div>
+                                    </div>
+                                  </div>
+                               </div>`
+                i++
             });
             $('#modulNav').html(listModul);
-            $('#modulNavdua').html(listModuldua);
         }
     })
 };
 
+//Details course pada halaman detail course sebelum buy now
 function getCourseModul1(courseId) {
     console.log(courseId)
     $.ajax({
@@ -287,7 +291,7 @@ function getCourseModul1(courseId) {
             $.each(result, function (key, val) {
                 listModul += `<ul class="list-group" style="margin-bottom:15px">
                                 <li class="list-group-item active"><h4>${val.modulTittle}<h3></li>
-                                <li class="list-group-item"><h5>${val.modulTittle}</h5></li>
+                                <li class="list-group-item"><h5>${val.modulDesc}</h5></li>
                               </ul> `
             });
             $('#modulList').html(listModul);

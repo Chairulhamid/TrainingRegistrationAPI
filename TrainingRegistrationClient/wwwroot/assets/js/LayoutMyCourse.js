@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     getMyCourse(dataID);
     getLearnCourse(dataLearn);
+    getMyCourse1(dataID);
 });
 function getMyCourse(SessionId) {
     console.log(SessionId)
@@ -15,17 +16,18 @@ function getMyCourse(SessionId) {
             var rows = '';
             $.each(data, function (i, item) {
                 rows += `
-<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="member">
                         <img src="${item.courseImg}" class="img-fluid" alt="">
                         <div class="member-content">
-                            <h4>${item.courseName}</h4>
-                            <span>Web Development</span>
-                            <p>
-                              ${item.modulTittle}
-                            </p>
+                            <p>Course Name</p>
+                            <h5>${item.courseName}</h4>
+                            <p>Course Description</p>
+                            <span><h5>
+                              ${item.courseDesc}
+                            </h5></span>
                             <div class="social">
-                              <a href="LearnCourse/${item.modulId}" class="btn more-btn text-white" id="match" style="background-color: #2d3e50"  >Learn<i class="bx bx-chevron-right"></i></a>
+                              <a href="LearnCourse/${item.courseId}" class="btn more-btn text-white" id="match" style="background-color: #2d3e50; margin-top:10px;"  >Learn<i class="bx bx-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -34,7 +36,6 @@ function getMyCourse(SessionId) {
             });
             $('#myCourse').append(rows);
         }, //End of AJAX Success function  
-
         failure: function (data) {
             alert(data.responseText);
         }, //End of AJAX failure function  
@@ -43,6 +44,7 @@ function getMyCourse(SessionId) {
         } //End of AJAX error function  
     });
 }
+
 /*function getMyCourse(id) {
     console.log(id)
     $.ajax({
@@ -101,7 +103,6 @@ function getLearnCourse(Id) {
             });
             $('#myCourse').append(rows);
         }, //End of AJAX Success function  
-
         failure: function (data) {
             alert(data.responseText);
         }, //End of AJAX failure function  
