@@ -678,8 +678,8 @@
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-    width: 100%;
-    padding: 0 0 0 0;
+ /*   width: 100%;*/
+/*    padding: 0 0 0 0;*/
     background: #213b52;
     background: linear-gradient(180deg, #213b52 0%, #213c54 35%, #204564 100%);
 }

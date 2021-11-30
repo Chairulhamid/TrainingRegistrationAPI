@@ -1,5 +1,4 @@
-﻿
-//document ready
+﻿//DATA TABLE
 var mytable = null;
 $(document).ready(function () {
     mytable = $("#tableTopic").DataTable({
@@ -16,9 +15,6 @@ $(document).ready(function () {
                 }
             },
             {
-                "data": "topicId"
-            },
-            {
                 "data": "",
                 "render": function (data, type, row, meta) {
                     return row['topicName'];
@@ -33,16 +29,14 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row) {
-                    return ` <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getTopic('${row.topicId}')"  title="Update"><i class="far fa-edit"></i></a></td>
+                    return ` <td scope=" row">  <a class="btn btn-warning btn-sm text-light" data-url=""  onclick="getDetailTopic('${row.topicId}')"  title="Update"><i class="fa fa-info-circle"></i></a></td>
+                                <td scope=" row">  <a class="btn btn-primary btn-sm text-light" data-url=""  onclick="getTopic('${row.topicId}')"  title="Update"><i class="far fa-edit"></i></a></td>
                              <td scope=" row"> <button type="button" class="btn btn-danger btn-sm text-light"  onclick="DeleteTopic('${row.topicId}')" title="Delete"> <i class="fas fa-trash-alt"></i></button></td>`;
                 }
             }
         ],
     });
 });
-
-
-
 ////VALIDATE
 $(function () {
     $("form[name='nameModal']").validate({
@@ -77,6 +71,7 @@ $(function () {
     });
 });
 
+/*INSERT TOPIC*/
 function InsertTopic() {
     var obj = new Object();
     obj.TopicName = $("#topicName").val();
@@ -105,7 +100,7 @@ function InsertTopic() {
         });
     });
 };
-
+/*DELETE TOPIC*/
 function DeleteTopic(id) {
     console.log(id);
     Swal.fire({
@@ -128,7 +123,7 @@ function DeleteTopic(id) {
                     'Topic Deleted!',
                     'success',
                 ).then(function () {
-                    window.location = "https://localhost:44344/auth";
+                    window.location = "https://localhost:44344/auth/Topic";
                 });
             }).fail((error) => {
                 return Swal.fire({
@@ -141,6 +136,36 @@ function DeleteTopic(id) {
     })
 };
 
+/*GET TOPIC DETAIL*/
+function getDetailTopic(topicId) {
+    console.log(topicId)
+    $.ajax({
+        url: "/Topics/GetTopic/" + topicId,
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            console.log(result);
+            $('#modalDetail').modal('show');
+            $('#topicId2').val(result[0].topicId);
+            $('#topicName2').val(result[0].topicName);
+            $('#topicDesc2').val(result[0].topicDesc);
+            $('#topicName2').prop('disabled', true);
+            $('#topicDesc2').prop('disabled', true);
+        },
+        error: function (errormessage) {
+            /*alert(errormessage.responseText);*/
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops..',
+                text: 'Data not found'
+            });
+        }
+    });
+    return false;
+}
+
+/*GETT TOPIC TO UPDATE*/
 function getTopic(topicId) {
     console.log(topicId)
     $.ajax({
@@ -166,7 +191,8 @@ function getTopic(topicId) {
     });
     return false;
 }
-function Update() {
+/*UPDATE TOPIC*/
+function UpdateTopic() {
     var topicId = $('#topicId1').val();
     var obj = new Object();
     obj.TopicId = $('#topicId1').val()
@@ -183,8 +209,9 @@ function Update() {
             icon: 'success',
             title: 'Success!',
             text: 'Data has been updated!'
+        }).then(function () {
+            window.location = "https://localhost:44344/Auth/Topic";
         });
-        $("#modalUpdate").modal("hide");
     }).fail((error) => {
         Swal.fire({
             icon: 'error',

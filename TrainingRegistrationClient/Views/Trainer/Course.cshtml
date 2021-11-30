@@ -7,7 +7,7 @@
 @inject IHttpContextAccessor HttpContextAccessor
 
 <div class="text-center">
-    <h4>Data Course</h4>
+    <h4>Data Course</h4><hr />
 </div>
 
 @*Button trigger modal *@
@@ -29,8 +29,6 @@
                         <th>Course Name</th>
                         <th>Topic</th>
                         <th>Fee</th>
-                        @*<th>Image</th>*@
-                    @*    <th>Trainer</th>*@
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -60,7 +58,6 @@
                         <th>Course Name</th>
                         <th>Topic</th>
                         <th>Fee</th>
-                        @*<th>Image</th>*@
                         <th>Trainer</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -136,24 +133,9 @@
                             </div>
                         </div>
                     </div>
-                  @*  <div class="row mb-2" id="hideRow">
-                        <div class="col">
-                            <label>Status</label>
-                            <div class="">
-                                <input name="statusCourse" type="text" class="form-control" id="statusCourse" placeholder="Status" value="">
-                            </div>
-                        </div>
-                    </div>*@
                 </form>
             </div>
             <div class="modal-footer">
-                @*<button type="button" class="btn btn-success" id="statusCourse1" value="1" onclick="UpdateCourse1()";>
-                        <i class="fa fa-check"></i> Approve
-                    </button>
-
-                    <button type="button" class="btn btn-danger" id="statusCourse2" value="2" onclick="UpdateCourse2()";>
-                        <i class="fa fa-times"></i> Decline
-                    </button>*@
                 <button type="button" class=" tombol btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Close</button>
                 <button id="btnAddCourseTrainer" onlcick="AddCourseTrainer()" type="submit" class="btn btn-primary">Add</button>
                 <button id="btnUpdateCourse" type="button" class="btn btn-primary" style="display:none;" onclick="UpdateCourseTr();">Update</button>
