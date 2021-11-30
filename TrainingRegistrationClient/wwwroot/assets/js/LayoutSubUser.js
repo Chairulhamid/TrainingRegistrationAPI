@@ -17,6 +17,7 @@ $(document).ready(function () {
     getPayCoursePayment(userId);
     getPayCoursePaymentVerified(userId)
     getCourseModul(dataID);
+    getCourseModul1(dataID);
 });
 
 /*function getMyCourse(userID) {
@@ -87,7 +88,7 @@ function getDCourse(courseId) {
             var rows = '';
             $.each(data, function (i, item) {
                 rows = `
-                                        <div class="row">
+                                        <div class="row" >
                                             <div class="col-lg-8">
                                                 <img id="courseImg" style="width:50%" src="${item.courseImg}" class="img-fluid" alt="">
 
@@ -95,7 +96,7 @@ function getDCourse(courseId) {
                                                 <p id="courseDesc">${item.courseDesc}</pid>
                                             </div>
                                             <div class="col-lg-4" id="materiDetail">
-                                                <div class="content">
+                                                <div class="content" style="margin-top:150px">
                                                     <div class="text-center">
                                                         <h4>Details</h4>
                                                         <hr/>
@@ -260,6 +261,24 @@ function getCourseModul(courseId) {
                                 </ul>`
             });
             $('#modulNav').html(listModul);
+        }
+    })
+};
+
+function getCourseModul1(courseId) {
+    console.log(courseId)
+    $.ajax({
+        url: "https://localhost:44307/API/Moduls/GetCourseModul/" + courseId,
+        success: function (result) {
+            console.log(result);
+            var listModul = ""
+            $.each(result, function (key, val) {
+                listModul += `<ul class="list-group" style="margin-bottom:15px">
+                                <li class="list-group-item active"><h4>${val.modulTittle}<h3></li>
+                                <li class="list-group-item"><h5>${val.modulTittle}</h5></li>
+                              </ul> `
+            });
+            $('#modulList').html(listModul);
         }
     })
 };
