@@ -39,6 +39,18 @@ namespace TrainingRegistrationClient.Repository.Data
 
             return token;
         }
+        public async Task<JWTokenVM> LoginAdmin(LoginEmpVM loginEmp)
+        {
+            JWTokenVM token = null;
+
+            StringContent content = new StringContent(JsonConvert.SerializeObject(loginEmp), Encoding.UTF8, "application/json");
+            var result = await httpClient.PostAsync(request + "LoginEmp", content);
+
+            string apiResponse = await result.Content.ReadAsStringAsync();
+            token = JsonConvert.DeserializeObject<JWTokenVM>(apiResponse);
+
+            return token;
+        }
 
         public HttpStatusCode Put(LoginEmpVM entity)
         {
