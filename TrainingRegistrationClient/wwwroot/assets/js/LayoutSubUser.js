@@ -261,12 +261,12 @@ function getCourseModul(courseId) {
                                   <div class="card">
                                     <div class="card-header" id="headingOne">
                                       <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
-                                          ${val.modulTittle}
-                                        </button>
+                                            <div class="col-xl-12 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+                                             <a href="  ${val.modulContent}" class="glightbox play-btn mb-4">${val.modulTittle}</a>
+                                            </div>
                                       </h5>
                                     </div>
-                                    <div id="collapse${i}" class="collapse show" aria-labelledby="heading${i}" data-parent="#accordion">
+                                    <div id="collapse${key}" class="collapse show" aria-labelledby="heading${key}" data-parent="#accordion">
                                       <div class="card-body">
                                         ${val.modulDesc}
                                       </div>
