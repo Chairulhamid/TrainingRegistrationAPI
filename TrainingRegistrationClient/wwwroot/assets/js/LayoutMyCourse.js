@@ -25,7 +25,7 @@ function getMyCourse(SessionId) {
                               ${item.modulTittle}
                             </p>
                             <div class="social">
-                              <a href="LearnCourse/${item.courseId}" class="btn more-btn text-white" id="match" style="background-color: #2d3e50"  >Learn<i class="bx bx-chevron-right"></i></a>
+                              <a href="LearnCourse/${item.modulId}" class="btn more-btn text-white" id="match" style="background-color: #2d3e50"  >Learn<i class="bx bx-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ function getMyCourse(SessionId) {
         } //End of AJAX error function  
     });
 }*/
-/*function getLearnCourse(Id) {
+function getLearnCourse(Id) {
     console.log(Id)
     $.ajax({
         type: "GET",
@@ -109,7 +109,7 @@ function getMyCourse(SessionId) {
             alert(data.responseText);
         } //End of AJAX error function  
     });
-}*/
+}
 
 /*$(document).ready(function () {
     $.ajax({

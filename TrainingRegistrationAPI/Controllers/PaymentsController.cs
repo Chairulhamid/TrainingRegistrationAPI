@@ -157,5 +157,20 @@ namespace TrainingRegistrationAPI.Controllers
             }
             return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = " Data tidak ada data di tabel" });
         }
+        [Route("CountStatusPayment")]
+        [HttpGet]
+        public ActionResult<PaymentVM> GetStatusPayment()
+        {
+
+            var getStatusPayment = paymentRepository.GetStatusPayment();
+            if (getStatusPayment != null)
+            {
+                return Ok(new { status = HttpStatusCode.OK, result = getStatusPayment, message = "Data berhasil ditampilkan" });
+            }
+            else
+            {
+                return NotFound(new { status = HttpStatusCode.NotFound, result = getStatusPayment, message = "Tidak ada data di sini" });
+            }
+        }
     }
 }

@@ -14,8 +14,6 @@ namespace TrainingRegistrationAPI.Repository.Data
         {
             this.myContext = myContext;
         }
-
-
     }
 }
 

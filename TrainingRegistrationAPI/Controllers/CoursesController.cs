@@ -152,6 +152,21 @@ namespace TrainingRegistrationAPI.Controllers
                     return Ok(result);
                 }
             }*/
+        [Route("CountStatusCourse")]
+        [HttpGet]
+        public ActionResult<CourseVM> GetStatusCourse()
+        {
+
+            var getEmpRole = courseRepository.GetStatusCourse();
+            if (getEmpRole != null)
+            {
+                return Ok(new { status = HttpStatusCode.OK, result = getEmpRole, message = "Data berhasil ditampilkan" });
+            }
+            else
+            {
+                return NotFound(new { status = HttpStatusCode.NotFound, result = getEmpRole, message = "Tidak ada data di sini" });
+            }
+        }
     }
 }
 //test

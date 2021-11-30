@@ -73,6 +73,35 @@ namespace TrainingRegistrationClient.Controllers
             return RedirectToAction("Index", "Trainer");
 
         }
+        //ADMIN
+        public async Task<IActionResult> LoginAdmin(LoginEmpVM loginEmp)
+        {
+            var jwtToken = await repository.Auth(loginEmp);
+            var token = jwtToken.Token;
+            var pesan = jwtToken.Messages;
+            var empId = jwtToken.EmpId;
+
+
+            if (token == "")
+            {
+                if (pesan == "0")
+                {
+                    return RedirectToAction("LoginPageError", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("LoginPageError", "Home");
+                }
+            }
+
+            HttpContext.Session.SetString("JWToken", token);
+            HttpContext.Session.SetInt32("SessionId", empId);
+            /*HttpContext.Session.SetString("Name", jwtHandler.GetName(token));*/
+            /*HttpContext.Session.SetString("ProfilePicture", "assets/img/theme/user.png");*/
+
+            return RedirectToAction("Topic", "Auth");
+
+        }
 
         [Authorize]
         /*[HttpGet("Logout/")]*/

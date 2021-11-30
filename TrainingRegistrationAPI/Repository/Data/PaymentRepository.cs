@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -267,6 +268,17 @@ namespace TrainingRegistrationAPI.Repository.Data
                                   ModulId = m.ModulId,
                                    }).ToArray();
             return getLessonCourse;
+        }
+        public IEnumerable GetStatusPayment()
+        {
+            var result = from Paymnet in myContext.Payments
+                         group Paymnet by Paymnet.Status into x
+                         select new
+                         {
+                             Status = x.Key,
+                             value = x.Count()
+                         };
+            return result;
         }
     }
 }
