@@ -96,7 +96,7 @@ function getDCourse(courseId) {
                                                 <h3 id="courseName">${item.courseName}</h3>
                                                 <p id="courseDesc">${item.courseDesc}</pid>
                                             </div>
-                                            <div class="col-lg-4" id="materiDetail">
+                                            <div class="col-lg-4" style="margin-top: -150px" id="materiDetail">
                                                 <div class="content" style="margin-top:150px">
                                                     <div class="text-center">
                                                         <h4>Details</h4>
