@@ -18,6 +18,7 @@ $(document).ready(function () {
     getPayCoursePaymentVerified(userId)
     getCourseModul(dataID);
     getCourseModul1(dataID);
+    getDetailModul(dataID);
 });
 
 /*function getMyCourse(userID) {
@@ -262,7 +263,7 @@ function getCourseModul(courseId) {
                                     <div class="card-header" id="headingOne">
                                       <h5 class="mb-0">
                                             <div class="col-xl-12 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
-                                             <a href="  ${val.modulContent}" class="glightbox play-btn mb-4">${val.modulTittle}</a>
+                                             <a href="/user/MyCourse/LearnCourse/modul/${val.modulId}" class="glightbox play-btn mb-4">${val.modulTittle}</a>
                                             </div>
                                       </h5>
                                     </div>
@@ -297,6 +298,33 @@ function getCourseModul1(courseId) {
             $('#modulList').html(listModul);
         }
     })
+};
+
+
+function getDetailModul(modulId) {
+    console.log(modulId)
+    $.ajax({
+        url: "https://localhost:44307/API/Moduls/GetIdModulContent/" + modulId,
+        type: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            console.log(result);
+            $("#modulTitle").html(result[0].modulTittle);
+            $("#modulDesc").html(result[0].modulDesc);
+            
+            
+        },
+        error: function (errormessage) {
+            /*alert(errormessage.responseText);*/
+            swal.fire({
+                title: "Failed",
+                text: "Data not found",
+                icon: "error"
+            })
+        }
+    });
+    return false;
 };
 
 
