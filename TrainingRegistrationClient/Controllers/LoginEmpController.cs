@@ -18,6 +18,7 @@ namespace TrainingRegistrationClient.Controllers
         {
             this.repository = repository;
         }
+        [Authorize(Roles = "Employee, Trainer, Admin")]
         public IActionResult Index()
         {
             return View();
@@ -43,6 +44,7 @@ namespace TrainingRegistrationClient.Controllers
             return View();
         }
 
+        
         /*[ValidateAntiForgeryToken]*/
         /*[HttpPost("Auth/")]*/
         public async Task<IActionResult> Auth(LoginEmpVM loginEmp)
