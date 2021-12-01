@@ -101,7 +101,7 @@ namespace TrainingRegistrationClient.Controllers
             /*HttpContext.Session.SetString("Name", jwtHandler.GetName(token));*/
             /*HttpContext.Session.SetString("ProfilePicture", "assets/img/theme/user.png");*/
 
-            return RedirectToAction("Topic", "Auth");
+            return RedirectToAction("Index", "Auth");
 
         }
 
