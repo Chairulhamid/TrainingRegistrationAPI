@@ -49,6 +49,13 @@ namespace TrainingRegistrationClient.Controllers
             ViewData["Id"] = Id;
             return View();
         }
+
+        [Route("user/MyCourse/LearnCourse/Modul/{Id}")]
+        public IActionResult Modul(string Id)
+        {
+            ViewData["Id"] = Id;
+            return View();
+        }
         [Route("user/DetailCourse/{Id}")]
         public IActionResult DetailCourse(string Id)
         {
