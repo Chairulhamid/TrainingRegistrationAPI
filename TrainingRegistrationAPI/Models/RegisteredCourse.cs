@@ -23,5 +23,7 @@ namespace TrainingRegistrationAPI.Models
         public virtual Course Course { get; set; }
         [JsonIgnore]
         public virtual Payment Payment { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<CourseFeedback> CourseFeedback { get; set; }
     }
 }
