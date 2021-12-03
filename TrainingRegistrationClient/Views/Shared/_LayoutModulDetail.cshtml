@@ -97,19 +97,40 @@
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
+        @if (@User.Identity.Name != null)
+        {
 
-        <div class="footer-newsletter">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h4>Tunggu apa lagi?</h4>
-                        <p>Belajar lebih terarah dengan learning path dan code review</p>
-                        <a class="btn btn-warning" href="">Daftar</a>
+            <div class="footer-newsletter">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <span hidden> UserId: @HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome, @User.Identity.Name</span>
+                            @*<h4>What are you waiting for?</h4>
+                                <p>Belajar lebih terarah dengan learning path dan code review</p>
+                                <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalDataUser" style="cursor:pointer">Sign Up</a>*@
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="footer-newsletter">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <h4>What are you waiting for?</h4>
+                            <p>Belajar lebih terarah dengan learning path dan code review</p>
+                            <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalDataUser" style="cursor:pointer">Sign Up</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
 
         <div class="footer-top">
             <div class="container">
