@@ -38,6 +38,8 @@ namespace TrainingRegistrationAPI
             services.AddScoped<EmployeeRepository>();
             services.AddScoped<ModulRepository>();
             services.AddScoped<PaymentRepository>();
+            services.AddScoped<FeedbackRepository>();
+            services.AddScoped<CourseFeedbackRepository>();
             services.AddScoped<RegisteredCourseRepository>();
             services.AddScoped<RoleRepository>();
             services.AddScoped<TopicRepository>();
