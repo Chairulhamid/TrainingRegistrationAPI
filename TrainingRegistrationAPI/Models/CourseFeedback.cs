@@ -16,6 +16,7 @@ namespace TrainingRegistrationAPI.Models
         public int CourseFeedbackId { get; set; }
         public string Testimony { get; set; }
         public int Rating { get; set; }
+        public int RegisteredCourseId { get; set; }
         [JsonIgnore]
         public virtual RegisteredCourse RegisteredCourse { get; set; }
     }
