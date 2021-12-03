@@ -27,6 +27,8 @@ namespace TrainingRegistrationAPI.Context
         public DbSet<Role> Roles { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Feedback> Feedback { get; set; }
+        public DbSet<CourseFeedback> CourseFeedback { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //One to one => Account to User
@@ -80,10 +82,13 @@ namespace TrainingRegistrationAPI.Context
             modelBuilder.Entity<Course>()
               .HasMany(a => a.RegisteredCourse)
               .WithOne(b => b.Course);
-           
-            /*modelBuilder.Entity<Payment>()
-              .HasMany(a => a.RegisteredCourse)
-              .WithOne(b => b.Payment);*/
+            modelBuilder.Entity<User>()
+             .HasMany(a => a.Feedback)
+             .WithOne(b => b.User);
+            modelBuilder.Entity<RegisteredCourse>()
+             .HasMany(a => a.CourseFeedback)
+             .WithOne(b => b.RegisteredCourse);
+
 
 
         }
