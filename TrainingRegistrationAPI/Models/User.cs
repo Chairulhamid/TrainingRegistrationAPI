@@ -32,7 +32,7 @@ namespace TrainingRegistrationAPI.Models
         [JsonIgnore]
         public virtual Account Account { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Feedback> Feedback { get; set; }
+        public virtual Feedback Feedback { get; set; }
         [JsonIgnore]
         public virtual ICollection<RegisteredCourse> RegisteredCourses { get; set; }
     }

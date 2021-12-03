@@ -49,6 +49,17 @@ namespace TrainingRegistrationAPI.Context
                 .WithOne(b => b.RegisteredCourse)
                 .HasForeignKey<Payment>(b => b.RegisteredCourseId);
 
+            //One to one => feedback to user
+            modelBuilder.Entity<Feedback>()
+                .HasOne(a => a.User)
+                .WithOne(b => b.Feedback)
+                .HasForeignKey<User>(b => b.UserId);
+
+            modelBuilder.Entity<CourseFeedback>()
+                .HasOne(a => a.RegisteredCourse)
+                .WithOne(b => b.CourseFeedback)
+                .HasForeignKey<RegisteredCourse>(b => b.RegisteredCourseId);
+
             //Many to many Role
             modelBuilder.Entity<AccountRole>()
               .HasKey(bc => new { bc.AccountId, bc.RoleId });
@@ -82,14 +93,6 @@ namespace TrainingRegistrationAPI.Context
             modelBuilder.Entity<Course>()
               .HasMany(a => a.RegisteredCourse)
               .WithOne(b => b.Course);
-            modelBuilder.Entity<User>()
-             .HasMany(a => a.Feedback)
-             .WithOne(b => b.User);
-            modelBuilder.Entity<RegisteredCourse>()
-             .HasMany(a => a.CourseFeedback)
-             .WithOne(b => b.RegisteredCourse);
-
-
 
         }
     }
