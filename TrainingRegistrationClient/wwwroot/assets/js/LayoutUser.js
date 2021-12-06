@@ -64,7 +64,7 @@ function GiveReview(){
             return Swal.fire({
                 icon: 'error',
                 title: 'Oops..',
-                text: 'Failed to Add , You have added testimonials!!'
+                text: 'Failed to save , You have added testimonials!!'
             }).then(function () {
                 window.location = "https://localhost:44344/";
             });
