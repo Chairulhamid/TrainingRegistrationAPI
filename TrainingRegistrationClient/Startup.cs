@@ -38,6 +38,7 @@ namespace TrainingRegistrationClient
             services.AddScoped<Repository.Data.CourseRepository>();
             services.AddScoped<Repository.Data.ModulRepository>();
             services.AddScoped<Repository.Data.PaymentRepository>();
+            services.AddScoped<Repository.Data.FeedbackRepository>();
             services.AddScoped<LoginUserRepository>();
             services.AddScoped<LoginEmpRepository>();
             services.AddScoped<Address>();

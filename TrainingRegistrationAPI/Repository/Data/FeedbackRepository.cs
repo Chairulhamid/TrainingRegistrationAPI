@@ -17,10 +17,10 @@ namespace TrainingRegistrationAPI.Repository.Data
         }
         public int InputFeedback(FeedbackVM feedbackVM)
         {
+            var id = (from u in myContext.Users where u.Email == feedbackVM.Email select u.UserId).FirstOrDefault();
             Feedback feedback = new Feedback();
-
             feedback.Testimony = feedbackVM.Testimony;
-            feedback.UserId = feedbackVM.UserId;
+            feedback.UserId = id;
             myContext.Feedback.Add(feedback);
             var result = myContext.SaveChanges();
             return result;
