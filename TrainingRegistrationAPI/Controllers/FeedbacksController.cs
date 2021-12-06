@@ -43,6 +43,20 @@ namespace TrainingRegistrationAPI.Controllers
                 return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data gagal ditambahkan!!" });
             }
         }
+        /*[Authorize(Roles = "Admin")]*/
+        //[EnableCors("AllowOrigin")]
+        [Route("GetTestimoni")]
+        [HttpGet]
+        public ActionResult<FeedbackVM> GetTestimoni()
+        {
+            var result = feedbackRepository.GetTestimoni();
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(new { status = HttpStatusCode.NotFound, result = result, message = "Tidak ada data di tabel" });
+
+        }
 
     }
 }
