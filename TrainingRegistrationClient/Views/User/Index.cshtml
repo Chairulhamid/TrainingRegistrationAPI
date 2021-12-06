@@ -2,7 +2,9 @@
     ViewData["Title"] = "Home Page";
     Layout = "_LayoutUser";
 }
+@using Microsoft.AspNetCore.Http;
 
+@inject IHttpContextAccessor HttpContextAccessor
 <main id="main">
     <!-- ======= About Section ======= -->
     <section id="about" class="about section-bg">
@@ -13,9 +15,11 @@
                 </div>
                 <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     <h3>ABOUT METRODATA IT CAMP</h3>
-                    <p>Metrodata IT Camp is a leading website for learning by doing. teach students how to code and apply code to workplace projects. 
-                    These programs commonly cover programming languages like JavaScript, SQL, and Python, along 
-                    with modules on current industry software, tools, and techniques. Most bootcamp applicants need little or no prior coding experience </p>
+                    <p>
+                        Metrodata IT Camp is a leading website for learning by doing. teach students how to code and apply code to workplace projects.
+                        These programs commonly cover programming languages like JavaScript, SQL, and Python, along
+                        with modules on current industry software, tools, and techniques. Most bootcamp applicants need little or no prior coding experience
+                    </p>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-user"></i></div>
@@ -51,49 +55,49 @@
 
             <div class="row" id="lesson">
                 @*<div class="col-xl-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="product">
-                        <div class="imgbox"> <img src="/assets/img/hero-img.png"> </div>
-                        <div class="specifies">
-                            <h2>Course One <br> <span>WEBSITE</span></h2>
-                            <div class="price">$1500</div> <label>Description</label>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <button class="btn btn-warning">Buy Now</button>
+                        <div class="product">
+                            <div class="imgbox"> <img src="/assets/img/hero-img.png"> </div>
+                            <div class="specifies">
+                                <h2>Course One <br> <span>WEBSITE</span></h2>
+                                <div class="price">$1500</div> <label>Description</label>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                <button class="btn btn-warning">Buy Now</button>
+                            </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
                 @*<div class="col-xl-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="product">
-                        <div class="imgbox"> <img src="/assets/img/hero-img.png"> </div>
-                        <div class="specifies">
-                            <h2>Course Two <br> <span>WEBSITE</span></h2>
-                            <div class="price">$1500</div> <label>Description</label>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <button class="btn btn-warning">Buy Now</button>
+                        <div class="product">
+                            <div class="imgbox"> <img src="/assets/img/hero-img.png"> </div>
+                            <div class="specifies">
+                                <h2>Course Two <br> <span>WEBSITE</span></h2>
+                                <div class="price">$1500</div> <label>Description</label>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                <button class="btn btn-warning">Buy Now</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="product">
-                        <div class="imgbox"> <img src="/assets/img/hero-img.png"> </div>
-                        <div class="specifies">
-                            <h2>Course Three <br> <span>WEBSITE</span></h2>
-                            <div class="price">$1500</div> <label>Description</label>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <button class="btn btn-warning">Buy Now</button>
+                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="product">
+                            <div class="imgbox"> <img src="/assets/img/hero-img.png"> </div>
+                            <div class="specifies">
+                                <h2>Course Three <br> <span>WEBSITE</span></h2>
+                                <div class="price">$1500</div> <label>Description</label>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                <button class="btn btn-warning">Buy Now</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="product">
-                        <div class="imgbox"> <img src="/assets/img/hero-img.png"> </div>
-                        <div class="specifies">
-                            <h2>Course Four <br> <span>WEBSITE</span></h2>
-                            <div class="price">$1500</div> <label>Description</label>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <button class="btn btn-warning">Buy Now</button>
+                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="product">
+                            <div class="imgbox"> <img src="/assets/img/hero-img.png"> </div>
+                            <div class="specifies">
+                                <h2>Course Four <br> <span>WEBSITE</span></h2>
+                                <div class="price">$1500</div> <label>Description</label>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                <button class="btn btn-warning">Buy Now</button>
+                            </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
 
             </div>
 
@@ -193,7 +197,7 @@
                             <h4>Nathan </h4>
                             <span>Front End Developer</span>
                             <p>
-                                A front end developer, also known as a front end web developer, is a professional responsible for the design and implementation of the interface. 
+                                A front end developer, also known as a front end web developer, is a professional responsible for the design and implementation of the interface.
                             </p>
                             <div class="social">
                                 <a href=""><i class="bi bi-twitter"></i></a>
@@ -259,7 +263,7 @@
                                 <h4>Devepoler</h4>
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                     Pembelajaran di Metro Data Training sangat efektif dan mudah dipahami untuk pemula seperti saya
+                                    Pembelajaran di Metro Data Training sangat efektif dan mudah dipahami untuk pemula seperti saya
                                     <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                 </p>
                             </div>
@@ -303,3 +307,9 @@
     </section><!-- End Testimonials Section -->
 
 </main><!-- End #main -->
+@section Scripts {
+    <script>
+        var userId = @HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")
+        console.log(userId);
+    </script>
+}
