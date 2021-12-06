@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Http;
 
 @inject IHttpContextAccessor HttpContextAccessor
-<html lang="en" >
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -25,6 +25,9 @@
     <!-- Template Main CSS File -->
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/style1.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -135,38 +138,39 @@
     </div>
 
     <!-- ======= Footer ======= -->
-<footer id="footer">
-    @if (@User.Identity.Name != null)
-    {
+    <footer id="footer">
+        @if (@User.Identity.Name != null)
+        {
 
-    <div class="footer-newsletter">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <span hidden> UserId: @HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")</span>
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome, @User.Identity.Name</span>
-                    @*<h4>What are you waiting for?</h4>
-                    <p>Belajar lebih terarah dengan learning path dan code review</p>
-                    <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalDataUser" style="cursor:pointer">Sign Up</a>*@
+            <div class="footer-newsletter">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <span hidden> UserId: @HttpContextAccessor.HttpContext.Session.GetInt32("SessionId")</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome, @User.Identity.Name</span>
+                            @*<h4>What are you waiting for?</h4>
+                                <p>Belajar lebih terarah dengan learning path dan code review</p>
+                                <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalDataUser" style="cursor:pointer">Sign Up</a>*@
 
-                </div>
-            </div>
-        </div>
-    </div>
-    } else
-    {
-        <div class="footer-newsletter">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h4>What are you waiting for?</h4>
-                        <p>Belajar lebih terarah dengan learning path dan code review</p>
-                        <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalDataUser" style="cursor:pointer">Sign Up</a>
-
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="footer-newsletter">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <h4>What are you waiting for?</h4>
+                            <p>Belajar lebih terarah dengan learning path dan code review</p>
+                            <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalDataUser" style="cursor:pointer">Sign Up</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
 
         <div class="footer-top">
@@ -236,6 +240,7 @@
     <script src="~/assets/js/sb-admin-2.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="components/sweetalert/dist/sweetalert.min.js"></script>
     <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
     <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
     <script src="/assets/js/main.js"></script>
@@ -250,7 +255,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel">Register as a Student</h4>
-                <button class="bx bx-x" onclick="window.location.reload()" data-dismiss="modal"> 
+                <button class="bx bx-x" onclick="window.location.reload()" data-dismiss="modal">
                 </button>
             </div>
             <div class="modal-body">

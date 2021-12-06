@@ -40,4 +40,31 @@ $(document).ready(function () {
 });
 
 
+function GiveReview(){
+    var obj = new Object();
+    //obj.UserId = null;
+    obj.Email = $('#email1').val();
+    obj.Testimony = $('#testimony').val();
+    console.log(obj)
+    $.ajax({
+        url: "/feedbacks/inputfeedback",
+        'type': 'POST',
+        'data': { entity: obj },
+        'dataType': 'json',
+    }).done((result) => {
+        return Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Review Successful!'
+        })
+        }).fail((error) => {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Oops..',
+                text: 'Failed to Add Review'
+            });
+        });
+};
+
+
 
