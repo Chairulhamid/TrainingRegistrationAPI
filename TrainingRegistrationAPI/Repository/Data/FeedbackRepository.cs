@@ -25,5 +25,22 @@ namespace TrainingRegistrationAPI.Repository.Data
             var result = myContext.SaveChanges();
             return result;
         }
+        public IEnumerable<FeedbackVM> GetTestimoni()
+        {
+            var getTestimoni = (from u in myContext.Users
+                              join fe in myContext.Feedback on
+                              u.UserId equals fe.UserId
+                              select new FeedbackVM
+                              {
+                                  UserId = u.UserId,
+                                  FirstName = u.FirstName,
+                                  LastName = u.LastName,
+                                  Email = u.Email,
+                                  FeedbackId = fe.FeedbackId,
+                                  Testimony = fe.Testimony,
+                              }).ToList();
+            return getTestimoni;
+        }
+
     }
 }

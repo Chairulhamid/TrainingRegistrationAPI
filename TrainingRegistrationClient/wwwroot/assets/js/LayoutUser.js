@@ -39,7 +39,6 @@ $(document).ready(function () {
     });
 });
 
-
 function GiveReview(){
     var obj = new Object();
     //obj.UserId = null;
@@ -60,14 +59,6 @@ function GiveReview(){
             }).then(function () {
                 window.location = "https://localhost:44344/";
             });
-        } else if (result == 500) {
-            return Swal.fire({
-                icon: 'error',
-                title: 'Oops..',
-                text: 'Failed to save , You have added testimonials!!'
-            }).then(function () {
-                window.location = "https://localhost:44344/";
-            });
         }
         }).fail((error) => {
             return Swal.fire({
@@ -79,6 +70,48 @@ function GiveReview(){
             });
         });
 };
+
+$(document).ready(function () {
+    $.ajax({
+        type: "GET",
+        url: "https://localhost:44307/API/feedbacks/GetTestimoni",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            console.log(data)
+            //alert(JSON.stringify(data));                  
+            $("#DIV").html('');
+            var rows = '';
+            $.each(data, function (i, item) {
+                rows += `
+                                 <div class="swiper-slide">
+                                    <div class="testimonial-wrap">
+                                        <div class="testimonial-item">
+                                            <img src="/assets/img/team/images (1).png" class="testimonial-img" alt="">
+                                            <h3>${item.firstName} ${item.lastName} </h3><hr />
+                                            <p>
+                                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                              ${item.testimony}
+                                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            `;
+                $('#testimoni').append(rows);
+            }); //End of foreach Loop   
+            console.log(data);
+        }, //End of AJAX Success function  
+
+        failure: function (data) {
+            alert(data.responseText);
+        }, //End of AJAX failure function  
+        error: function (data) {
+            alert(data.responseText);
+        } //End of AJAX error function  
+    });
+});
 
 
 
