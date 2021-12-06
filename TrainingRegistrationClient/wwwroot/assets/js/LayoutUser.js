@@ -74,6 +74,8 @@ function GiveReview(){
                 icon: 'error',
                 title: 'Oops..',
                 text: 'Failed to Add Review'
+            }).then(function () {
+                window.location = "https://localhost:44344/";
             });
         });
 };
