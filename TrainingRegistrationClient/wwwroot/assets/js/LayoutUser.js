@@ -52,11 +52,23 @@ function GiveReview(){
         'data': { entity: obj },
         'dataType': 'json',
     }).done((result) => {
-        return Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: 'Review Successful!'
-        })
+        if (result == 200) {
+            return Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Review Successful!'
+            }).then(function () {
+                window.location = "https://localhost:44344/";
+            });
+        } else if (result == 500) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Oops..',
+                text: 'Failed to Add , You have added testimonials!!'
+            }).then(function () {
+                window.location = "https://localhost:44344/";
+            });
+        }
         }).fail((error) => {
             return Swal.fire({
                 icon: 'error',
