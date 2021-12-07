@@ -32,7 +32,6 @@ namespace TrainingRegistrationAPI.Repository.Data
             var result = myContext.SaveChanges();
             return result;
         }
-
         public IEnumerable<CourseFeedbackVM> GetCourseFeedbacks()
         {
             var result = (from u in myContext.Users

@@ -59,6 +59,14 @@ function GiveReview(){
             }).then(function () {
                 window.location = "https://localhost:44344/";
             });
+        } else if (result == 500) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Oops..',
+                text: 'Failed to Add Review, Your e-mail doesnt exist or you have added rate'
+            }).then(function () {
+                window.location = "https://localhost:44344/";
+            });
         }
         }).fail((error) => {
             return Swal.fire({

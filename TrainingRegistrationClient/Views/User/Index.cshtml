@@ -270,9 +270,18 @@
 
         </div>
     </section><!-- End Testimonials Section -->
-    <div class="text-center">
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalRate" style="color:black;box-shadow: 3px 14px 14px -3px rgba(0,0,0,0.5);"><h4>Rate us</h4></button>
-    </div>
+    @if (@User.Identity.Name != null)
+    {
+        <div class="text-center">
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalRate" style="color:black;box-shadow: 3px 14px 14px -3px rgba(0,0,0,0.5);"><h4>Rate us</h4></button>
+        </div>
+    }
+    else
+    {
+        <div class="text-center" hidden>
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalRate" style="color:black;box-shadow: 3px 14px 14px -3px rgba(0,0,0,0.5);"><h4>Rate us</h4></button>
+        </div>
+    }
 </main><!-- End #main -->
 
 <div class="modal fade" id="modalRate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

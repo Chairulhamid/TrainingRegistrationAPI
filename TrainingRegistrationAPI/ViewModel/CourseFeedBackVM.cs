@@ -18,9 +18,9 @@ namespace TrainingRegistrationAPI.ViewModel
         public int RegisteredCourseId { get; set; }
         //[Required]
         public int UserId { get; set; }
-        [Required]
+       /* [Required]*/
         public string Email { get; set; }
-        [Required]
+       /* [Required]*/
         public int CourseId { get; set; }
         //public string FirstName { get; set; }
         //[Required]
