@@ -18,16 +18,14 @@ namespace TrainingRegistrationAPI.Repository.Data
 
         public int InputCourseFeedback(CourseFeedbackVM courseFeedbackVM)
         {
-
             CourseFeedback courseFeedback = new CourseFeedback();
-            //REGISTERED COURSE
-            RegisteredCourse registeredCourse = new RegisteredCourse();
-            registeredCourse.UserId = courseFeedbackVM.UserId;
-            registeredCourse.CourseId = courseFeedbackVM.CourseId;
-            myContext.RegisteredCourses.Add(registeredCourse);
-            myContext.SaveChanges();
+
+            var registered = (from rc in myContext.RegisteredCourses
+                            where rc.UserId == courseFeedbackVM.UserId && rc.CourseId == courseFeedbackVM.CourseId
+                            select rc.RegisteredCourseId).Single();
 
             //SAVE COURSE FEEDBACK
+            courseFeedback.RegisteredCourseId = registered;
             courseFeedback.Testimony = courseFeedbackVM.Testimony;
             courseFeedback.Rating = courseFeedbackVM.Rating;
             myContext.CourseFeedback.Add(courseFeedback);
