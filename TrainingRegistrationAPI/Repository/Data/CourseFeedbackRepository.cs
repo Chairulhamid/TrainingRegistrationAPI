@@ -33,5 +33,24 @@ namespace TrainingRegistrationAPI.Repository.Data
             return result;
         }
 
+        public IEnumerable<CourseFeedbackVM> GetCourseFeedbacks()
+        {
+            var result = (from u in myContext.Users
+                          join rc in myContext.RegisteredCourses on
+                          u.UserId equals rc.UserId
+                          join cf in myContext.CourseFeedback on
+                          rc.RegisteredCourseId equals cf.RegisteredCourseId
+                          select new CourseFeedbackVM
+                          {
+                              UserId = u.UserId,
+                              Email = u.Email,
+                              CourseId = rc.CourseId,
+                              CourseFeedbackId = cf.CourseFeedbackId,
+                              Testimony = cf.Testimony,
+                              Rating = cf.Rating
+                          }).ToList();
+            return result;
+        }
+
     }
 }
