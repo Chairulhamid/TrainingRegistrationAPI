@@ -1,14 +1,4 @@
-﻿/*$.ajax({
-    url: "https://localhost:44307/API/Roles",
-    success: function (result) {
-        var optionRole = `<option value="" >---Choose Role---</option>`;
-        $.each(result, function (key, val) {
-            optionRole += `
-                            <option value="${val.roleId}">${val.roleName}</option>`;
-        });
-        $('#role_id').html( );
-    }
-});*/
+﻿
 $(document).ready(function () {
     /*   getMyCourse(userID);*/
     //dataId tidak masuk
@@ -327,7 +317,40 @@ function getDetailModul(modulId) {
     return false;
 };
 
-
+function GiveRate(userId,courseId) {
+    var obj = new Object();
+    //obj.UserId = null;
+    obj.UserId = userId;
+    obj.CourseId = courseId;
+    obj.Email = $('#email2').val();
+    obj.Rating = $('#rating').val();
+    obj.Testimony = $('#testimony').val();
+    console.log(obj)
+    $.ajax({
+        url: "/coursefeedbacks/inputcoursefeedback",
+        'type': 'POST',
+        'data': { entity: obj },
+        'dataType': 'json',
+    }).done((result) => {
+        if (result == 200) {
+            return Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Review Successful!'
+            }).then(function () {
+                $('#modalRating').modal('hide');
+            });
+        }
+    }).fail((error) => {
+        return Swal.fire({
+            icon: 'error',
+            title: 'Oops..',
+            text: 'Failed to Add Review'
+        }).then(function () {
+            $('#modalRating').modal('hide');
+        });
+    });
+};
 
 /*function getPayCoursePayment(userId) {
     console.log(userId)
